@@ -1,4 +1,6 @@
+import Image from "next/image";
 import Link from "next/link";
+import { logoLandscape } from "@repo/assets";
 import {
   ArrowRight,
   AudioLines,
@@ -18,13 +20,15 @@ export default function LandingPage() {
       {/* Top Accessibility & Nav Header */}
       <header className="sticky top-0 z-50 border-b border-border-default/80 bg-surface-default/90 backdrop-blur-md">
         <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 sm:px-6 lg:px-8">
-          <Link href="/" className="flex items-center gap-2.5">
-            <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-br from-brand-intelligence to-brand-cyan text-white shadow-sm">
-              <Sparkles className="h-5 w-5" />
-            </span>
-            <span className="text-xl font-bold tracking-tight text-text-primary">
-              Inclusa<span className="text-brand-intelligence">AI</span>
-            </span>
+          <Link href="/" className="flex items-center">
+            <Image
+              src={logoLandscape}
+              alt="InclusaAI"
+              width={logoLandscape.width}
+              height={logoLandscape.height}
+              className="h-9 w-auto object-contain object-left"
+              priority
+            />
           </Link>
 
           <nav className="hidden items-center gap-6 md:flex">

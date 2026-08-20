@@ -1,11 +1,23 @@
+import { createAppMetadata } from "@repo/assets/metadata";
 import type { Metadata } from "next";
+import { Poppins, Roboto_Mono } from "next/font/google";
 import "./globals.css";
 
-export const metadata: Metadata = {
-  title: "InclusaAI — Inclusive by Default Assistive AI Platform",
-  description:
-    "Real-time AI sign language interpretation, live captions, and multi-modal accessibility for presentations, events, and education.",
-};
+const poppins = Poppins({
+  variable: "--font-poppins",
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+});
+
+const robotoMono = Roboto_Mono({
+  variable: "--font-roboto-mono",
+  subsets: ["latin"],
+});
+
+export const metadata: Metadata = createAppMetadata(
+  "InclusaAI — Inclusive by Default Assistive AI Platform",
+  "Real-time AI sign language interpretation, live captions, and multi-modal accessibility for presentations, events, and education.",
+);
 
 export default function RootLayout({
   children,
@@ -13,8 +25,15 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
-      <body className="min-h-screen bg-surface-page font-sans text-text-primary antialiased">
+    <html
+      lang="en"
+      suppressHydrationWarning={true}
+      className={`${poppins.variable} ${robotoMono.variable} h-full antialiased`}
+    >
+      <body
+        className="min-h-screen bg-surface-page font-sans text-text-primary antialiased"
+        suppressHydrationWarning={true}
+      >
         {children}
       </body>
     </html>
