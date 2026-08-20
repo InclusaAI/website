@@ -1,0 +1,59 @@
+{
+  "compilerOptions": {
+    "target": "ES2017",
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
+    "allowJs": true,
+    "skipLibCheck": true,
+    "strict": true,
+    "noEmit": true,
+    "esModuleInterop": true,
+    "module": "esnext",
+    "moduleResolution": "bundler",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "jsx": "react-jsx",
+    "incremental": true,
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ],
+    "paths": {
+      "@/*": [
+        "./*"
+      ],
+      "@inclusaai/ui": [
+        "../design-system/packages/ui/src/index.ts"
+      ],
+      "@inclusaai/ui/signin": [
+        "../design-system/packages/ui/src/pages/signin.tsx"
+      ],
+      "@inclusaai/ui/*": [
+        "../design-system/packages/ui/src/*"
+      ],
+      "@inclusaai/design-tokens": [
+        "../design-system/packages/design-tokens/src/index.ts"
+      ],
+      "@inclusaai/design-tokens/*": [
+        "../design-system/packages/design-tokens/src/*"
+      ],
+      "@repo/assets": [
+        "../web-apps/packages/assets/src/index.ts"
+      ]
+    }
+  },
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    ".next/types/**/*.ts",
+    ".next/dev/types/**/*.ts"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
+}
