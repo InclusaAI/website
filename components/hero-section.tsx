@@ -1,18 +1,12 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import {
   ArrowRight,
   CheckCircle2,
   Play,
-  Subtitles,
-  Globe,
   Sparkles,
-  BarChart2,
-  Users,
-  ChevronDown,
-  Activity,
-  Heart,
 } from "lucide-react";
 
 export function HeroSection() {
@@ -81,140 +75,17 @@ export function HeroSection() {
             </div>
           </div>
 
-          {/* Right Column: Composite Broadcast Mockup */}
+          {/* Right Column: Hero Section Illustration */}
           <div className="lg:col-span-6">
-            <div className="relative mx-auto w-full max-w-[560px] rounded-3xl border border-blue-100/80 bg-gradient-to-tr from-blue-50/40 via-white to-cyan-50/30 p-5 shadow-2xl backdrop-blur-md">
-              {/* Floating Card 1: Live Speech Bubble (Top Right) */}
-              <div className="absolute -top-4 right-4 z-20 flex max-w-[280px] items-start gap-2.5 rounded-2xl border border-slate-200/80 bg-white/95 p-3.5 shadow-lg backdrop-blur-md sm:-top-6">
-                <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-blue-50 text-brand-intelligence">
-                  <Subtitles className="h-4 w-4" />
-                </span>
-                <p className="text-xs font-medium text-slate-700 leading-snug">
-                  Technology is not just about innovation. It&apos;s about inclusion and opportunity.
-                </p>
-              </div>
-
-              {/* Main Visual Stage Composition */}
-              <div className="relative mt-8 grid grid-cols-12 gap-3.5 pt-4">
-                {/* Presenter Illustration Placeholder Box (Center Left) */}
-                <div className="col-span-7 relative flex min-h-[220px] flex-col justify-between overflow-hidden rounded-2xl bg-gradient-to-b from-slate-900 to-brand-navy p-4 text-white shadow-md">
-                  {/* Floating Soundwave Audio Badge */}
-                  <div className="self-start flex items-center gap-1.5 rounded-full bg-white/10 px-3 py-1 text-[11px] backdrop-blur-md border border-white/10">
-                    <span className="h-2 w-2 rounded-full bg-[#00d2d3] animate-pulse" />
-                    <div className="flex items-end gap-0.5 h-3">
-                      <span className="w-0.5 h-2 bg-[#00d2d3] animate-pulse rounded-full" />
-                      <span className="w-0.5 h-3 bg-blue-400 animate-pulse delay-75 rounded-full" />
-                      <span className="w-0.5 h-1.5 bg-[#00d2d3] animate-pulse delay-150 rounded-full" />
-                    </div>
-                  </div>
-
-                  {/* Presenter Geometric Avatar Shape */}
-                  <div className="my-auto flex flex-col items-center justify-center text-center">
-                    <div className="relative flex h-24 w-24 items-center justify-center rounded-full bg-gradient-to-tr from-blue-600 to-cyan-400 p-1 shadow-lg">
-                      <div className="flex h-full w-full items-center justify-center rounded-full bg-slate-900 text-white">
-                        <span className="text-3xl font-extrabold">👨🏾‍💼</span>
-                      </div>
-                    </div>
-                    <p className="mt-2 text-xs font-bold text-white">Live Presenter Feed</p>
-                    <p className="text-[10px] text-white/70">Studio High-Definition Audio</p>
-                  </div>
-                </div>
-
-                {/* Right Side: Sign Language Avatar (Far Right) & Impact Report */}
-                <div className="col-span-5 flex flex-col gap-3.5">
-                  {/* Sign Language Avatar Box */}
-                  <div className="relative flex flex-1 flex-col justify-between overflow-hidden rounded-2xl bg-slate-900 p-3 text-white shadow-md border border-slate-800">
-                    <div className="flex items-center justify-between">
-                      <span className="flex items-center gap-1 rounded-full bg-red-500/20 px-2 py-0.5 text-[10px] font-bold text-red-400">
-                        <span className="h-1.5 w-1.5 rounded-full bg-red-500 animate-pulse" />
-                        LIVE
-                      </span>
-                      <span className="text-[10px] text-white/60">ASL Avatar</span>
-                    </div>
-
-                    <div className="my-2 flex flex-col items-center justify-center">
-                      <div className="flex h-16 w-16 items-center justify-center rounded-full bg-gradient-to-br from-purple-500 to-indigo-600 text-2xl shadow-inner">
-                        🧕
-                      </div>
-                    </div>
-
-                    <p className="text-center text-[10px] font-medium text-white/80">
-                      Synchronous Sign Output
-                    </p>
-                  </div>
-                </div>
-              </div>
-
-              {/* Annual Impact Report Mini Card (Mid Overlay) */}
-              <div className="mt-3.5 rounded-2xl border border-border-default bg-white p-4 shadow-sm">
-                <div className="flex items-center justify-between border-b border-border-default pb-2">
-                  <div className="flex items-center gap-2">
-                    <BarChart2 className="h-4 w-4 text-brand-intelligence" />
-                    <span className="text-xs font-bold text-slate-900">Annual Impact Report</span>
-                  </div>
-                  <span className="rounded-full bg-emerald-50 px-2 py-0.5 text-[10px] font-bold text-emerald-600">
-                    +42% Growth
-                  </span>
-                </div>
-                {/* Visual Bar Graph Placeholder */}
-                <div className="mt-3 flex items-end justify-between gap-2 h-14 px-2">
-                  {[35, 60, 45, 80, 65, 95, 75, 100].map((val, idx) => (
-                    <div key={idx} className="flex-1 flex flex-col items-center gap-1">
-                      <div
-                        className="w-full rounded-t-sm bg-gradient-to-t from-blue-600 to-indigo-400"
-                        style={{ height: `${val}%` }}
-                      />
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-              {/* Bottom Floating Cards Row (Translation + Poll + Attendees) */}
-              <div className="mt-3.5 grid grid-cols-1 sm:grid-cols-3 gap-3">
-                {/* Translation Card */}
-                <div className="rounded-xl border border-border-default bg-white p-3 shadow-sm">
-                  <div className="flex items-center justify-between text-[11px] font-bold text-text-tertiary">
-                    <span className="flex items-center gap-1 text-teal-700">
-                      <Globe className="h-3 w-3" />
-                      Translation
-                    </span>
-                    <span className="text-[10px] text-slate-500">Spanish ▾</span>
-                  </div>
-                  <p className="mt-2 text-[11px] font-medium text-slate-700 italic leading-snug">
-                    &ldquo;La tecnología se trata de inclusión y oportunidad.&rdquo;
-                  </p>
-                </div>
-
-                {/* Poll Card */}
-                <div className="rounded-xl border border-border-default bg-white p-3 shadow-sm">
-                  <span className="text-[11px] font-bold text-purple-700">Live Poll</span>
-                  <p className="mt-1 text-[10px] font-semibold text-slate-800 leading-tight">
-                    How useful is AI in improving accessibility?
-                  </p>
-                  <div className="mt-2 flex items-center justify-between gap-2">
-                    <div className="h-2 flex-1 rounded-full bg-slate-100 overflow-hidden">
-                      <div className="h-full w-[85%] bg-blue-600 rounded-full" />
-                    </div>
-                    <span className="text-[10px] font-bold text-blue-600">85%</span>
-                  </div>
-                </div>
-
-                {/* Attendees Reaction Card */}
-                <div className="rounded-xl border border-border-default bg-white p-3 shadow-sm flex flex-col justify-between">
-                  <div className="flex items-center justify-between">
-                    <span className="text-[10px] font-bold text-slate-500 uppercase">124 Live</span>
-                    <Users className="h-3 w-3 text-brand-intelligence" />
-                  </div>
-                  <div className="space-y-1 mt-1">
-                    <p className="truncate text-[10px] text-slate-600 font-medium">
-                      👩🏾 &ldquo;Great session! 👏&rdquo;
-                    </p>
-                    <p className="truncate text-[10px] text-slate-600 font-medium">
-                      👨🏼 &ldquo;Very insightful&rdquo;
-                    </p>
-                  </div>
-                </div>
-              </div>
+            <div className="relative mx-auto w-full max-w-[620px] transition-all">
+              <Image
+                src="/assets/images/website_header_illustration.png"
+                alt="InclusaAI Live Broadcast and Accessibility Platform"
+                width={800}
+                height={600}
+                priority
+                className="h-auto w-full object-contain drop-shadow-2xl"
+              />
             </div>
           </div>
         </div>
