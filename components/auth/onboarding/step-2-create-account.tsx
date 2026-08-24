@@ -11,13 +11,12 @@ import {
   EyeOff,
   CheckCircle2,
   ArrowRight,
-  ShieldCheck,
-  Check,
 } from "lucide-react";
 import { WorkspaceType } from "./step-1-choose-workspace";
 
 export interface Step2CreateAccountProps {
-  workspaceType: WorkspaceType;
+  role?: "audience" | "presenter";
+  workspaceType?: WorkspaceType;
   onBack: () => void;
   onContinue: (formData: {
     fullName: string;
@@ -27,7 +26,8 @@ export interface Step2CreateAccountProps {
 }
 
 export function Step2CreateAccount({
-  workspaceType,
+  role = "presenter",
+  workspaceType = "individual",
   onBack,
   onContinue,
 }: Step2CreateAccountProps) {
@@ -84,46 +84,50 @@ export function Step2CreateAccount({
         </p>
       </div>
 
-      {/* Selected Workspace Confirmation Banner */}
-      <div className="mt-3.5 flex items-center justify-between rounded-xl border border-blue-100 bg-[#F8FAFD] p-3 shadow-xs">
-        <div className="flex items-center gap-3">
-          <div className={`flex h-9 w-9 items-center justify-center rounded-full ${
-            workspaceType === "organization"
-              ? "bg-emerald-100/80 text-success"
-              : "bg-blue-100/80 text-brand-intelligence"
-          }`}>
-            {workspaceType === "organization" ? (
-              <Building2 className="h-5 w-5" />
-            ) : (
-              <User className="h-5 w-5" />
-            )}
+      {/* Selected Workspace Confirmation Banner (Presenter only) */}
+      {role === "presenter" && (
+        <div className="mt-3.5 flex items-center justify-between rounded-xl border border-blue-100 bg-[#F8FAFD] p-3 shadow-xs">
+          <div className="flex items-center gap-3">
+            <div
+              className={`flex h-9 w-9 items-center justify-center rounded-full ${
+                workspaceType === "organization"
+                  ? "bg-emerald-100/80 text-success"
+                  : "bg-blue-100/80 text-brand-intelligence"
+              }`}
+            >
+              {workspaceType === "organization" ? (
+                <Building2 className="h-5 w-5" />
+              ) : (
+                <User className="h-5 w-5" />
+              )}
+            </div>
+            <div>
+              <p className="text-[10px] uppercase font-bold text-text-tertiary">Workspace</p>
+              <p className="text-xs font-bold text-slate-900">
+                {workspaceType === "organization"
+                  ? "Organization Workspace"
+                  : "Individual Workspace"}
+              </p>
+              <p className="text-[10.5px] text-text-secondary">
+                {workspaceType === "organization"
+                  ? "Organization workspace for teams"
+                  : "Personal workspace for presenters"}
+              </p>
+            </div>
           </div>
-          <div>
-            <p className="text-[10px] uppercase font-bold text-text-tertiary">Workspace</p>
-            <p className="text-xs font-bold text-slate-900">
-              {workspaceType === "organization"
-                ? "Organization Workspace"
-                : "Individual Workspace"}
-            </p>
-            <p className="text-[10.5px] text-text-secondary">
-              {workspaceType === "organization"
-                ? "Organization workspace for teams"
-                : "Personal workspace for presenters"}
-            </p>
-          </div>
-        </div>
 
-        <div className="text-right">
-          <p className="text-[10.5px] text-text-tertiary">Need to change this?</p>
-          <button
-            type="button"
-            onClick={onBack}
-            className="text-[11px] font-bold text-brand-intelligence hover:underline"
-          >
-            Go back to choose
-          </button>
+          <div className="text-right">
+            <p className="text-[10.5px] text-text-tertiary">Need to change this?</p>
+            <button
+              type="button"
+              onClick={onBack}
+              className="text-[11px] font-bold text-brand-intelligence hover:underline"
+            >
+              Go back to choose
+            </button>
+          </div>
         </div>
-      </div>
+      )}
 
       {/* Form Fields Grid */}
       <div className="mt-3.5 space-y-3">

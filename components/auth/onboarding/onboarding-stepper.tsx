@@ -3,10 +3,11 @@
 import { Check } from "lucide-react";
 
 export interface OnboardingStepperProps {
-  currentStep: number; // 1 to 5
+  currentStep: number;
+  role?: "audience" | "presenter";
 }
 
-export const ONBOARDING_STEPS = [
+export const PRESENTER_STEPS = [
   { step: 1, label: "Choose Workspace" },
   { step: 2, label: "Create Account" },
   { step: 3, label: "Verify Email" },
@@ -14,26 +15,37 @@ export const ONBOARDING_STEPS = [
   { step: 5, label: "Workspace Setup" },
 ];
 
-export function OnboardingStepper({ currentStep }: OnboardingStepperProps) {
+export const AUDIENCE_STEPS = [
+  { step: 1, label: "Create Account" },
+  { step: 2, label: "Verify Email" },
+  { step: 3, label: "Personalize Experience" },
+];
+
+export function OnboardingStepper({
+  currentStep,
+  role = "presenter",
+}: OnboardingStepperProps) {
+  const steps = role === "audience" ? AUDIENCE_STEPS : PRESENTER_STEPS;
+
   return (
-    <div className="w-full max-w-xl mx-auto py-2">
+    <div className="w-full max-w-xl mx-auto py-1">
       <p className="text-center text-xs font-semibold text-brand-intelligence">
-        Step {currentStep} of {ONBOARDING_STEPS.length}
+        Step {currentStep} of {steps.length}
       </p>
 
       {/* Stepper Nodes & Track */}
-      <div className="relative mt-3 flex items-center justify-between">
+      <div className="relative mt-2.5 flex items-center justify-between">
         {/* Continuous Connecting Line */}
         <div className="absolute left-6 right-6 top-3.5 -z-10 h-0.5 bg-border-default">
           <div
             className="h-full bg-brand-intelligence transition-all duration-300"
             style={{
-              width: `${((currentStep - 1) / (ONBOARDING_STEPS.length - 1)) * 100}%`,
+              width: `${((currentStep - 1) / (steps.length - 1)) * 100}%`,
             }}
           />
         </div>
 
-        {ONBOARDING_STEPS.map((s) => {
+        {steps.map((s) => {
           const isCompleted = s.step < currentStep;
           const isCurrent = s.step === currentStep;
 
