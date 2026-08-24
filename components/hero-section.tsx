@@ -79,7 +79,7 @@ export function HeroSection() {
           <div className="lg:col-span-6">
             <div className="relative mx-auto w-full max-w-[620px] transition-all">
               <Image
-                src="/assets/images/website_header_illustration.png"
+                src="/assets/images/website_header_illustration_no_background.png"
                 alt="InclusaAI Live Broadcast and Accessibility Platform"
                 width={800}
                 height={600}
