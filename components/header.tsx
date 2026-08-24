@@ -7,12 +7,12 @@ import { ChevronDown, Menu, X, ArrowRight } from "lucide-react";
 import { logoLandscape } from "@repo/assets";
 
 const navItems = [
-  { label: "Features", href: "/#", hasDropdown: true },
+  { label: "Features", href: "/#", hasDropdown: false },
   { label: "How It Works", href: "/#", hasDropdown: false },
   { label: "Accessibility", href: "/#", hasDropdown: false },
   { label: "Pricing", href: "/#", hasDropdown: false },
-  { label: "Resources", href: "/#", hasDropdown: true },
-  { label: "Company", href: "/#", hasDropdown: true },
+  { label: "Docs", href: "/#", hasDropdown: false },
+  // { label: "Company", href: "/#", hasDropdown: false },
 ];
 
 export function Header() {

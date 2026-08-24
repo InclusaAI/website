@@ -13,10 +13,7 @@ import {
   Monitor,
   Type,
   Subtitles,
-  Eye,
-  ZapOff,
   ArrowRight,
-  Shield,
 } from "lucide-react";
 
 export interface Step4PersonalizeExperienceProps {
@@ -64,7 +61,7 @@ export function Step4PersonalizeExperience({
     <div className="flex flex-col justify-center w-full max-w-3xl mx-auto py-1 space-y-3">
       {/* Header Info */}
       <div className="space-y-0.5 text-center sm:text-left">
-        <h2 className="text-xl sm:text-2xl font-extrabold tracking-tight text-slate-900">
+        <h2 className="text-xl sm:text-2xl font-extrabold tracking-tight text-text-primary">
           Personalize Your Experience
         </h2>
         <p className="text-xs text-text-secondary">
@@ -78,14 +75,14 @@ export function Step4PersonalizeExperience({
         <div className="lg:col-span-6 space-y-3">
           {/* Profile Section */}
           <div className="space-y-2">
-            <h3 className="text-xs font-bold uppercase tracking-wider text-slate-900">Profile</h3>
+            <h3 className="text-xs font-bold uppercase tracking-wider text-text-primary">Profile</h3>
 
             {/* Avatar & Display Name Row */}
             <div className="flex items-start gap-3">
               {/* Profile Photo */}
               <div className="flex flex-col items-center">
-                <div className="relative flex h-14 w-14 items-center justify-center rounded-full bg-slate-200 border border-border-default overflow-hidden text-slate-600 font-bold text-lg">
-                  <span>AM</span>
+                <div className="relative flex h-14 w-14 items-center justify-center rounded-full bg-surface-sunken border border-border-default overflow-hidden text-text-secondary font-bold text-lg">
+                  <span>{name ? name.charAt(0).toUpperCase() : "U"}</span>
                   <button
                     type="button"
                     className="absolute bottom-0 right-0 flex h-5 w-5 items-center justify-center rounded-full bg-brand-intelligence text-white shadow-xs hover:bg-primary-hover"
@@ -100,8 +97,8 @@ export function Step4PersonalizeExperience({
               <div className="flex-1 space-y-2">
                 {/* Display Name */}
                 <div className="space-y-0.5">
-                  <label className="block text-[11px] font-bold text-slate-900">
-                    Display Name <span className="text-red-500">*</span>
+                  <label className="block text-[11px] font-bold text-text-primary">
+                    Display Name <span className="text-error">*</span>
                   </label>
                   <div className="relative flex items-center">
                     <input
@@ -109,22 +106,22 @@ export function Step4PersonalizeExperience({
                       value={name}
                       onChange={(e) => setName(e.target.value)}
                       placeholder="Your name"
-                      className="h-8 w-full rounded-lg border border-border-default bg-white px-2.5 text-xs text-slate-900 focus:border-brand-intelligence focus:outline-none"
+                      className="h-8 w-full rounded-lg border border-border-default bg-surface-default px-2.5 text-xs text-text-primary focus:border-brand-intelligence focus:outline-none"
                     />
-                    <Check className="absolute right-2.5 h-3.5 w-3.5 text-emerald-600" />
+                    {name.trim() && <Check className="absolute right-2.5 h-3.5 w-3.5 text-success" />}
                   </div>
                   <p className="text-[9.5px] text-text-tertiary">This is how your name will appear.</p>
                 </div>
 
                 {/* Job Title */}
                 <div className="space-y-0.5">
-                  <label className="block text-[11px] font-bold text-slate-900">Job Title (optional)</label>
+                  <label className="block text-[11px] font-bold text-text-primary">Job Title (optional)</label>
                   <input
                     type="text"
                     value={jobTitle}
                     onChange={(e) => setJobTitle(e.target.value)}
                     placeholder="e.g. Software Engineer"
-                    className="h-8 w-full rounded-lg border border-border-default bg-white px-2.5 text-xs text-slate-900 focus:border-brand-intelligence focus:outline-none"
+                    className="h-8 w-full rounded-lg border border-border-default bg-surface-default px-2.5 text-xs text-text-primary focus:border-brand-intelligence focus:outline-none"
                   />
                 </div>
               </div>
@@ -133,11 +130,11 @@ export function Step4PersonalizeExperience({
             {/* Country & Time Zone Row */}
             <div className="grid grid-cols-2 gap-2 pt-1">
               <div className="space-y-0.5">
-                <label className="block text-[10.5px] font-bold text-slate-900">Country (optional)</label>
+                <label className="block text-[10.5px] font-bold text-text-primary">Country (optional)</label>
                 <select
                   value={country}
                   onChange={(e) => setCountry(e.target.value)}
-                  className="h-8 w-full rounded-lg border border-border-default bg-white px-2 text-xs text-slate-900 focus:border-brand-intelligence focus:outline-none"
+                  className="h-8 w-full rounded-lg border border-border-default bg-surface-default px-2 text-xs text-text-primary focus:border-brand-intelligence focus:outline-none"
                 >
                   <option value="Nigeria">🇳🇬 Nigeria</option>
                   <option value="United States">🇺🇸 United States</option>
@@ -147,11 +144,11 @@ export function Step4PersonalizeExperience({
               </div>
 
               <div className="space-y-0.5">
-                <label className="block text-[10.5px] font-bold text-slate-900">Time Zone ⓘ</label>
+                <label className="block text-[10.5px] font-bold text-text-primary">Time Zone ⓘ</label>
                 <select
                   value={timeZone}
                   onChange={(e) => setTimeZone(e.target.value)}
-                  className="h-8 w-full rounded-lg border border-border-default bg-white px-2 text-xs text-slate-900 focus:border-brand-intelligence focus:outline-none"
+                  className="h-8 w-full rounded-lg border border-border-default bg-surface-default px-2 text-xs text-text-primary focus:border-brand-intelligence focus:outline-none"
                 >
                   <option value="(GMT+01:00) Africa/Lagos">(GMT+01:00) Africa/Lagos</option>
                   <option value="(GMT+00:00) UTC / London">(GMT+00:00) UTC / London</option>
@@ -164,19 +161,19 @@ export function Step4PersonalizeExperience({
 
           {/* Language Section */}
           <div className="space-y-2 pt-1">
-            <h3 className="text-xs font-bold uppercase tracking-wider text-slate-900">Language</h3>
+            <h3 className="text-xs font-bold uppercase tracking-wider text-text-primary">Language</h3>
 
             {/* Preferred Spoken Language */}
             <div className="space-y-0.5">
-              <label className="block text-[10.5px] font-bold text-slate-900">
-                Preferred Spoken Language <span className="text-red-500">*</span>
+              <label className="block text-[10.5px] font-bold text-text-primary">
+                Preferred Spoken Language <span className="text-error">*</span>
               </label>
               <div className="relative flex items-center">
                 <Globe className="absolute left-2.5 h-3.5 w-3.5 text-text-tertiary" />
                 <select
                   value={spokenLanguage}
                   onChange={(e) => setSpokenLanguage(e.target.value)}
-                  className="h-8 w-full rounded-lg border border-border-default bg-white pl-8 pr-2 text-xs text-slate-900 focus:border-brand-intelligence focus:outline-none"
+                  className="h-8 w-full rounded-lg border border-border-default bg-surface-default pl-8 pr-2 text-xs text-text-primary focus:border-brand-intelligence focus:outline-none"
                 >
                   <option value="English (English)">English (English)</option>
                   <option value="Spanish (Español)">Spanish (Español)</option>
@@ -188,7 +185,7 @@ export function Step4PersonalizeExperience({
 
             {/* Preferred Sign Language */}
             <div className="space-y-0.5">
-              <label className="block text-[10.5px] font-bold text-slate-900">
+              <label className="block text-[10.5px] font-bold text-text-primary">
                 Preferred Sign Language (optional)
               </label>
               <div className="relative flex items-center">
@@ -196,7 +193,7 @@ export function Step4PersonalizeExperience({
                 <select
                   value={signLanguage}
                   onChange={(e) => setSignLanguage(e.target.value)}
-                  className="h-8 w-full rounded-lg border border-border-default bg-white pl-8 pr-2 text-xs text-slate-900 focus:border-brand-intelligence focus:outline-none"
+                  className="h-8 w-full rounded-lg border border-border-default bg-surface-default pl-8 pr-2 text-xs text-text-primary focus:border-brand-intelligence focus:outline-none"
                 >
                   <option value="Nigerian Sign Language (NSL)">Nigerian Sign Language (NSL)</option>
                   <option value="American Sign Language (ASL)">American Sign Language (ASL)</option>
@@ -218,7 +215,7 @@ export function Step4PersonalizeExperience({
         <div className="lg:col-span-6 space-y-3">
           {/* Appearance Section */}
           <div className="space-y-1.5">
-            <h3 className="text-xs font-bold uppercase tracking-wider text-slate-900">Appearance</h3>
+            <h3 className="text-xs font-bold uppercase tracking-wider text-text-primary">Appearance</h3>
             <div className="grid grid-cols-3 gap-2">
               <button
                 type="button"
@@ -226,7 +223,7 @@ export function Step4PersonalizeExperience({
                 className={`flex items-center justify-center gap-1.5 rounded-lg border py-1.5 text-xs font-semibold transition-all ${
                   theme === "light"
                     ? "border-brand-intelligence bg-brand-intelligence/5 text-brand-intelligence ring-1 ring-brand-intelligence/30"
-                    : "border-border-default bg-white text-text-secondary hover:border-border-strong"
+                    : "border-border-default bg-surface-default text-text-secondary hover:border-border-strong"
                 }`}
               >
                 <Sun className="h-3.5 w-3.5" />
@@ -239,7 +236,7 @@ export function Step4PersonalizeExperience({
                 className={`flex items-center justify-center gap-1.5 rounded-lg border py-1.5 text-xs font-semibold transition-all ${
                   theme === "dark"
                     ? "border-brand-intelligence bg-brand-intelligence/5 text-brand-intelligence ring-1 ring-brand-intelligence/30"
-                    : "border-border-default bg-white text-text-secondary hover:border-border-strong"
+                    : "border-border-default bg-surface-default text-text-secondary hover:border-border-strong"
                 }`}
               >
                 <Moon className="h-3.5 w-3.5" />
@@ -252,7 +249,7 @@ export function Step4PersonalizeExperience({
                 className={`flex items-center justify-center gap-1.5 rounded-lg border py-1.5 text-xs font-semibold transition-all ${
                   theme === "system"
                     ? "border-brand-intelligence bg-brand-intelligence/5 text-brand-intelligence ring-1 ring-brand-intelligence/30"
-                    : "border-border-default bg-white text-text-secondary hover:border-border-strong"
+                    : "border-border-default bg-surface-default text-text-secondary hover:border-border-strong"
                 }`}
               >
                 <Monitor className="h-3.5 w-3.5" />
@@ -263,12 +260,12 @@ export function Step4PersonalizeExperience({
           </div>
 
           {/* Accessibility Section */}
-          <div className="space-y-2 rounded-xl border border-border-default bg-[#F8FAFD]/50 p-3 shadow-xs">
-            <h3 className="text-xs font-bold uppercase tracking-wider text-slate-900">Accessibility</h3>
+          <div className="space-y-2 rounded-xl border border-border-default bg-surface-sunken/40 p-3 shadow-xs">
+            <h3 className="text-xs font-bold uppercase tracking-wider text-text-primary">Accessibility</h3>
 
             {/* Font Size Sizer */}
             <div className="space-y-1">
-              <div className="flex items-center gap-1.5 text-xs font-bold text-slate-900">
+              <div className="flex items-center gap-1.5 text-xs font-bold text-text-primary">
                 <Type className="h-3.5 w-3.5 text-text-tertiary" />
                 <span>Font Size</span>
               </div>
@@ -280,8 +277,8 @@ export function Step4PersonalizeExperience({
                     onClick={() => setFontSize(sz)}
                     className={`rounded-md border py-1 text-[10.5px] font-medium capitalize transition-all ${
                       fontSize === sz
-                        ? "border-brand-intelligence bg-white text-brand-intelligence font-bold shadow-xs ring-1 ring-brand-intelligence/30"
-                        : "border-border-default bg-white/80 text-text-secondary hover:border-border-strong"
+                        ? "border-brand-intelligence bg-surface-default text-brand-intelligence font-bold shadow-xs ring-1 ring-brand-intelligence/30"
+                        : "border-border-default bg-surface-default/80 text-text-secondary hover:border-border-strong"
                     }`}
                   >
                     {sz.replace("-", " ")}
@@ -293,7 +290,7 @@ export function Step4PersonalizeExperience({
 
             {/* Caption Size Sizer */}
             <div className="space-y-1 pt-1">
-              <div className="flex items-center gap-1.5 text-xs font-bold text-slate-900">
+              <div className="flex items-center gap-1.5 text-xs font-bold text-text-primary">
                 <Subtitles className="h-3.5 w-3.5 text-text-tertiary" />
                 <span>Caption Size</span>
               </div>
@@ -305,8 +302,8 @@ export function Step4PersonalizeExperience({
                     onClick={() => setCaptionSize(sz)}
                     className={`rounded-md border py-1 text-[10.5px] font-medium capitalize transition-all ${
                       captionSize === sz
-                        ? "border-brand-intelligence bg-white text-brand-intelligence font-bold shadow-xs ring-1 ring-brand-intelligence/30"
-                        : "border-border-default bg-white/80 text-text-secondary hover:border-border-strong"
+                        ? "border-brand-intelligence bg-surface-default text-brand-intelligence font-bold shadow-xs ring-1 ring-brand-intelligence/30"
+                        : "border-border-default bg-surface-default/80 text-text-secondary hover:border-border-strong"
                     }`}
                   >
                     {sz.replace("-", " ")}
@@ -321,28 +318,28 @@ export function Step4PersonalizeExperience({
               {/* High Contrast */}
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-[11px] font-bold text-slate-900">High Contrast</p>
+                  <p className="text-[11px] font-bold text-text-primary">High Contrast</p>
                   <p className="text-[9.5px] text-text-tertiary">Increase contrast for better visibility</p>
                 </div>
                 <input
                   type="checkbox"
                   checked={highContrast}
                   onChange={(e) => setHighContrast(e.target.checked)}
-                  className="h-4 w-4 rounded border-border-strong text-brand-intelligence focus:ring-1 focus:ring-brand-intelligence"
+                  className="h-4 w-4 rounded border-border-strong text-brand-intelligence focus:ring-1 focus:ring-brand-intelligence cursor-pointer"
                 />
               </div>
 
               {/* Reduced Motion */}
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-[11px] font-bold text-slate-900">Reduced Motion</p>
+                  <p className="text-[11px] font-bold text-text-primary">Reduced Motion</p>
                   <p className="text-[9.5px] text-text-tertiary">Reduce animations and motion effects</p>
                 </div>
                 <input
                   type="checkbox"
                   checked={reducedMotion}
                   onChange={(e) => setReducedMotion(e.target.checked)}
-                  className="h-4 w-4 rounded border-border-strong text-brand-intelligence focus:ring-1 focus:ring-brand-intelligence"
+                  className="h-4 w-4 rounded border-border-strong text-brand-intelligence focus:ring-1 focus:ring-brand-intelligence cursor-pointer"
                 />
               </div>
             </div>
@@ -355,7 +352,7 @@ export function Step4PersonalizeExperience({
         <button
           type="button"
           onClick={onSkip}
-          className="text-xs font-bold text-text-secondary hover:text-text-primary transition-colors"
+          className="text-xs font-bold text-text-secondary hover:text-text-primary transition-colors cursor-pointer"
         >
           Skip for Now
         </button>
@@ -367,7 +364,7 @@ export function Step4PersonalizeExperience({
           className={`inline-flex items-center gap-2 rounded-xl px-6 py-2.5 text-xs sm:text-sm font-semibold text-white transition-all ${
             name.trim()
               ? "bg-brand-intelligence shadow-md hover:bg-primary-hover hover:shadow-lg cursor-pointer"
-              : "bg-slate-300 opacity-60 cursor-not-allowed"
+              : "bg-surface-sunken text-text-tertiary border border-border-default opacity-70 cursor-not-allowed"
           }`}
         >
           <span>Continue</span>

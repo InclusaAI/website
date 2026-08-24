@@ -26,21 +26,28 @@ export function OnboardingStepper({
   role = "presenter",
 }: OnboardingStepperProps) {
   const steps = role === "audience" ? AUDIENCE_STEPS : PRESENTER_STEPS;
+  const edgeOffset = `${100 / (2 * steps.length)}%`;
 
   return (
     <div className="w-full max-w-xl mx-auto py-1">
-      <p className="text-center text-xs font-semibold text-brand-intelligence">
+      <p className="text-center text-xs sm:text-sm font-bold text-brand-intelligence tracking-tight">
         Step {currentStep} of {steps.length}
       </p>
 
-      {/* Stepper Nodes & Track */}
-      <div className="relative mt-2.5 flex items-center justify-between">
-        {/* Continuous Connecting Line */}
-        <div className="absolute left-6 right-6 top-3.5 -z-10 h-0.5 bg-border-default">
+      {/* Stepper Nodes & Track Container */}
+      <div className="relative mt-3 flex items-center justify-between">
+        {/* Continuous Connecting Track */}
+        <div
+          className="absolute top-[9px] h-[2px] bg-slate-200 z-0"
+          style={{
+            left: edgeOffset,
+            right: edgeOffset,
+          }}
+        >
           <div
             className="h-full bg-brand-intelligence transition-all duration-300"
             style={{
-              width: `${((currentStep - 1) / (steps.length - 1)) * 100}%`,
+              width: `${((currentStep - 1) / Math.max(1, steps.length - 1)) * 100}%`,
             }}
           />
         </div>
@@ -50,34 +57,32 @@ export function OnboardingStepper({
           const isCurrent = s.step === currentStep;
 
           return (
-            <div key={s.step} className="flex flex-col items-center">
-              {/* Step Circle */}
+            <div key={s.step} className="relative z-10 flex flex-col items-center flex-1">
+              {/* Step Circle Node */}
               <div
-                className={`flex h-7 w-7 items-center justify-center rounded-full border-2 text-xs font-bold transition-all ${
+                className={`flex h-[18px] w-[18px] sm:h-5 sm:w-5 items-center justify-center rounded-full transition-all ${
                   isCompleted
-                    ? "border-brand-intelligence bg-brand-intelligence text-white"
+                    ? "bg-brand-intelligence text-white shadow-xs"
                     : isCurrent
-                    ? "border-brand-intelligence bg-white text-brand-intelligence shadow-xs ring-4 ring-brand-intelligence/15"
-                    : "border-border-strong bg-white text-text-tertiary"
+                    ? "bg-brand-intelligence text-white ring-4 ring-brand-intelligence/20 shadow-xs"
+                    : "border-2 border-slate-300 bg-white"
                 }`}
               >
                 {isCompleted ? (
-                  <Check className="h-3.5 w-3.5 stroke-[3]" />
+                  <Check className="h-3 w-3 stroke-[3]" />
                 ) : isCurrent ? (
-                  <span className="h-2.5 w-2.5 rounded-full bg-brand-intelligence" />
-                ) : (
-                  <span>{s.step}</span>
-                )}
+                  <span className="h-2 w-2 rounded-full bg-white" />
+                ) : null}
               </div>
 
               {/* Step Label */}
               <span
-                className={`mt-1.5 text-center text-[10.5px] font-medium leading-tight max-w-[70px] ${
+                className={`mt-2 text-center text-[10.5px] sm:text-xs leading-tight max-w-[85px] transition-colors ${
                   isCurrent
                     ? "font-bold text-brand-intelligence"
                     : isCompleted
-                    ? "text-slate-900"
-                    : "text-text-tertiary"
+                    ? "font-semibold text-slate-800"
+                    : "font-medium text-slate-400"
                 }`}
               >
                 {s.label}

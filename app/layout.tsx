@@ -1,6 +1,7 @@
 import { createAppMetadata } from "@repo/assets/metadata";
 import type { Metadata } from "next";
 import { Poppins, Roboto_Mono } from "next/font/google";
+import { ThemeProvider } from "../lib/theme-context";
 import "./globals.css";
 
 const poppins = Poppins({
@@ -34,7 +35,7 @@ export default function RootLayout({
         className="min-h-screen bg-surface-page font-sans text-text-primary antialiased"
         suppressHydrationWarning={true}
       >
-        {children}
+        <ThemeProvider>{children}</ThemeProvider>
       </body>
     </html>
   );

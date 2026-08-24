@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { logoLandscape } from "@repo/assets";
+import { logoLandscapeDarkMode, synapgridLogo } from "@repo/assets";
 
 const footerLinks = {
   Product: [
@@ -43,15 +43,13 @@ export function Footer() {
           {/* Brand Col */}
           <div className="lg:col-span-2 space-y-4">
             <Link href="/#" className="inline-block">
-              <div className="rounded-lg bg-white/95 p-1.5 inline-block">
-                <Image
-                  src={logoLandscape}
-                  alt="InclusaAI"
-                  width={logoLandscape.width}
-                  height={logoLandscape.height}
-                  className="h-8 w-auto object-contain object-left"
-                />
-              </div>
+              <Image
+                src={logoLandscapeDarkMode}
+                alt="InclusaAI"
+                width={logoLandscapeDarkMode.width}
+                height={logoLandscapeDarkMode.height}
+                className="h-10 w-auto object-contain object-left"
+              />
             </Link>
             <p className="text-xs text-white/70 max-w-sm leading-relaxed">
               AI-powered communication platform for inclusive presentations and events.
@@ -137,7 +135,24 @@ export function Footer() {
 
         {/* Bottom Bar */}
         <div className="mt-12 flex flex-col items-center justify-between gap-4 border-t border-white/10 pt-8 text-xs text-white/50 sm:flex-row">
-          <p>© 2026 InclusaAI, Inc. All rights reserved.</p>
+          <p>© 2026 InclusaAI. All rights reserved.</p>
+
+          <div className="flex items-center gap-2 text-white/70">
+            <span className="text-[11px] uppercase tracking-wider text-white/40">
+              A product by
+            </span>
+            <span className="inline-flex items-center gap-1.5 font-medium text-white/90">
+              <Image
+                src={synapgridLogo}
+                alt="SynapGrid Technologies"
+                width={synapgridLogo.width}
+                height={synapgridLogo.height}
+                className="h-4 w-auto object-contain"
+              />
+              <span>SynapGrid Technologies</span>
+            </span>
+          </div>
+
           <p>Made with ❤️ for accessibility and inclusion.</p>
         </div>
       </div>

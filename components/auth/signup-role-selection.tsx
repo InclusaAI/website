@@ -24,7 +24,7 @@ export function SignupRoleSelection() {
         <span className="text-[11px] font-bold text-brand-intelligence uppercase tracking-wider">
           Get Started with InclusaAI
         </span>
-        <h2 className="text-xl sm:text-2xl font-extrabold tracking-tight text-slate-900">
+        <h2 className="text-xl sm:text-2xl font-extrabold tracking-tight text-text-primary">
           How would you like to use InclusaAI?
         </h2>
         <p className="text-xs text-text-secondary">
@@ -37,7 +37,7 @@ export function SignupRoleSelection() {
         {/* Card 1: Join as an Audience Member */}
         <div
           onClick={() => setSelectedRole("audience")}
-          className={`group relative flex flex-col justify-between rounded-2xl border-2 p-4 cursor-pointer transition-all bg-white ${
+          className={`group relative flex flex-col justify-between rounded-2xl border-2 p-4 cursor-pointer transition-all bg-surface-default ${
             selectedRole === "audience"
               ? "border-brand-intelligence shadow-md ring-2 ring-brand-intelligence/15"
               : "border-border-default hover:border-border-strong hover:shadow-xs"
@@ -61,7 +61,7 @@ export function SignupRoleSelection() {
             {/* Title & Subtitle */}
             <div className="mt-2 text-center">
               <p className="text-[11px] text-text-tertiary font-medium">Join as an</p>
-              <h3 className="text-sm sm:text-base font-bold text-slate-900">Audience Member</h3>
+              <h3 className="text-sm sm:text-base font-bold text-text-primary">Audience Member</h3>
               <p className="mt-0.5 text-[10.5px] text-text-secondary leading-snug">
                 Experience presentations and conversations with accessibility tools designed around you.
               </p>
@@ -78,7 +78,7 @@ export function SignupRoleSelection() {
                   CC
                 </span>
                 <div>
-                  <h4 className="text-[11px] font-bold text-slate-900">Live accessibility</h4>
+                  <h4 className="text-[11px] font-bold text-text-primary">Live accessibility</h4>
                   <p className="text-[10px] text-text-secondary leading-tight">
                     Follow conversations with real-time captions and transcription.
                   </p>
@@ -91,7 +91,7 @@ export function SignupRoleSelection() {
                   <Globe className="h-2.5 w-2.5" />
                 </span>
                 <div>
-                  <h4 className="text-[11px] font-bold text-slate-900">Language support</h4>
+                  <h4 className="text-[11px] font-bold text-text-primary">Language support</h4>
                   <p className="text-[10px] text-text-secondary leading-tight">
                     Use translation and available sign-language experiences.
                   </p>
@@ -104,7 +104,7 @@ export function SignupRoleSelection() {
                   <MessageSquare className="h-2.5 w-2.5" />
                 </span>
                 <div>
-                  <h4 className="text-[11px] font-bold text-slate-900">Participate your way</h4>
+                  <h4 className="text-[11px] font-bold text-text-primary">Participate your way</h4>
                   <p className="text-[10px] text-text-secondary leading-tight">
                     Join Q&A, polls, chat, and other interactive experiences.
                   </p>
@@ -114,7 +114,7 @@ export function SignupRoleSelection() {
           </div>
 
           {/* Bottom "Best for" Box */}
-          <div className="mt-3 rounded-xl bg-[#F8FAFD] p-2.5 text-left border border-border-default/60">
+          <div className="mt-3 rounded-xl bg-surface-sunken/60 p-2.5 text-left border border-border-default/60">
             <span className="text-[9px] font-bold text-text-tertiary uppercase tracking-wider">
               Best for
             </span>
@@ -127,7 +127,7 @@ export function SignupRoleSelection() {
         {/* Card 2: Join as a Presenter */}
         <div
           onClick={() => setSelectedRole("presenter")}
-          className={`group relative flex flex-col justify-between rounded-2xl border-2 p-4 cursor-pointer transition-all bg-white ${
+          className={`group relative flex flex-col justify-between rounded-2xl border-2 p-4 cursor-pointer transition-all bg-surface-default ${
             selectedRole === "presenter"
               ? "border-success shadow-md ring-2 ring-success/15"
               : "border-border-default hover:border-border-strong hover:shadow-xs"
@@ -151,7 +151,7 @@ export function SignupRoleSelection() {
             {/* Title & Subtitle */}
             <div className="mt-2 text-center">
               <p className="text-[11px] text-text-tertiary font-medium">Join as a</p>
-              <h3 className="text-sm sm:text-base font-bold text-slate-900">Presenter</h3>
+              <h3 className="text-sm sm:text-base font-bold text-text-primary">Presenter</h3>
               <p className="mt-0.5 text-[10.5px] text-text-secondary leading-snug">
                 Share your knowledge and create presentations that everyone can understand and engage with.
               </p>
@@ -168,7 +168,7 @@ export function SignupRoleSelection() {
                   CC
                 </span>
                 <div>
-                  <h4 className="text-[11px] font-bold text-slate-900">Present accessibly</h4>
+                  <h4 className="text-[11px] font-bold text-text-primary">Present accessibly</h4>
                   <p className="text-[10px] text-text-secondary leading-tight">
                     Deliver with captions, translation, and sign-language support.
                   </p>
@@ -181,7 +181,7 @@ export function SignupRoleSelection() {
                   <Users className="h-2.5 w-2.5" />
                 </span>
                 <div>
-                  <h4 className="text-[11px] font-bold text-slate-900">Engage everyone</h4>
+                  <h4 className="text-[11px] font-bold text-text-primary">Engage everyone</h4>
                   <p className="text-[10px] text-text-secondary leading-tight">
                     Use Q&A, polls, chat, and inclusive audience experiences.
                   </p>
@@ -194,7 +194,7 @@ export function SignupRoleSelection() {
                   <BarChart3 className="h-2.5 w-2.5" />
                 </span>
                 <div>
-                  <h4 className="text-[11px] font-bold text-slate-900">Manage your content</h4>
+                  <h4 className="text-[11px] font-bold text-text-primary">Manage your content</h4>
                   <p className="text-[10px] text-text-secondary leading-tight">
                     Create presentations, access recordings, and view analytics.
                   </p>
@@ -218,7 +218,7 @@ export function SignupRoleSelection() {
       {/* Primary Action Button & Sign In Link */}
       <div className="mt-4 space-y-2">
         <Link
-          href={`/signup/onboarding?role=${selectedRole}`}
+          href={`/signup/flow?role=${selectedRole}&step=1`}
           className="flex h-10 sm:h-11 w-full items-center justify-center gap-2 rounded-xl bg-brand-intelligence text-xs sm:text-sm font-semibold text-white shadow-sm transition-all hover:bg-primary-hover hover:shadow-md"
         >
           <span>

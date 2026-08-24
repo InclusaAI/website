@@ -60,7 +60,7 @@ export function Step5WorkspaceSetup({
     <form onSubmit={handleSubmit} className="flex flex-col justify-center w-full max-w-2xl mx-auto py-1 space-y-3.5">
       {/* Header Info */}
       <div className="space-y-0.5 text-center sm:text-left">
-        <h2 className="text-xl sm:text-2xl font-extrabold tracking-tight text-slate-900">
+        <h2 className="text-xl sm:text-2xl font-extrabold tracking-tight text-text-primary">
           {isOrg ? "Set Up Your Organization" : "Set Up Your Workspace"}
         </h2>
         <p className="text-xs text-text-secondary">
@@ -71,7 +71,7 @@ export function Step5WorkspaceSetup({
       </div>
 
       {/* Section Header */}
-      <div className="flex items-center gap-1.5 text-xs font-bold text-slate-900 pt-1">
+      <div className="flex items-center gap-1.5 text-xs font-bold text-text-primary pt-1">
         <FolderKanban className="h-4 w-4 text-brand-intelligence" />
         <span>{isOrg ? "Organization Details" : "Workspace Details"}</span>
       </div>
@@ -81,9 +81,9 @@ export function Step5WorkspaceSetup({
         {/* Name Input (Left) */}
         <div className="sm:col-span-7 space-y-1">
           <div className="flex items-center justify-between">
-            <label className="block text-[11px] font-bold text-slate-900">
+            <label className="block text-[11px] font-bold text-text-primary">
               {isOrg ? "Organization Name" : "Workspace Name"}{" "}
-              <span className="text-red-500">*</span>
+              <span className="text-error">*</span>
             </label>
             <span className="text-[10px] text-text-tertiary">
               {workspaceName.length}/{isOrg ? 150 : 100}
@@ -96,7 +96,7 @@ export function Step5WorkspaceSetup({
             value={workspaceName}
             onChange={(e) => setWorkspaceName(e.target.value)}
             placeholder={isOrg ? "e.g. Acme Corp" : "e.g. My Workspace"}
-            className="h-9 w-full rounded-xl border border-border-default bg-white px-3 text-xs text-slate-900 focus:border-brand-intelligence focus:outline-none focus:ring-1 focus:ring-brand-intelligence/20"
+            className="h-9 w-full rounded-xl border border-border-default bg-surface-default px-3 text-xs text-text-primary focus:border-brand-intelligence focus:outline-none focus:ring-1 focus:ring-brand-intelligence/20"
           />
           <p className="text-[9.5px] text-text-tertiary">
             {isOrg
@@ -107,7 +107,7 @@ export function Step5WorkspaceSetup({
 
         {/* Logo Upload Box (Right) */}
         <div className="sm:col-span-5 space-y-1">
-          <label className="block text-[11px] font-bold text-slate-900">
+          <label className="block text-[11px] font-bold text-text-primary">
             {isOrg ? "Organization Logo" : "Workspace Logo"}{" "}
             <span className="text-text-tertiary font-normal">(optional)</span>
           </label>
@@ -139,13 +139,13 @@ export function Step5WorkspaceSetup({
         <div className="grid grid-cols-1 gap-2.5 sm:grid-cols-3 pt-1">
           {/* Industry */}
           <div className="space-y-0.5">
-            <label className="block text-[10.5px] font-bold text-slate-900">Industry (optional)</label>
+            <label className="block text-[10.5px] font-bold text-text-primary">Industry (optional)</label>
             <div className="relative flex items-center">
               <Briefcase className="absolute left-2.5 h-3 w-3 text-text-tertiary" />
               <select
                 value={industry}
                 onChange={(e) => setIndustry(e.target.value)}
-                className="h-8 w-full rounded-lg border border-border-default bg-white pl-7 pr-2 text-[11px] text-slate-900 focus:border-brand-intelligence focus:outline-none"
+                className="h-8 w-full rounded-lg border border-border-default bg-surface-default pl-7 pr-2 text-[11px] text-text-primary focus:border-brand-intelligence focus:outline-none"
               >
                 <option value="Technology">Technology</option>
                 <option value="Education">Education</option>
@@ -158,13 +158,13 @@ export function Step5WorkspaceSetup({
 
           {/* Org Size */}
           <div className="space-y-0.5">
-            <label className="block text-[10.5px] font-bold text-slate-900">Organization Size (optional)</label>
+            <label className="block text-[10.5px] font-bold text-text-primary">Organization Size (optional)</label>
             <div className="relative flex items-center">
               <Users className="absolute left-2.5 h-3 w-3 text-text-tertiary" />
               <select
                 value={orgSize}
                 onChange={(e) => setOrgSize(e.target.value)}
-                className="h-8 w-full rounded-lg border border-border-default bg-white pl-7 pr-2 text-[11px] text-slate-900 focus:border-brand-intelligence focus:outline-none"
+                className="h-8 w-full rounded-lg border border-border-default bg-surface-default pl-7 pr-2 text-[11px] text-text-primary focus:border-brand-intelligence focus:outline-none"
               >
                 <option value="1 - 10 employees">1 - 10 employees</option>
                 <option value="11 - 50 employees">11 - 50 employees</option>
@@ -177,8 +177,8 @@ export function Step5WorkspaceSetup({
 
           {/* Brand Color */}
           <div className="space-y-0.5">
-            <label className="block text-[10.5px] font-bold text-slate-900">Brand Color (optional)</label>
-            <div className="flex items-center gap-1.5 rounded-lg border border-border-default bg-white px-2 py-1">
+            <label className="block text-[10.5px] font-bold text-text-primary">Brand Color (optional)</label>
+            <div className="flex items-center gap-1.5 rounded-lg border border-border-default bg-surface-default px-2 py-1">
               <span
                 className="h-4 w-4 rounded-md shadow-xs"
                 style={{ backgroundColor: brandColor }}
@@ -187,7 +187,7 @@ export function Step5WorkspaceSetup({
                 type="text"
                 value={brandColor}
                 onChange={(e) => setBrandColor(e.target.value)}
-                className="h-6 w-full text-[11px] font-mono text-slate-900 focus:outline-none"
+                className="h-6 w-full text-[11px] font-mono text-text-primary focus:outline-none"
               />
               <Palette className="h-3 w-3 text-text-tertiary" />
             </div>
@@ -199,15 +199,15 @@ export function Step5WorkspaceSetup({
       <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 pt-1">
         {/* Default Presentation Language */}
         <div className="space-y-0.5">
-          <label className="block text-[10.5px] font-bold text-slate-900">
-            Default Presentation Language <span className="text-red-500">*</span>
+          <label className="block text-[10.5px] font-bold text-text-primary">
+            Default Presentation Language <span className="text-error">*</span>
           </label>
           <div className="relative flex items-center">
             <Globe className="absolute left-2.5 h-3.5 w-3.5 text-text-tertiary" />
             <select
               value={presentationLanguage}
               onChange={(e) => setPresentationLanguage(e.target.value)}
-              className="h-8 w-full rounded-lg border border-border-default bg-white pl-8 pr-2 text-xs text-slate-900 focus:border-brand-intelligence focus:outline-none"
+              className="h-8 w-full rounded-lg border border-border-default bg-surface-default pl-8 pr-2 text-xs text-text-primary focus:border-brand-intelligence focus:outline-none"
             >
               <option value="English (English)">English (English)</option>
               <option value="Spanish (Español)">Spanish (Español)</option>
@@ -221,15 +221,15 @@ export function Step5WorkspaceSetup({
         {/* Theme Settings (Individual) */}
         {!isOrg && (
           <div className="space-y-0.5">
-            <label className="block text-[10.5px] font-bold text-slate-900">Theme (from your profile)</label>
+            <label className="block text-[10.5px] font-bold text-text-primary">Theme (from your profile)</label>
             <div className="grid grid-cols-3 gap-1.5">
               <button
                 type="button"
                 onClick={() => setTheme("light")}
                 className={`flex items-center justify-center gap-1 rounded-md border py-1 text-[10.5px] font-semibold transition-all ${
                   theme === "light"
-                    ? "border-brand-intelligence bg-white text-brand-intelligence font-bold shadow-xs ring-1 ring-brand-intelligence/30"
-                    : "border-border-default bg-white/80 text-text-secondary"
+                    ? "border-brand-intelligence bg-surface-default text-brand-intelligence font-bold shadow-xs ring-1 ring-brand-intelligence/30"
+                    : "border-border-default bg-surface-default/80 text-text-secondary"
                 }`}
               >
                 <Sun className="h-3 w-3" />
@@ -241,8 +241,8 @@ export function Step5WorkspaceSetup({
                 onClick={() => setTheme("dark")}
                 className={`flex items-center justify-center gap-1 rounded-md border py-1 text-[10.5px] font-semibold transition-all ${
                   theme === "dark"
-                    ? "border-brand-intelligence bg-white text-brand-intelligence font-bold shadow-xs ring-1 ring-brand-intelligence/30"
-                    : "border-border-default bg-white/80 text-text-secondary"
+                    ? "border-brand-intelligence bg-surface-default text-brand-intelligence font-bold shadow-xs ring-1 ring-brand-intelligence/30"
+                    : "border-border-default bg-surface-default/80 text-text-secondary"
                 }`}
               >
                 <Moon className="h-3 w-3" />
@@ -254,8 +254,8 @@ export function Step5WorkspaceSetup({
                 onClick={() => setTheme("system")}
                 className={`flex items-center justify-center gap-1 rounded-md border py-1 text-[10.5px] font-semibold transition-all ${
                   theme === "system"
-                    ? "border-brand-intelligence bg-white text-brand-intelligence font-bold shadow-xs ring-1 ring-brand-intelligence/30"
-                    : "border-border-default bg-white/80 text-text-secondary"
+                    ? "border-brand-intelligence bg-surface-default text-brand-intelligence font-bold shadow-xs ring-1 ring-brand-intelligence/30"
+                    : "border-border-default bg-surface-default/80 text-text-secondary"
                 }`}
               >
                 <Monitor className="h-3 w-3" />
@@ -272,7 +272,7 @@ export function Step5WorkspaceSetup({
         <button
           type="button"
           onClick={onSkip}
-          className="text-xs font-bold text-text-secondary hover:text-text-primary transition-colors"
+          className="text-xs font-bold text-text-secondary hover:text-text-primary transition-colors cursor-pointer"
         >
           Skip for Now
         </button>
@@ -283,7 +283,7 @@ export function Step5WorkspaceSetup({
           className={`inline-flex items-center gap-2 rounded-xl px-6 py-2.5 text-xs sm:text-sm font-semibold text-white transition-all ${
             workspaceName.trim()
               ? "bg-brand-intelligence shadow-md hover:bg-primary-hover hover:shadow-lg cursor-pointer"
-              : "bg-slate-300 opacity-60 cursor-not-allowed"
+              : "bg-surface-sunken text-text-tertiary border border-border-default opacity-70 cursor-not-allowed"
           }`}
         >
           <span>Create Workspace</span>

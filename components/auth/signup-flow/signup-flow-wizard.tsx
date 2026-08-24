@@ -4,14 +4,18 @@ import { useState } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
 import { ArrowLeft, HelpCircle, CheckCircle2, Sparkles, ArrowRight } from "lucide-react";
 import { AuthTopBar } from "../auth-top-bar";
-import { OnboardingStepper } from "./onboarding-stepper";
+import { SignupFlowStepper } from "./signup-flow-stepper";
 import { Step1ChooseWorkspace, WorkspaceType } from "./step-1-choose-workspace";
 import { Step2CreateAccount } from "./step-2-create-account";
 import { Step3VerifyEmail } from "./step-3-verify-email";
 import { Step4PersonalizeExperience } from "./step-4-personalize-experience";
 import { Step5WorkspaceSetup } from "./step-5-workspace-setup";
 
-export function OnboardingWizard() {
+export interface SignupFlowWizardProps {
+  onStepChange?: (step: number) => void;
+}
+
+export function SignupFlowWizard({ onStepChange }: SignupFlowWizardProps = {}) {
   const searchParams = useSearchParams();
   const router = useRouter();
   const rawRole = searchParams.get("role");
@@ -37,7 +41,8 @@ export function OnboardingWizard() {
     const params = new URLSearchParams(searchParams.toString());
     params.set("role", role);
     params.set("step", targetStep.toString());
-    router.push(`/signup/onboarding?${params.toString()}`);
+    router.push(`/signup/flow?${params.toString()}`);
+    onStepChange?.(targetStep);
   }
 
   // Audience Flow Handlers (3 steps: 1. Create Account, 2. Verify Email, 3. Personalize)
@@ -102,7 +107,7 @@ export function OnboardingWizard() {
             <button
               type="button"
               onClick={handleBack}
-              className="inline-flex items-center gap-1.5 text-xs font-semibold text-text-secondary hover:text-brand-intelligence transition-colors"
+              className="inline-flex items-center gap-1.5 text-xs font-semibold text-text-secondary hover:text-brand-intelligence transition-colors cursor-pointer"
             >
               <ArrowLeft className="h-3.5 w-3.5" />
               <span>Back</span>
@@ -122,7 +127,7 @@ export function OnboardingWizard() {
             <AuthTopBar />
           </div>
         </div>
-        <OnboardingStepper
+        <SignupFlowStepper
           currentStep={isCompleted ? (role === "audience" ? 3 : 5) : currentStep}
           role={role}
         />
@@ -205,9 +210,9 @@ export function OnboardingWizard() {
           )
         ) : (
           /* Completion Success Modal Card */
-          <div className="w-full max-w-md text-center space-y-4 rounded-3xl border border-blue-100 bg-[#F8FAFD] p-8 shadow-xl">
+          <div className="w-full max-w-md text-center space-y-4 rounded-3xl border border-blue-100 bg-surface-sunken/60 p-8 shadow-xl">
             <div className="flex justify-center">
-              <div className="flex h-16 w-16 items-center justify-center rounded-full bg-emerald-100 text-emerald-600 shadow-sm">
+              <div className="flex h-16 w-16 items-center justify-center rounded-full bg-emerald-100 text-success shadow-sm">
                 <CheckCircle2 className="h-8 w-8" />
               </div>
             </div>
@@ -216,7 +221,7 @@ export function OnboardingWizard() {
               <span className="inline-flex items-center gap-1 rounded-full bg-blue-100 px-3 py-1 text-xs font-bold text-brand-intelligence">
                 <Sparkles className="h-3.5 w-3.5" /> {role === "audience" ? "Profile Ready" : "Workspace Ready"}
               </span>
-              <h3 className="text-2xl font-extrabold text-slate-900">
+              <h3 className="text-2xl font-extrabold text-text-primary">
                 Welcome to InclusaAI!
               </h3>
               <p className="text-xs text-text-secondary leading-relaxed">

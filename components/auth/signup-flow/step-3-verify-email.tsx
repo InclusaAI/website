@@ -10,7 +10,6 @@ import {
   ChevronRight,
   ArrowRight,
   Pencil,
-  CheckCircle2,
 } from "lucide-react";
 
 export interface Step3VerifyEmailProps {
@@ -109,7 +108,7 @@ export function Step3VerifyEmail({
     <div className="flex flex-col justify-center w-full max-w-2xl mx-auto py-1 space-y-4">
       {/* Header Info */}
       <div className="space-y-0.5 text-center sm:text-left">
-        <h2 className="text-xl sm:text-2xl font-extrabold tracking-tight text-slate-900">
+        <h2 className="text-xl sm:text-2xl font-extrabold tracking-tight text-text-primary">
           Verify your email ✉️
         </h2>
         <p className="text-xs text-text-secondary">
@@ -118,12 +117,12 @@ export function Step3VerifyEmail({
       </div>
 
       {/* Email Sent Info Card */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 rounded-2xl border border-blue-100 bg-[#F8FAFD] p-3.5 shadow-xs">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 rounded-2xl border border-blue-100 bg-surface-sunken/60 p-3.5 shadow-xs">
         <div className="flex items-center gap-3">
           {/* Mail Icon Circle */}
           <div className="relative flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-blue-100 text-brand-intelligence">
             <Mail className="h-5 w-5" />
-            <span className="absolute -bottom-0.5 -right-0.5 flex h-4 w-4 items-center justify-center rounded-full bg-emerald-500 text-white text-[9px] shadow-xs">
+            <span className="absolute -bottom-0.5 -right-0.5 flex h-4 w-4 items-center justify-center rounded-full bg-success text-white text-[9px] shadow-xs">
               <Send className="h-2.5 w-2.5" />
             </span>
           </div>
@@ -132,11 +131,11 @@ export function Step3VerifyEmail({
           <div>
             <p className="text-[10px] uppercase font-bold text-text-tertiary">Sent to</p>
             <div className="flex items-center gap-2">
-              <p className="text-xs font-bold text-slate-900">{email}</p>
+              <p className="text-xs font-bold text-text-primary">{email}</p>
               <button
                 type="button"
                 onClick={onEditEmail}
-                className="inline-flex items-center gap-0.5 text-[10.5px] font-semibold text-brand-intelligence hover:underline"
+                className="inline-flex items-center gap-0.5 text-[10.5px] font-semibold text-brand-intelligence hover:underline cursor-pointer"
               >
                 <span>Edit</span>
                 <Pencil className="h-2.5 w-2.5" />
@@ -150,8 +149,8 @@ export function Step3VerifyEmail({
 
         {/* Right Status */}
         <div className="sm:text-right flex flex-col sm:items-end gap-0.5 text-[10.5px]">
-          <span className="flex items-center gap-1 font-bold text-emerald-600">
-            <span className="h-2 w-2 rounded-full bg-emerald-500 animate-pulse" />
+          <span className="flex items-center gap-1 font-bold text-success">
+            <span className="h-2 w-2 rounded-full bg-success animate-pulse" />
             Code sent!
           </span>
           <p className="text-[10px] text-text-tertiary">
@@ -166,7 +165,7 @@ export function Step3VerifyEmail({
 
       {/* 6-Digit OTP Code Inputs */}
       <div className="space-y-2">
-        <label className="block text-xs font-bold text-slate-900">
+        <label className="block text-xs font-bold text-text-primary">
           Enter verification code
         </label>
         <div className="grid grid-cols-6 gap-2 sm:gap-3">
@@ -182,7 +181,7 @@ export function Step3VerifyEmail({
               value={digit}
               onChange={(e) => handleDigitChange(idx, e.target.value)}
               onKeyDown={(e) => handleKeyDown(idx, e)}
-              className={`h-12 w-full rounded-xl border-2 bg-white text-center text-lg font-extrabold text-slate-900 transition-all focus:outline-none ${
+              className={`h-12 w-full rounded-xl border-2 bg-surface-default text-center text-lg font-extrabold text-text-primary transition-all focus:outline-none ${
                 digit
                   ? "border-brand-intelligence shadow-xs ring-1 ring-brand-intelligence/20"
                   : "border-border-default hover:border-border-strong focus:border-brand-intelligence"
@@ -219,7 +218,7 @@ export function Step3VerifyEmail({
       {/* Quick Access to Email Provider Buttons */}
       <div className="space-y-1.5 pt-1">
         <div>
-          <p className="text-xs font-bold text-slate-900">Quick access to your email</p>
+          <p className="text-xs font-bold text-text-primary">Quick access to your email</p>
           <p className="text-[10.5px] text-text-secondary">
             Open your inbox to find the verification code.
           </p>
@@ -231,11 +230,11 @@ export function Step3VerifyEmail({
             href="https://mail.google.com"
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center justify-between rounded-xl border border-border-default bg-white p-2.5 shadow-xs hover:border-border-strong hover:bg-surface-sunken/40 transition-all"
+            className="flex items-center justify-between rounded-xl border border-border-default bg-surface-default p-2.5 shadow-xs hover:border-border-strong hover:bg-surface-sunken/40 transition-all"
           >
             <div className="flex items-center gap-2">
               <span className="text-sm">📧</span>
-              <span className="text-xs font-bold text-slate-900">Gmail</span>
+              <span className="text-xs font-bold text-text-primary">Gmail</span>
             </div>
             <ExternalLink className="h-3 w-3 text-text-tertiary" />
           </a>
@@ -245,11 +244,11 @@ export function Step3VerifyEmail({
             href="https://outlook.live.com"
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center justify-between rounded-xl border border-border-default bg-white p-2.5 shadow-xs hover:border-border-strong hover:bg-surface-sunken/40 transition-all"
+            className="flex items-center justify-between rounded-xl border border-border-default bg-surface-default p-2.5 shadow-xs hover:border-border-strong hover:bg-surface-sunken/40 transition-all"
           >
             <div className="flex items-center gap-2">
               <span className="text-sm">📬</span>
-              <span className="text-xs font-bold text-slate-900">Outlook</span>
+              <span className="text-xs font-bold text-text-primary">Outlook</span>
             </div>
             <ExternalLink className="h-3 w-3 text-text-tertiary" />
           </a>
@@ -259,11 +258,11 @@ export function Step3VerifyEmail({
             href="https://mail.yahoo.com"
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center justify-between rounded-xl border border-border-default bg-white p-2.5 shadow-xs hover:border-border-strong hover:bg-surface-sunken/40 transition-all"
+            className="flex items-center justify-between rounded-xl border border-border-default bg-surface-default p-2.5 shadow-xs hover:border-border-strong hover:bg-surface-sunken/40 transition-all"
           >
             <div className="flex items-center gap-2">
               <span className="text-sm">✉️</span>
-              <span className="text-xs font-bold text-slate-900">Yahoo Mail</span>
+              <span className="text-xs font-bold text-text-primary">Yahoo Mail</span>
             </div>
             <ExternalLink className="h-3 w-3 text-text-tertiary" />
           </a>
@@ -277,7 +276,7 @@ export function Step3VerifyEmail({
             <HelpCircle className="h-4 w-4" />
           </div>
           <div>
-            <h4 className="text-xs font-bold text-slate-900">Need help?</h4>
+            <h4 className="text-xs font-bold text-text-primary">Need help?</h4>
             <p className="text-[10px] text-text-secondary">
               View our troubleshooting guide for common issues.
             </p>
@@ -293,7 +292,7 @@ export function Step3VerifyEmail({
         </a>
       </div>
 
-      {/* Primary Action Button (Manual continue if needed) */}
+      {/* Primary Action Button */}
       <button
         type="button"
         disabled={digits.some((d) => d === "")}
@@ -301,7 +300,7 @@ export function Step3VerifyEmail({
         className={`flex h-11 w-full items-center justify-center gap-2 rounded-xl text-xs sm:text-sm font-semibold text-white transition-all ${
           digits.every((d) => d !== "")
             ? "bg-brand-intelligence shadow-md hover:bg-primary-hover hover:shadow-lg cursor-pointer"
-            : "bg-slate-300 opacity-60 cursor-not-allowed"
+            : "bg-surface-sunken text-text-tertiary border border-border-default opacity-70 cursor-not-allowed"
         }`}
       >
         <span>Continue</span>
