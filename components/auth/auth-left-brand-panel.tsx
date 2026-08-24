@@ -31,7 +31,7 @@ export function AuthLeftBrandPanel() {
             width={logoLandscape.width}
             height={logoLandscape.height}
             priority
-            className="h-8 sm:h-9 w-auto object-contain object-left"
+            className="h-10 sm:h-9 w-auto object-contain object-left"
           />
         </Link>
 
