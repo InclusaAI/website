@@ -24,7 +24,7 @@ export function SocialProofCta() {
                 alt="Attendees enjoying accessible presentation"
                 width={360}
                 height={360}
-                className="h-auto w-full object-contain drop-shadow-md"
+                className="h-auto w-full object-contain drop-shadow-2xl"
               />
             </div>
           </div>
@@ -64,7 +64,7 @@ export function SocialProofCta() {
                 alt="Audience engagement and live reactions"
                 width={360}
                 height={360}
-                className="h-auto w-full object-contain drop-shadow-md"
+                className="h-auto w-full object-contain drop-shadow-2xl"
               />
             </div>
           </div>

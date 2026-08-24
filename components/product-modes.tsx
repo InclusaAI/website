@@ -81,7 +81,7 @@ export function ProductModes() {
                 width={800}
                 height={550}
                 priority
-                className="h-auto w-full object-contain drop-shadow-xl"
+                className="h-auto w-full object-contain drop-shadow-2xl"
               />
             </div>
           </div>

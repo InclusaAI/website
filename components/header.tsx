@@ -22,7 +22,7 @@ export function Header() {
     <header className="sticky top-0 z-50 w-full border-b border-border-default/80 bg-white/95 backdrop-blur-md transition-all">
       <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
         {/* Brand Logo */}
-        <Link href="/#" className="flex items-center gap-2">
+        <Link href="/signup" className="flex items-center gap-2">
           <Image
             src={logoLandscape}
             alt="InclusaAI"
@@ -58,7 +58,7 @@ export function Header() {
             Sign In
           </Link>
           <Link
-            href="/#"
+            href="/signup"
             className="inline-flex items-center justify-center rounded-lg bg-brand-intelligence px-5 py-2.5 text-sm font-semibold text-white shadow-xs transition-all hover:bg-primary-hover hover:shadow-sm"
           >
             Get Started
@@ -101,7 +101,7 @@ export function Header() {
                 Sign In
               </Link>
               <Link
-                href="/#"
+                href="/signup"
                 className="w-full rounded-lg bg-brand-intelligence py-2.5 text-center text-sm font-semibold text-white shadow-sm"
               >
                 Get Started
