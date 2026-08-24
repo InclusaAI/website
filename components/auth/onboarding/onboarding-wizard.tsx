@@ -6,6 +6,7 @@ import { AuthTopBar } from "../auth-top-bar";
 import { OnboardingStepper } from "./onboarding-stepper";
 import { Step1ChooseWorkspace, WorkspaceType } from "./step-1-choose-workspace";
 import { Step2CreateAccount } from "./step-2-create-account";
+import { Step3VerifyEmail } from "./step-3-verify-email";
 
 export function OnboardingWizard() {
   const [currentStep, setCurrentStep] = useState(1);
@@ -14,7 +15,11 @@ export function OnboardingWizard() {
     fullName: string;
     email: string;
     password: string;
-  } | null>(null);
+  }>({
+    fullName: "John Doe",
+    email: "john.doe@example.com",
+    password: "",
+  });
 
   function handleStep1Continue(type: WorkspaceType) {
     setWorkspaceType(type);
@@ -28,6 +33,10 @@ export function OnboardingWizard() {
   }) {
     setAccountData(data);
     setCurrentStep(3);
+  }
+
+  function handleStep3Continue() {
+    setCurrentStep(4);
   }
 
   return (
@@ -67,26 +76,28 @@ export function OnboardingWizard() {
             onContinue={handleStep2Continue}
           />
         )}
-        {currentStep > 2 && (
+        {currentStep === 3 && (
+          <Step3VerifyEmail
+            email={accountData.email}
+            onBack={() => setCurrentStep(2)}
+            onContinue={handleStep3Continue}
+            onEditEmail={() => setCurrentStep(2)}
+          />
+        )}
+        {currentStep > 3 && (
           <div className="w-full max-w-lg text-center space-y-4 py-8">
             <h3 className="text-xl font-bold text-slate-900">
               Step {currentStep} under construction
             </h3>
             <p className="text-xs text-text-secondary">
-              Selected workspace:{" "}
-              <span className="font-bold text-brand-intelligence">{workspaceType}</span>
+              Verified email: <span className="font-bold text-brand-intelligence">{accountData.email}</span>
             </p>
-            {accountData && (
-              <p className="text-xs text-text-secondary">
-                Account: <span className="font-bold">{accountData.fullName}</span> ({accountData.email})
-              </p>
-            )}
             <button
               type="button"
-              onClick={() => setCurrentStep(2)}
+              onClick={() => setCurrentStep(3)}
               className="rounded-xl border border-border-default px-4 py-2 text-xs font-semibold text-text-primary hover:bg-surface-sunken"
             >
-              Back to Step 2
+              Back to Step 3
             </button>
           </div>
         )}

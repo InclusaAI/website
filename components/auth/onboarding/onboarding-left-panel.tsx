@@ -8,11 +8,17 @@ import {
   Hand,
   Globe,
   ShieldCheck,
-  Heart,
+  Mail,
 } from "lucide-react";
 import { logoLandscape } from "@repo/assets";
 
-export function OnboardingLeftBrandPanel() {
+export interface OnboardingLeftBrandPanelProps {
+  step?: number;
+}
+
+export function OnboardingLeftBrandPanel({ step = 1 }: OnboardingLeftBrandPanelProps) {
+  const isVerifyStep = step === 3;
+
   return (
     <div className="relative isolate flex h-full w-full flex-col justify-between overflow-hidden p-6 sm:p-7 lg:p-8">
       {/* Background Portrait Illustration */}
@@ -44,16 +50,30 @@ export function OnboardingLeftBrandPanel() {
 
         {/* Heading & Description */}
         <div className="space-y-1.5">
-          <h1 className="text-xl font-extrabold tracking-tight text-slate-900 sm:text-2xl lg:text-[1.65rem] lg:leading-[1.2]">
-            Communication without barriers.{" "}
-            <span className="text-brand-intelligence block mt-0.5">
-              Understanding without limits.
-            </span>
-          </h1>
-          <p className="text-xs text-text-secondary leading-relaxed max-w-xs">
-            AI-powered presentations and conversations that are inclusive, accessible,
-            and designed for everyone.
-          </p>
+          {isVerifyStep ? (
+            <>
+              <h1 className="text-xl font-extrabold tracking-tight text-slate-900 sm:text-2xl lg:text-[1.75rem] lg:leading-[1.2]">
+                You&apos;re{" "}
+                <span className="text-brand-intelligence">almost</span> there.
+              </h1>
+              <p className="text-xs text-text-secondary leading-relaxed max-w-xs">
+                Verify your email to activate your workspace and continue your journey.
+              </p>
+            </>
+          ) : (
+            <>
+              <h1 className="text-xl font-extrabold tracking-tight text-slate-900 sm:text-2xl lg:text-[1.65rem] lg:leading-[1.2]">
+                Communication without barriers.{" "}
+                <span className="text-brand-intelligence block mt-0.5">
+                  Understanding without limits.
+                </span>
+              </h1>
+              <p className="text-xs text-text-secondary leading-relaxed max-w-xs">
+                AI-powered presentations and conversations that are inclusive, accessible,
+                and designed for everyone.
+              </p>
+            </>
+          )}
         </div>
 
         {/* 4 Feature Cards (2x2 Grid) */}
@@ -112,7 +132,7 @@ export function OnboardingLeftBrandPanel() {
           </div>
           <div>
             <p className="text-[10px] text-text-secondary leading-tight">
-              Your data is secure with enterprise-grade encryption and privacy-first architecture.
+              Your account is secure. We use industry-standard encryption to protect your information.
             </p>
           </div>
         </div>
