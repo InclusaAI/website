@@ -29,7 +29,7 @@ export function Header() {
             width={logoLandscape.width}
             height={logoLandscape.height}
             priority
-            className="h-9 w-auto object-contain object-left"
+            className="h-11 w-auto object-contain object-left"
           />
         </Link>
 

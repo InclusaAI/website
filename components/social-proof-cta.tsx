@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import {
   ArrowRight,
   ShieldCheck,
@@ -13,43 +14,59 @@ export function SocialProofCta() {
   return (
     <section className="relative overflow-hidden bg-white py-20">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        {/* Top Floating Attendee Reactions & Main Call To Action */}
-        <div className="relative mx-auto max-w-4xl text-center">
-          {/* Floating Left Attendee Bubble */}
-          <div className="hidden lg:flex absolute -left-20 top-0 items-center gap-2 rounded-full border border-border-default bg-white p-2 shadow-lg backdrop-blur-md">
-            <span className="text-2xl">🧕</span>
-            <span className="text-xs font-semibold text-slate-800 pr-2">&ldquo;Great session! 👏&rdquo;</span>
+        {/* Top Attendee Reactions & Main Call To Action Grid */}
+        <div className="grid grid-cols-1 items-center gap-8 lg:grid-cols-12">
+          {/* Left Illustration */}
+          <div className="hidden lg:flex lg:col-span-3 justify-center">
+            <div className="relative w-full max-w-[260px]">
+              <Image
+                src="/assets/images/website_cta_left_illustration_no_background.png"
+                alt="Attendees enjoying accessible presentation"
+                width={360}
+                height={360}
+                className="h-auto w-full object-contain drop-shadow-md"
+              />
+            </div>
           </div>
 
-          {/* Floating Right Attendee Bubble */}
-          <div className="hidden lg:flex absolute -right-20 top-0 items-center gap-2 rounded-full border border-border-default bg-white p-2 shadow-lg backdrop-blur-md">
-            <span className="text-2xl">👨🏼‍💼</span>
-            <span className="text-xs font-semibold text-slate-800 pr-2">&ldquo;Very insightful!&rdquo;</span>
+          {/* Center Content: Headline & Action Buttons */}
+          <div className="lg:col-span-6 text-center space-y-4">
+            <h2 className="text-3xl font-extrabold tracking-tight text-slate-900 sm:text-4xl lg:text-5xl">
+              Ready to make every conversation inclusive?
+            </h2>
+            <p className="mx-auto max-w-lg text-base text-text-secondary">
+              Join thousands of presenters and organizations using InclusaAI to create meaningful, accessible communication.
+            </p>
+
+            {/* Action Buttons */}
+            <div className="mt-8 flex flex-wrap items-center justify-center gap-4 pt-2">
+              <Link
+                href="/#"
+                className="inline-flex items-center justify-center gap-2 rounded-xl bg-brand-intelligence px-7 py-3.5 text-base font-semibold text-white shadow-md transition-all hover:bg-primary-hover hover:shadow-lg"
+              >
+                <span>Get Started Free</span>
+                <ArrowRight className="h-4 w-4" />
+              </Link>
+              <Link
+                href="/#"
+                className="inline-flex items-center justify-center rounded-xl border border-border-default bg-white px-6 py-3.5 text-base font-semibold text-text-primary shadow-xs transition-all hover:bg-surface-sunken hover:border-border-strong"
+              >
+                Contact Sales
+              </Link>
+            </div>
           </div>
 
-          {/* Headline & Subhead */}
-          <h2 className="text-3xl font-extrabold tracking-tight text-slate-900 sm:text-4xl lg:text-5xl">
-            Ready to make every conversation inclusive?
-          </h2>
-          <p className="mx-auto mt-4 max-w-xl text-base text-text-secondary">
-            Join thousands of presenters and organizations using InclusaAI to create meaningful, accessible communication.
-          </p>
-
-          {/* Buttons */}
-          <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
-            <Link
-              href="/#"
-              className="inline-flex items-center justify-center gap-2 rounded-xl bg-brand-intelligence px-7 py-3.5 text-base font-semibold text-white shadow-md transition-all hover:bg-primary-hover hover:shadow-lg"
-            >
-              <span>Get Started Free</span>
-              <ArrowRight className="h-4 w-4" />
-            </Link>
-            <Link
-              href="/#"
-              className="inline-flex items-center justify-center rounded-xl border border-border-default bg-white px-6 py-3.5 text-base font-semibold text-text-primary shadow-xs transition-all hover:bg-surface-sunken hover:border-border-strong"
-            >
-              Contact Sales
-            </Link>
+          {/* Right Illustration */}
+          <div className="hidden lg:flex lg:col-span-3 justify-center">
+            <div className="relative w-full max-w-[260px]">
+              <Image
+                src="/assets/images/website_cta_right_illustration_no_background.png"
+                alt="Audience engagement and live reactions"
+                width={360}
+                height={360}
+                className="h-auto w-full object-contain drop-shadow-md"
+              />
+            </div>
           </div>
         </div>
 
