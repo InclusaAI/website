@@ -13,7 +13,7 @@ export default function SignUpPage() {
       </aside>
 
       {/* Right 2/3 Side (Options & Roles Selector) */}
-      <main className="relative flex h-full w-full flex-col justify-between overflow-y-auto bg-white p-6 sm:p-8 lg:p-10 lg:w-2/3">
+      <main className="relative flex h-full w-full flex-col justify-between overflow-hidden bg-white px-6 py-4 sm:px-8 sm:py-5 lg:px-10 lg:py-6 lg:w-2/3">
         {/* Top Controls Bar */}
         <AuthTopBar />
 
