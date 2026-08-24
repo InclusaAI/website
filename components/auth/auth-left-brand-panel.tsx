@@ -7,19 +7,19 @@ import { logoLandscape } from "@repo/assets";
 
 export function AuthLeftBrandPanel() {
   return (
-    <div className="relative isolate flex h-full w-full flex-col justify-between overflow-hidden p-5 sm:p-6 lg:p-8">
-      {/* Background Illustration covering the left side */}
-      <div className="absolute inset-0 -z-10 bg-gradient-to-b from-[#F8FAFD] via-white/80 to-[#F8FAFD]">
+    <div className="relative isolate flex h-full w-full flex-col justify-between overflow-hidden p-6 sm:p-7 lg:p-8">
+      {/* Background Portrait Illustration covering the left 1/3 panel */}
+      <div className="absolute inset-0 -z-10 overflow-hidden bg-[#F8FAFD]">
         <Image
           src="/assets/images/website_sign_up_illustration.png"
-          alt=""
+          alt="InclusaAI inclusive communication illustration"
           fill
           priority
-          className="object-cover object-bottom opacity-90 pointer-events-none"
-          sizes="(max-width: 1024px) 100vw, 33vw"
+          className="object-cover object-center pointer-events-none"
+          sizes="(max-width: 1024px) 100vw, 33.333vw"
         />
-        {/* Subtle top gradient overlay to ensure text contrast */}
-        <div className="absolute inset-0 bg-gradient-to-b from-[#F8FAFD]/95 via-[#F8FAFD]/60 to-transparent h-1/2 -z-10 pointer-events-none" />
+        {/* Soft top gradient overlay to ensure header text readability */}
+        <div className="absolute inset-x-0 top-0 h-44 bg-gradient-to-b from-white/95 via-white/50 to-transparent pointer-events-none -z-10" />
       </div>
 
       {/* Top Header & Branding */}
