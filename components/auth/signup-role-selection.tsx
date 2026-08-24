@@ -218,7 +218,7 @@ export function SignupRoleSelection() {
       {/* Primary Action Button & Sign In Link */}
       <div className="mt-4 space-y-2">
         <Link
-          href={selectedRole === "audience" ? "/signup/audience" : "/signup/presenter"}
+          href="/signup/onboarding"
           className="flex h-10 sm:h-11 w-full items-center justify-center gap-2 rounded-xl bg-brand-intelligence text-xs sm:text-sm font-semibold text-white shadow-sm transition-all hover:bg-primary-hover hover:shadow-md"
         >
           <span>
