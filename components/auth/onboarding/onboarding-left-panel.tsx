@@ -8,7 +8,6 @@ import {
   Hand,
   Globe,
   ShieldCheck,
-  Mail,
 } from "lucide-react";
 import { logoLandscape } from "@repo/assets";
 
@@ -17,6 +16,7 @@ export interface OnboardingLeftBrandPanelProps {
 }
 
 export function OnboardingLeftBrandPanel({ step = 1 }: OnboardingLeftBrandPanelProps) {
+  const isPersonalizeStep = step === 4;
   const isVerifyStep = step === 3;
 
   return (
@@ -50,7 +50,20 @@ export function OnboardingLeftBrandPanel({ step = 1 }: OnboardingLeftBrandPanelP
 
         {/* Heading & Description */}
         <div className="space-y-1.5">
-          {isVerifyStep ? (
+          {isPersonalizeStep ? (
+            <>
+              <h1 className="text-xl font-extrabold tracking-tight text-slate-900 sm:text-2xl lg:text-[1.75rem] lg:leading-[1.2]">
+                Make InclusaAI{" "}
+                <span className="text-brand-intelligence block mt-0.5">
+                  work for you.
+                </span>
+              </h1>
+              <p className="text-xs text-text-secondary leading-relaxed max-w-xs">
+                Tell us your preferences and accessibility needs so we can personalize your
+                experience across every presentation.
+              </p>
+            </>
+          ) : isVerifyStep ? (
             <>
               <h1 className="text-xl font-extrabold tracking-tight text-slate-900 sm:text-2xl lg:text-[1.75rem] lg:leading-[1.2]">
                 You&apos;re{" "}
@@ -132,7 +145,7 @@ export function OnboardingLeftBrandPanel({ step = 1 }: OnboardingLeftBrandPanelP
           </div>
           <div>
             <p className="text-[10px] text-text-secondary leading-tight">
-              Your account is secure. We use industry-standard encryption to protect your information.
+              Your information is safe and secure. You can always update your preferences later in Settings.
             </p>
           </div>
         </div>
