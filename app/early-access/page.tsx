@@ -14,7 +14,7 @@ import {
   UserCheck,
   ArrowLeft,
 } from "lucide-react";
-import { logoLandscape, logoLandscapeDarkMode } from "@repo/assets";
+import { logoLandscape, logoLandscapeDarkMode } from "../../public/assets";
 import { useTheme } from "../../lib/theme-context";
 
 function EarlyAccessForm() {

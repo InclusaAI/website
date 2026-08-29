@@ -3,7 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { Globe, Hand, ShieldCheck } from "lucide-react";
-import { logoLandscape } from "@repo/assets";
+import { logoLandscape } from "../../public/assets";
 
 export interface AuthLeftBrandPanelProps {
   imageSrc?: string;

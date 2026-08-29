@@ -4,8 +4,8 @@ import {
   logoLandscape,
   logoLandscapeDarkMode,
   signinIllustration,
-} from "@repo/assets";
-import { InclusaaiThemeBackground } from "@inclusaai/ui/theme-background";
+} from "../../public/assets";
+import { InclusaaiThemeBackground } from "../../components/ui/theme-background";
 import { authenticateDummyUser, getAppRedirectUrl } from "../../lib/dummy-auth";
 import { useTheme } from "../../lib/theme-context";
 import Image from "next/image";

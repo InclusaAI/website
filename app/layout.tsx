@@ -1,4 +1,4 @@
-import { createAppMetadata } from "@repo/assets/metadata";
+import { createAppMetadata } from "../public/assets/metadata";
 import type { Metadata } from "next";
 import { Poppins, Roboto_Mono } from "next/font/google";
 import { ThemeProvider } from "../lib/theme-context";
