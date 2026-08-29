@@ -12,10 +12,42 @@ import {
 } from "lucide-react";
 
 const modes = [
-  { id: "camera", label: "Camera", icon: Camera, desc: "Presenter camera broadcast" },
-  { id: "slides", label: "Slides", icon: Monitor, desc: "Interactive presentation deck" },
-  { id: "whiteboard", label: "Whiteboard", icon: PenTool, desc: "Collaborative live canvas" },
-  { id: "hybrid", label: "Hybrid", icon: Sparkles, desc: "Multi-feed combined layout" },
+  {
+    id: "camera",
+    label: "Camera",
+    icon: Camera,
+    desc: "Presenter camera broadcast",
+    iconColor: "text-blue-600",
+    iconBg: "bg-blue-50 border-blue-200",
+    selectedStyle: "border-blue-500 bg-blue-50/60 ring-2 ring-blue-500/20",
+  },
+  {
+    id: "slides",
+    label: "Slides",
+    icon: Monitor,
+    desc: "Interactive presentation deck",
+    iconColor: "text-purple-600",
+    iconBg: "bg-purple-50 border-purple-200",
+    selectedStyle: "border-purple-500 bg-purple-50/60 ring-2 ring-purple-500/20",
+  },
+  {
+    id: "whiteboard",
+    label: "Whiteboard",
+    icon: PenTool,
+    desc: "Collaborative live canvas",
+    iconColor: "text-emerald-600",
+    iconBg: "bg-emerald-50 border-emerald-200",
+    selectedStyle: "border-emerald-500 bg-emerald-50/60 ring-2 ring-emerald-500/20",
+  },
+  {
+    id: "hybrid",
+    label: "Hybrid",
+    icon: Sparkles,
+    desc: "Multi-feed combined layout",
+    iconColor: "text-indigo-600",
+    iconBg: "bg-indigo-50 border-indigo-200",
+    selectedStyle: "border-indigo-500 bg-indigo-50/60 ring-2 ring-indigo-500/20",
+  },
 ];
 
 export function ProductModes() {
@@ -48,11 +80,13 @@ export function ProductModes() {
                     onClick={() => setActiveMode(mode.id)}
                     className={`flex flex-col items-center justify-center rounded-2xl border p-4 text-center transition-all ${
                       isSelected
-                        ? "border-brand-intelligence bg-brand-intelligence/5 ring-1 ring-brand-intelligence/30 shadow-xs"
+                        ? `${mode.selectedStyle} shadow-md scale-[1.02]`
                         : "border-border-default bg-surface-default hover:border-border-strong hover:bg-surface-sunken/40"
                     }`}
                   >
-                    <Icon className={`h-6 w-6 ${isSelected ? "text-brand-intelligence" : "text-slate-500"}`} />
+                    <div className={`flex h-10 w-10 items-center justify-center rounded-xl border ${mode.iconBg} ${mode.iconColor} transition-transform ${isSelected ? "scale-110 shadow-xs" : ""}`}>
+                      <Icon className="h-5 w-5" />
+                    </div>
                     <span className="mt-2 text-xs font-bold text-slate-900">{mode.label}</span>
                   </button>
                 );

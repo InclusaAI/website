@@ -5,6 +5,7 @@ import Image from "next/image";
 import { useState } from "react";
 import { CheckCircle2, Loader2, X } from "lucide-react";
 import { logoLandscapeDarkMode, synapgridLogo } from "@repo/assets";
+import { FaLinkedin, FaInstagram, FaFacebook, FaXTwitter } from "react-icons/fa6";
 
 const footerLinks = {
   Product: [
@@ -54,11 +55,23 @@ export function Footer() {
     setStatusMessage(null);
     setIsSuccess(false);
 
+    const searchParams = typeof window !== "undefined" ? new URLSearchParams(window.location.search) : null;
+    const refFromUrl = searchParams?.get("ref") || searchParams?.get("referral");
+    if (refFromUrl && typeof window !== "undefined") {
+      try { localStorage.setItem("inclusaai_referral", refFromUrl); } catch {}
+    }
+    const storedRef = typeof window !== "undefined" ? localStorage.getItem("inclusaai_referral") : null;
+    const referralCode = refFromUrl || storedRef || "direct";
+
     try {
       const res = await fetch("/api/subscribers", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email: targetEmail }),
+        body: JSON.stringify({
+          email: targetEmail,
+          source: "footer-subscribe",
+          referral: referralCode,
+        }),
       });
 
       const data = await res.json();
@@ -82,12 +95,13 @@ export function Footer() {
   };
 
   return (
-    <footer className="bg-[#081325] text-white pt-16 pb-12">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 gap-10 md:grid-cols-2 lg:grid-cols-6">
-          {/* Brand Col */}
-          <div className="lg:col-span-2 space-y-4">
-            <Link href="/#" className="inline-block">
+    <footer className="w-full bg-[#0F172A] text-white">
+      {/* Main Footer Section */}
+      <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+        <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-6">
+          {/* Brand Info & Social Icons Column (Takes 2 grid slots on desktop) */}
+          <div className="sm:col-span-2 space-y-4">
+            <Link href="/" className="inline-block">
               <Image
                 src={logoLandscapeDarkMode}
                 alt="InclusaAI"
@@ -100,35 +114,43 @@ export function Footer() {
               AI-powered communication platform for inclusive presentations and events.
             </p>
 
-            {/* Social Icons */}
+            {/* Social Icons (LinkedIn, Instagram, Facebook, X Twitter) */}
             <div className="flex items-center gap-3 pt-2">
               <Link
-                href="/#"
-                className="flex h-8 w-8 items-center justify-center rounded-lg bg-white/10 text-white/80 hover:bg-white/20 transition-colors"
+                href="https://linkedin.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex h-9 w-9 items-center justify-center rounded-lg bg-white/10 text-white/80 hover:bg-white/20 hover:text-white transition-colors"
                 aria-label="LinkedIn"
               >
-                <span className="text-xs font-bold">in</span>
+                <FaLinkedin className="h-4.5 w-4.5 text-base" />
               </Link>
               <Link
-                href="/#"
-                className="flex h-8 w-8 items-center justify-center rounded-lg bg-white/10 text-white/80 hover:bg-white/20 transition-colors"
-                aria-label="YouTube"
+                href="https://instagram.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex h-9 w-9 items-center justify-center rounded-lg bg-white/10 text-white/80 hover:bg-white/20 hover:text-white transition-colors"
+                aria-label="Instagram"
               >
-                <span className="text-xs font-bold">▶</span>
+                <FaInstagram className="h-4.5 w-4.5 text-base" />
               </Link>
               <Link
-                href="/#"
-                className="flex h-8 w-8 items-center justify-center rounded-lg bg-white/10 text-white/80 hover:bg-white/20 transition-colors"
-                aria-label="X Twitter"
-              >
-                <span className="text-xs font-bold">𝕏</span>
-              </Link>
-              <Link
-                href="/#"
-                className="flex h-8 w-8 items-center justify-center rounded-lg bg-white/10 text-white/80 hover:bg-white/20 transition-colors"
+                href="https://facebook.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex h-9 w-9 items-center justify-center rounded-lg bg-white/10 text-white/80 hover:bg-white/20 hover:text-white transition-colors"
                 aria-label="Facebook"
               >
-                <span className="text-xs font-bold">f</span>
+                <FaFacebook className="h-4.5 w-4.5 text-base" />
+              </Link>
+              <Link
+                href="https://x.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex h-9 w-9 items-center justify-center rounded-lg bg-white/10 text-white/80 hover:bg-white/20 hover:text-white transition-colors"
+                aria-label="X Twitter"
+              >
+                <FaXTwitter className="h-4.5 w-4.5 text-base" />
               </Link>
             </div>
           </div>
@@ -198,26 +220,32 @@ export function Footer() {
         </div>
 
         {/* Bottom Bar */}
-        <div className="mt-12 flex flex-col items-center justify-between gap-4 border-t border-white/10 pt-8 text-xs text-white/50 sm:flex-row">
-          <p>© 2026 InclusaAI. All rights reserved.</p>
+        <div className="mt-12 border-t border-white/10 pt-8 text-xs text-white/50">
+          <div className="flex flex-col items-center justify-between gap-4 md:flex-row md:flex-wrap lg:flex-nowrap">
+            <p className="text-center md:text-left">© 2026 InclusaAI. All rights reserved.</p>
 
-          <div className="flex items-center gap-2 text-white/70">
-            <span className="text-[11px] uppercase tracking-wider text-white/40">
-              A product by
-            </span>
-            <span className="inline-flex items-center gap-1.5 font-medium text-white/90">
-              <Image
-                src={synapgridLogo}
-                alt="SynapGrid Technologies"
-                width={synapgridLogo.width}
-                height={synapgridLogo.height}
-                className="h-4 w-auto object-contain"
-              />
-              <Link href="https://www.synapgrid.net/" target="_blank">SynapGrid Technologies</Link>
-            </span>
+            <div className="flex items-center gap-2 text-white/70">
+              <span className="text-[11px] uppercase tracking-wider text-white/40">
+                A product by
+              </span>
+              <span className="inline-flex items-center gap-1.5 font-medium text-white/90">
+                <Image
+                  src={synapgridLogo}
+                  alt="SynapGrid Technologies"
+                  width={synapgridLogo.width}
+                  height={synapgridLogo.height}
+                  className="h-4 w-auto object-contain"
+                />
+                <Link href="https://www.synapgrid.net/" target="_blank" className="hover:text-white transition-colors">
+                  SynapGrid Technologies
+                </Link>
+              </span>
+            </div>
+
+            <p className="w-full text-center md:w-full lg:w-auto md:pt-2 lg:pt-0">
+              Made with ❤️ for accessibility and inclusion.
+            </p>
           </div>
-
-          <p>Made with ❤️ for accessibility and inclusion.</p>
         </div>
       </div>
 

@@ -10,7 +10,11 @@ import {
   Headphones,
 } from "lucide-react";
 
-export function SocialProofCta() {
+export interface SocialProofCtaProps {
+  onOpenEarlyAccess?: (type?: "individual" | "partner") => void;
+}
+
+export function SocialProofCta({ onOpenEarlyAccess }: SocialProofCtaProps = {}) {
   return (
     <section className="relative overflow-hidden bg-white py-20">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -34,25 +38,27 @@ export function SocialProofCta() {
             <h2 className="text-3xl font-extrabold tracking-tight text-slate-900 sm:text-4xl lg:text-5xl">
               Ready to make every conversation inclusive?
             </h2>
-            <p className="mx-auto max-w-lg text-base text-text-secondary">
-              Join thousands of presenters and organizations using InclusaAI to create meaningful, accessible communication.
+            <p className="mx-auto max-w-lg text-base text-text-secondary leading-relaxed">
+              Be among the first individuals and organisations to experience InclusaAI and help shape more accessible communication.
             </p>
 
             {/* Action Buttons */}
             <div className="mt-8 flex flex-wrap items-center justify-center gap-4 pt-2">
-              <Link
-                href="/#"
+              <button
+                type="button"
+                onClick={() => (onOpenEarlyAccess ? onOpenEarlyAccess("individual") : (window.location.href = "/early-access"))}
                 className="inline-flex items-center justify-center gap-2 rounded-xl bg-brand-intelligence px-7 py-3.5 text-base font-semibold text-white shadow-md transition-all hover:bg-primary-hover hover:shadow-lg"
               >
-                <span>Get Started Free</span>
+                <span>Request Early Access</span>
                 <ArrowRight className="h-4 w-4" />
-              </Link>
-              <Link
-                href="/#"
+              </button>
+              <button
+                type="button"
+                onClick={() => (onOpenEarlyAccess ? onOpenEarlyAccess("partner") : (window.location.href = "/early-access?type=partner"))}
                 className="inline-flex items-center justify-center rounded-xl border border-border-default bg-white px-6 py-3.5 text-base font-semibold text-text-primary shadow-xs transition-all hover:bg-surface-sunken hover:border-border-strong"
               >
-                Contact Sales
-              </Link>
+                Partner With Us
+              </button>
             </div>
           </div>
 
