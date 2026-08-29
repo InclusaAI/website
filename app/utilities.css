@@ -1,0 +1,155 @@
+@layer utilities {
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+
+  .scrollbar-thin {
+    scrollbar-width: thin;
+    scrollbar-color: var(--color-text-tertiary) transparent;
+  }
+
+  .scrollbar-thin::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+
+  .scrollbar-thin::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  .scrollbar-thin::-webkit-scrollbar-thumb {
+    background-color: var(--color-brand-intelligence);
+    border-radius: 9999px;
+  }
+
+  .scrollbar-thin::-webkit-scrollbar-thumb:hover {
+    background-color: var(--color-primary-hover, #1c3cb5);
+  }
+
+  .scrollbar-hover {
+    scrollbar-width: none;
+  }
+
+  .scrollbar-hover::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+  }
+
+  .group\/sidebar:hover .scrollbar-hover {
+    scrollbar-width: thin;
+    scrollbar-color: var(--color-text-tertiary) transparent;
+  }
+
+  .group\/sidebar:hover .scrollbar-hover::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+
+  .group\/sidebar:hover .scrollbar-hover::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  .group\/sidebar:hover .scrollbar-hover::-webkit-scrollbar-thumb {
+    background-color: var(--color-text-tertiary);
+    border-radius: 9999px;
+  }
+
+  .group\/sidebar:hover .scrollbar-hover::-webkit-scrollbar-thumb:hover {
+    background-color: var(--color-primary-hover, #1c3cb5);
+  }
+}
+
+@layer base {
+  /* Custom Radio Button */
+  input[type="radio"] {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    width: 1rem;
+    height: 1rem;
+    border: 0.0625rem solid var(--color-brand-intelligence);
+    border-radius: 50%;
+    background-color: transparent;
+    position: relative;
+    cursor: pointer;
+    vertical-align: middle;
+    transition: border-color 0.2s;
+    flex-shrink: 0;
+  }
+
+  input[type="radio"]:checked {
+    background-color: transparent;
+  }
+
+  input[type="radio"]:checked::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0.5rem;
+    height: 0.5rem;
+    border-radius: 50%;
+    background-color: var(--color-brand-intelligence);
+    transform: translate(-50%, -50%);
+  }
+
+  input[type="radio"]:focus-visible {
+    outline: 2px solid var(--color-border-focus);
+    outline-offset: 2px;
+  }
+
+  /* Custom Checkbox */
+  input[type="checkbox"] {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    width: 1rem;
+    height: 1rem;
+    border: 0.0625rem solid var(--color-brand-intelligence);
+    border-radius: 0.3125rem;
+    background-color: transparent;
+    position: relative;
+    cursor: pointer;
+    flex-shrink: 0;
+  }
+
+  input[type="checkbox"]:checked {
+    background-color: var(--color-brand-intelligence);
+  }
+
+  input[type="checkbox"]:checked::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0.25rem;
+    height: 0.5rem;
+    border: solid white;
+    border-width: 0 0.125rem 0.125rem 0;
+    transform: translate(-50%, -60%) rotate(45deg);
+  }
+
+  input[type="checkbox"]:focus-visible {
+    outline: 2px solid var(--color-border-focus);
+    outline-offset: 2px;
+  }
+
+  /* Checkbox on dark/colored backgrounds */
+  input[type="checkbox"].border-white {
+    border-color: white;
+    border-width: 2px;
+  }
+
+  input[type="checkbox"].border-white:checked {
+    background-color: white;
+  }
+
+  input[type="checkbox"].border-white:checked::after {
+    border-color: var(--color-brand-intelligence);
+  }
+}

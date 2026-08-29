@@ -2,6 +2,8 @@
 
 import Link from "next/link";
 import Image from "next/image";
+import { useState } from "react";
+import { CheckCircle2, Loader2, X } from "lucide-react";
 import { logoLandscapeDarkMode, synapgridLogo } from "@repo/assets";
 
 const footerLinks = {
@@ -36,6 +38,49 @@ const footerLinks = {
 };
 
 export function Footer() {
+  const [email, setEmail] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [statusMessage, setStatusMessage] = useState<string | null>(null);
+  const [isSuccess, setIsSuccess] = useState(false);
+  const [showSuccessModal, setShowSuccessModal] = useState(false);
+  const [subscribedEmail, setSubscribedEmail] = useState("");
+
+  const handleSubscribe = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    if (!email.trim()) return;
+
+    const targetEmail = email.trim();
+    setIsSubmitting(true);
+    setStatusMessage(null);
+    setIsSuccess(false);
+
+    try {
+      const res = await fetch("/api/subscribers", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email: targetEmail }),
+      });
+
+      const data = await res.json();
+
+      if (res.ok && data.success) {
+        setIsSuccess(true);
+        setSubscribedEmail(targetEmail);
+        setShowSuccessModal(true);
+        setStatusMessage(data.message || "You're on the list!");
+        setEmail("");
+      } else {
+        setIsSuccess(false);
+        setStatusMessage(data.message || "Unable to subscribe right now.");
+      }
+    } catch {
+      setIsSuccess(false);
+      setStatusMessage("Unable to connect. Please try again.");
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
   return (
     <footer className="bg-[#081325] text-white pt-16 pb-12">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -117,18 +162,37 @@ export function Footer() {
             <p className="text-xs text-white/60 leading-relaxed">
               Subscribe to get product updates and accessibility tips.
             </p>
-            <form onSubmit={(e) => e.preventDefault()} className="flex items-center gap-2 pt-1">
-              <input
-                type="email"
-                placeholder="Enter your email"
-                className="h-10 flex-1 rounded-lg border border-white/15 bg-white/10 px-3 text-xs text-white placeholder:text-white/40 focus:border-brand-intelligence focus:outline-none"
-              />
-              <button
-                type="submit"
-                className="h-10 rounded-lg bg-brand-intelligence px-4 text-xs font-semibold text-white hover:bg-primary-hover transition-colors"
-              >
-                Subscribe
-              </button>
+            <form onSubmit={handleSubscribe} className="flex flex-col gap-2 pt-1">
+              <div className="flex items-center gap-2">
+                <input
+                  type="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  placeholder="Enter your email"
+                  required
+                  disabled={isSubmitting}
+                  className="h-10 flex-1 rounded-lg border border-white/15 bg-white/10 px-3 text-xs text-white placeholder:text-white/40 focus:border-brand-intelligence focus:outline-none disabled:opacity-50"
+                />
+                <button
+                  type="submit"
+                  disabled={isSubmitting}
+                  className="h-10 rounded-lg bg-brand-intelligence px-4 text-xs font-semibold text-white hover:bg-primary-hover transition-colors disabled:opacity-50 min-w-[100px] flex items-center justify-center gap-2"
+                >
+                  {isSubmitting ? (
+                    <>
+                      <Loader2 className="h-4 w-4 animate-spin text-white" aria-hidden="true" />
+                      <span>Subscribing</span>
+                    </>
+                  ) : (
+                    <span>Subscribe</span>
+                  )}
+                </button>
+              </div>
+              {statusMessage && !showSuccessModal && (
+                <p className={`text-xs mt-1 ${isSuccess ? "text-emerald-400 font-medium" : "text-rose-400"}`}>
+                  {statusMessage}
+                </p>
+              )}
             </form>
           </div>
         </div>
@@ -149,13 +213,54 @@ export function Footer() {
                 height={synapgridLogo.height}
                 className="h-4 w-auto object-contain"
               />
-              <span>SynapGrid Technologies</span>
+              <Link href="https://www.synapgrid.net/" target="_blank">SynapGrid Technologies</Link>
             </span>
           </div>
 
           <p>Made with ❤️ for accessibility and inclusion.</p>
         </div>
       </div>
+
+      {/* Success Subscriber Modal */}
+      {showSuccessModal && (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 p-4 backdrop-blur-sm animate-in fade-in duration-200"
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="subscriber-modal-title"
+        >
+          <div className="relative w-full max-w-md overflow-hidden rounded-2xl bg-[#0a1628] border border-white/15 p-6 sm:p-8 shadow-2xl text-center">
+            <button
+              type="button"
+              onClick={() => setShowSuccessModal(false)}
+              className="absolute top-4 right-4 flex h-8 w-8 items-center justify-center rounded-full bg-white/10 text-white/70 hover:bg-white/20 hover:text-white transition-colors focus:outline-none focus:ring-2 focus:ring-brand-intelligence"
+              aria-label="Close modal"
+            >
+              <X className="h-4 w-4" />
+            </button>
+
+            <div className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-full bg-emerald-500/20 text-emerald-400 border border-emerald-500/30">
+              <CheckCircle2 className="h-8 w-8" />
+            </div>
+
+            <h3 id="subscriber-modal-title" className="text-xl font-bold text-white mb-2">
+              You&apos;re on the list! 🎉
+            </h3>
+
+            <p className="text-xs text-white/70 leading-relaxed mb-6">
+              Thank you for subscribing! We&apos;ve added <span className="font-semibold text-cyan-300">{subscribedEmail}</span> to our priority waitlist. You&apos;ll be among the first to receive product updates and accessibility tips.
+            </p>
+
+            <button
+              type="button"
+              onClick={() => setShowSuccessModal(false)}
+              className="w-full rounded-lg bg-brand-intelligence py-3 text-xs font-semibold text-white hover:bg-primary-hover transition-colors shadow-lg shadow-brand-intelligence/30"
+            >
+              Awesome, thanks!
+            </button>
+          </div>
+        </div>
+      )}
     </footer>
   );
 }

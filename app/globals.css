@@ -1,7 +1,9 @@
 @import "tailwindcss";
-@import "../../design-system/packages/ui/src/styling/utilities.css";
+/* NOTE: Presentation deployment fallback. Post-presentation revert target: */
+/* @import "../../design-system/packages/ui/src/styling/utilities.css"; */
+/* @source "../../design-system/packages/ui/src"; */
+@import "./utilities.css";
 
-@source "../../design-system/packages/ui/src";
 @source "../components";
 @source ".";
 

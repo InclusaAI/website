@@ -26,23 +26,28 @@
       "@/*": [
         "./*"
       ],
-      "@inclusaai/ui": [
-        "../design-system/packages/ui/src/index.ts"
+      // NOTE: Presentation deployment fallback. Revert post-presentation to:
+      // "@inclusaai/ui": ["../design-system/packages/ui/src/index.ts"],
+      // "@inclusaai/ui/*": ["../design-system/packages/ui/src/*"],
+      // "@inclusaai/design-tokens": ["../design-system/packages/design-tokens/src/index.ts"],
+      // "@repo/assets": ["../web-apps/packages/assets/src/index.ts"],
+      "@repo/assets": [
+        "./public/assets/index.ts"
       ],
-      "@inclusaai/ui/signin": [
-        "../design-system/packages/ui/src/pages/signin.tsx"
+      "@repo/assets/metadata": [
+        "./public/assets/metadata.ts"
+      ],
+      "@repo/assets/*": [
+        "./public/assets/*"
+      ],
+      "@inclusaai/ui/theme-background": [
+        "./components/ui/theme-background.tsx"
+      ],
+      "@inclusaai/ui": [
+        "./components/ui/index.ts"
       ],
       "@inclusaai/ui/*": [
-        "../design-system/packages/ui/src/*"
-      ],
-      "@inclusaai/design-tokens": [
-        "../design-system/packages/design-tokens/src/index.ts"
-      ],
-      "@inclusaai/design-tokens/*": [
-        "../design-system/packages/design-tokens/src/*"
-      ],
-      "@repo/assets": [
-        "../web-apps/packages/assets/src/index.ts"
+        "./components/ui/*"
       ]
     }
   },
