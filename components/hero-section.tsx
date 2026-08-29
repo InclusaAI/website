@@ -50,16 +50,18 @@ export function HeroSection({ onOpenEarlyAccess }: HeroSectionProps = {}) {
                 className="inline-flex items-center justify-center gap-2 rounded-xl bg-brand-intelligence px-6 py-3.5 text-base font-semibold text-white shadow-md transition-all hover:bg-primary-hover hover:shadow-lg"
               >
                 <span>Request Early Access</span>
-                <ArrowRight className="h-4 w-4" />
+                {/* TODO - uncomment if early access is set as a page */}
+                {/* <ArrowRight className="h-4 w-4" /> */}
               </button>
               <Link
                 href="#how-it-works"
                 className="inline-flex items-center justify-center gap-2.5 rounded-xl border border-border-default bg-white px-5 py-3.5 text-base font-semibold text-text-primary shadow-xs transition-all hover:bg-surface-sunken hover:border-border-strong"
               >
                 <span>See How It Works</span>
-                <span className="flex h-5 w-5 items-center justify-center rounded-full bg-slate-100 text-slate-700">
+                {/* TODO - uncomment the play icon if video is available */}
+                {/* <span className="flex h-5 w-5 items-center justify-center rounded-full bg-slate-100 text-slate-700">
                   <Play className="h-3 w-3 fill-current ml-0.5" />
-                </span>
+                </span> */}
               </Link>
             </div>
 

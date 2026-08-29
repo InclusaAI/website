@@ -5,6 +5,7 @@ import Image from "next/image";
 import { useState } from "react";
 import { CheckCircle2, Loader2, X } from "lucide-react";
 import { logoLandscapeDarkMode, synapgridLogo } from "@repo/assets";
+import { FaLinkedin, FaInstagram, FaFacebook, FaXTwitter } from "react-icons/fa6";
 
 const footerLinks = {
   Product: [
@@ -94,12 +95,13 @@ export function Footer() {
   };
 
   return (
-    <footer className="bg-[#081325] text-white pt-16 pb-12">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 gap-10 md:grid-cols-2 lg:grid-cols-6">
-          {/* Brand Col */}
-          <div className="lg:col-span-2 space-y-4">
-            <Link href="/#" className="inline-block">
+    <footer className="w-full bg-[#0F172A] text-white">
+      {/* Main Footer Section */}
+      <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+        <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-6">
+          {/* Brand Info & Social Icons Column (Takes 2 grid slots on desktop) */}
+          <div className="sm:col-span-2 space-y-4">
+            <Link href="/" className="inline-block">
               <Image
                 src={logoLandscapeDarkMode}
                 alt="InclusaAI"
@@ -112,35 +114,43 @@ export function Footer() {
               AI-powered communication platform for inclusive presentations and events.
             </p>
 
-            {/* Social Icons */}
+            {/* Social Icons (LinkedIn, Instagram, Facebook, X Twitter) */}
             <div className="flex items-center gap-3 pt-2">
               <Link
-                href="/#"
-                className="flex h-8 w-8 items-center justify-center rounded-lg bg-white/10 text-white/80 hover:bg-white/20 transition-colors"
+                href="https://linkedin.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex h-9 w-9 items-center justify-center rounded-lg bg-white/10 text-white/80 hover:bg-white/20 hover:text-white transition-colors"
                 aria-label="LinkedIn"
               >
-                <span className="text-xs font-bold">in</span>
+                <FaLinkedin className="h-4.5 w-4.5 text-base" />
               </Link>
               <Link
-                href="/#"
-                className="flex h-8 w-8 items-center justify-center rounded-lg bg-white/10 text-white/80 hover:bg-white/20 transition-colors"
-                aria-label="YouTube"
+                href="https://instagram.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex h-9 w-9 items-center justify-center rounded-lg bg-white/10 text-white/80 hover:bg-white/20 hover:text-white transition-colors"
+                aria-label="Instagram"
               >
-                <span className="text-xs font-bold">▶</span>
+                <FaInstagram className="h-4.5 w-4.5 text-base" />
               </Link>
               <Link
-                href="/#"
-                className="flex h-8 w-8 items-center justify-center rounded-lg bg-white/10 text-white/80 hover:bg-white/20 transition-colors"
-                aria-label="X Twitter"
-              >
-                <span className="text-xs font-bold">𝕏</span>
-              </Link>
-              <Link
-                href="/#"
-                className="flex h-8 w-8 items-center justify-center rounded-lg bg-white/10 text-white/80 hover:bg-white/20 transition-colors"
+                href="https://facebook.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex h-9 w-9 items-center justify-center rounded-lg bg-white/10 text-white/80 hover:bg-white/20 hover:text-white transition-colors"
                 aria-label="Facebook"
               >
-                <span className="text-xs font-bold">f</span>
+                <FaFacebook className="h-4.5 w-4.5 text-base" />
+              </Link>
+              <Link
+                href="https://x.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex h-9 w-9 items-center justify-center rounded-lg bg-white/10 text-white/80 hover:bg-white/20 hover:text-white transition-colors"
+                aria-label="X Twitter"
+              >
+                <FaXTwitter className="h-4.5 w-4.5 text-base" />
               </Link>
             </div>
           </div>

@@ -90,6 +90,10 @@ export function EarlyAccessModal({
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (!email.trim()) return;
+    if (requestType === "partner" && !organization.trim()) {
+      setErrorMessage("Please enter your organization or company name.");
+      return;
+    }
 
     setIsSubmitting(true);
     setErrorMessage(null);
@@ -222,31 +226,31 @@ export function EarlyAccessModal({
             </div>
 
             {/* Type Selector Tabs */}
-            <div className="grid grid-cols-2 gap-2 p-1 bg-surface-sunken rounded-xl border border-border-default">
+            <div className="grid grid-cols-2 gap-1.5 p-1.5 bg-surface-sunken rounded-2xl border border-border-default">
               <button
                 type="button"
                 onClick={() => setRequestType("individual")}
-                className={`flex items-center justify-center gap-1.5 rounded-lg py-2 text-xs font-semibold transition-all ${
+                className={`flex items-center justify-center gap-1.5 sm:gap-2 rounded-xl px-2 py-2 text-center transition-all ${
                   requestType === "individual"
-                    ? "bg-white text-slate-900 shadow-sm border border-border-default"
-                    : "text-text-secondary hover:text-slate-900"
+                    ? "bg-white text-slate-900 shadow-xs border border-border-default font-semibold"
+                    : "text-text-secondary hover:text-slate-900 font-medium"
                 }`}
               >
-                <UserCheck className="h-3.5 w-3.5 text-brand-intelligence" />
-                <span>Individual User</span>
+                <UserCheck className="h-4 w-4 shrink-0 text-brand-intelligence" />
+                <span className="text-[11px] sm:text-xs leading-tight">Individual</span>
               </button>
 
               <button
                 type="button"
                 onClick={() => setRequestType("partner")}
-                className={`flex items-center justify-center gap-1.5 rounded-lg py-2 text-xs font-semibold transition-all ${
+                className={`flex items-center justify-center gap-1.5 sm:gap-2 rounded-xl px-2 py-2 text-center transition-all ${
                   requestType === "partner"
-                    ? "bg-white text-slate-900 shadow-sm border border-border-default"
-                    : "text-text-secondary hover:text-slate-900"
+                    ? "bg-white text-slate-900 shadow-xs border border-border-default font-semibold"
+                    : "text-text-secondary hover:text-slate-900 font-medium"
                 }`}
               >
-                <Building2 className="h-3.5 w-3.5 text-brand-intelligence" />
-                <span>Partner / Organization</span>
+                <Building2 className="h-4 w-4 shrink-0 text-brand-intelligence" />
+                <span className="text-[11px] sm:text-xs leading-tight">Partner / Org</span>
               </button>
             </div>
 
@@ -286,11 +290,12 @@ export function EarlyAccessModal({
               {requestType === "partner" && (
                 <div>
                   <label htmlFor="modalOrganization" className="block text-[11px] font-semibold text-slate-900 mb-1">
-                    Organization / Company Name
+                    Organization / Company Name <span className="text-rose-500">*</span>
                   </label>
                   <input
                     id="modalOrganization"
                     type="text"
+                    required
                     value={organization}
                     onChange={(e) => setOrganization(e.target.value)}
                     placeholder="e.g. Company, University, Event Name"
