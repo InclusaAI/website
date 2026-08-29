@@ -4,7 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { useState } from "react";
 import { CheckCircle2, Loader2, X } from "lucide-react";
-import { logoLandscapeDarkMode, synapgridLogo } from "@repo/assets";
+import { logoLandscapeDarkMode, synapgridLogo } from "../public/assets";
 import { FaLinkedin, FaInstagram, FaFacebook, FaXTwitter } from "react-icons/fa6";
 
 const footerLinks = {

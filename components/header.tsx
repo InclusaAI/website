@@ -5,7 +5,7 @@ import Image from "next/image";
 import { useState, useEffect } from "react";
 import { createPortal } from "react-dom";
 import { ChevronDown, Menu, X, ArrowRight } from "lucide-react";
-import { logoLandscape } from "@repo/assets";
+import { logoLandscape } from "../public/assets";
 
 const navItems = [
   { label: "Features", href: "/#", hasDropdown: false },

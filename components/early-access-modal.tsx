@@ -13,7 +13,7 @@ import {
   UserCheck,
   X,
 } from "lucide-react";
-import { logoLandscape, logoLandscapeDarkMode } from "@repo/assets";
+import { logoLandscape, logoLandscapeDarkMode } from "../public/assets";
 import { useTheme } from "../lib/theme-context";
 
 export interface EarlyAccessModalProps {

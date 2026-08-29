@@ -9,7 +9,7 @@ import {
   Globe,
   ShieldCheck,
 } from "lucide-react";
-import { logoLandscape } from "@repo/assets";
+import { logoLandscape } from "../../../public/assets";
 
 export interface OnboardingLeftBrandPanelProps {
   step?: number;

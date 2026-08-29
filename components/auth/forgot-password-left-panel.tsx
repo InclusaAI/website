@@ -3,7 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { ShieldCheck, Clock, Mail } from "lucide-react";
-import { logoLandscape } from "@repo/assets";
+import { logoLandscape } from "../../public/assets";
 
 export function ForgotPasswordLeftPanel() {
   return (
