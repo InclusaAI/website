@@ -45,7 +45,7 @@ const steps = [
 
 export function HowItWorks() {
   return (
-    <section className="py-20 bg-gradient-to-b from-white to-[#F8FAFD]">
+    <section id="how-it-works" className="py-20 bg-gradient-to-b from-white to-[#F8FAFD]">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="rounded-3xl border border-blue-100 bg-[#f8fafd] p-8 sm:p-12 shadow-sm">
           <div className="grid grid-cols-1 items-center gap-10 lg:grid-cols-12">

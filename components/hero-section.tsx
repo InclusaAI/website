@@ -41,14 +41,14 @@ export function HeroSection() {
             {/* CTA Buttons */}
             <div className="flex flex-wrap items-center gap-4 pt-2">
               <Link
-                href="/signup"
+                href="/early-access"
                 className="inline-flex items-center justify-center gap-2 rounded-xl bg-brand-intelligence px-6 py-3.5 text-base font-semibold text-white shadow-md transition-all hover:bg-primary-hover hover:shadow-lg"
               >
                 <span>Request Early Access</span>
                 <ArrowRight className="h-4 w-4" />
               </Link>
               <Link
-                href="/#"
+                href="#how-it-works"
                 className="inline-flex items-center justify-center gap-2.5 rounded-xl border border-border-default bg-white px-5 py-3.5 text-base font-semibold text-text-primary shadow-xs transition-all hover:bg-surface-sunken hover:border-border-strong"
               >
                 <span>See How It Works</span>
