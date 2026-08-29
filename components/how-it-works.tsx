@@ -100,7 +100,7 @@ export function HowItWorks() {
 
                       {/* Numbered Pill */}
                       <div className="mt-3 inline-flex items-center gap-1.5 font-bold text-xs text-slate-900">
-                        <span className={`flex h-4 w-4 items-center justify-center rounded-full text-[10px] font-extrabold text-white ${step.numBg}`}>
+                        <span className={`inline-flex h-4 w-4 shrink-0 items-center justify-center text-center rounded-full text-[10px] font-extrabold text-white leading-none select-none ${step.numBg}`}>
                           {step.number}
                         </span>
                         <span>{step.label}</span>

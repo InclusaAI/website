@@ -12,10 +12,42 @@ import {
 } from "lucide-react";
 
 const modes = [
-  { id: "camera", label: "Camera", icon: Camera, desc: "Presenter camera broadcast", iconColor: "text-slate-800", iconBg: "bg-slate-100 border-slate-200" },
-  { id: "slides", label: "Slides", icon: Monitor, desc: "Interactive presentation deck", iconColor: "text-blue-600", iconBg: "bg-blue-50 border-blue-200" },
-  { id: "whiteboard", label: "Whiteboard", icon: PenTool, desc: "Collaborative live canvas", iconColor: "text-emerald-600", iconBg: "bg-emerald-50 border-emerald-200" },
-  { id: "hybrid", label: "Hybrid", icon: Sparkles, desc: "Multi-feed combined layout", iconColor: "text-teal-600", iconBg: "bg-teal-50 border-teal-200" },
+  {
+    id: "camera",
+    label: "Camera",
+    icon: Camera,
+    desc: "Presenter camera broadcast",
+    iconColor: "text-blue-600",
+    iconBg: "bg-blue-50 border-blue-200",
+    selectedStyle: "border-blue-500 bg-blue-50/60 ring-2 ring-blue-500/20",
+  },
+  {
+    id: "slides",
+    label: "Slides",
+    icon: Monitor,
+    desc: "Interactive presentation deck",
+    iconColor: "text-purple-600",
+    iconBg: "bg-purple-50 border-purple-200",
+    selectedStyle: "border-purple-500 bg-purple-50/60 ring-2 ring-purple-500/20",
+  },
+  {
+    id: "whiteboard",
+    label: "Whiteboard",
+    icon: PenTool,
+    desc: "Collaborative live canvas",
+    iconColor: "text-emerald-600",
+    iconBg: "bg-emerald-50 border-emerald-200",
+    selectedStyle: "border-emerald-500 bg-emerald-50/60 ring-2 ring-emerald-500/20",
+  },
+  {
+    id: "hybrid",
+    label: "Hybrid",
+    icon: Sparkles,
+    desc: "Multi-feed combined layout",
+    iconColor: "text-indigo-600",
+    iconBg: "bg-indigo-50 border-indigo-200",
+    selectedStyle: "border-indigo-500 bg-indigo-50/60 ring-2 ring-indigo-500/20",
+  },
 ];
 
 export function ProductModes() {
@@ -48,7 +80,7 @@ export function ProductModes() {
                     onClick={() => setActiveMode(mode.id)}
                     className={`flex flex-col items-center justify-center rounded-2xl border p-4 text-center transition-all ${
                       isSelected
-                        ? "border-brand-intelligence bg-brand-intelligence/5 ring-2 ring-brand-intelligence/20 shadow-md scale-[1.02]"
+                        ? `${mode.selectedStyle} shadow-md scale-[1.02]`
                         : "border-border-default bg-surface-default hover:border-border-strong hover:bg-surface-sunken/40"
                     }`}
                   >
