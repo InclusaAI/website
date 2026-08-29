@@ -3,6 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { useState, useEffect } from "react";
+import { createPortal } from "react-dom";
 import { ChevronDown, Menu, X, ArrowRight } from "lucide-react";
 import { logoLandscape } from "@repo/assets";
 
@@ -16,21 +17,26 @@ const navItems = [
 
 export function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [mounted, setMounted] = useState(false);
 
-  // Prevent scroll when drawer is open
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  // Prevent background scroll when drawer is open
   useEffect(() => {
     if (mobileMenuOpen) {
       document.body.style.overflow = "hidden";
     } else {
-      document.body.style.overflow = "unset";
+      document.body.style.overflow = "";
     }
     return () => {
-      document.body.style.overflow = "unset";
+      document.body.style.overflow = "";
     };
   }, [mobileMenuOpen]);
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-border-default/80 bg-white/95 backdrop-blur-md transition-all">
+    <header className="sticky top-0 z-40 w-full border-b border-border-default/80 bg-white/95 backdrop-blur-md transition-all">
       <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
         {/* Brand Logo */}
         <Link href="/signup" className="flex items-center gap-2">
@@ -90,77 +96,80 @@ export function Header() {
         </div>
       </div>
 
-      {/* Mobile & Tablet Right Side Slide-over Drawer */}
-      {mobileMenuOpen && (
-        <div className="fixed inset-0 z-50 lg:hidden" role="dialog" aria-modal="true">
-          {/* Backdrop Overlay */}
-          <div
-            className="fixed inset-0 bg-black/60 backdrop-blur-xs transition-opacity animate-in fade-in duration-200"
-            onClick={() => setMobileMenuOpen(false)}
-            aria-hidden="true"
-          />
+      {/* Mobile & Tablet Right Side Slide-over Drawer (Portaled to document.body with solid bg & high z-index) */}
+      {mounted &&
+        mobileMenuOpen &&
+        createPortal(
+          <div className="fixed inset-0 z-[9999] lg:hidden" role="dialog" aria-modal="true">
+            {/* Backdrop Overlay */}
+            <div
+              className="fixed inset-0 bg-black/70 backdrop-blur-sm transition-opacity"
+              onClick={() => setMobileMenuOpen(false)}
+              aria-hidden="true"
+            />
 
-          {/* Right Drawer Panel */}
-          <div className="fixed inset-y-0 right-0 z-50 flex w-full max-w-xs sm:max-w-sm flex-col justify-between bg-white p-6 shadow-2xl transition-transform animate-in slide-in-from-right duration-300">
-            <div>
-              {/* Drawer Top Bar */}
-              <div className="flex items-center justify-between pb-6 border-b border-border-default">
-                <Link href="/signup" onClick={() => setMobileMenuOpen(false)}>
-                  <Image
-                    src={logoLandscape}
-                    alt="InclusaAI"
-                    width={logoLandscape.width}
-                    height={logoLandscape.height}
-                    className="h-9 w-auto object-contain object-left"
-                  />
-                </Link>
-                <button
-                  type="button"
-                  onClick={() => setMobileMenuOpen(false)}
-                  className="rounded-xl p-2 text-text-secondary hover:bg-surface-sunken hover:text-text-primary transition-colors"
-                  aria-label="Close menu"
-                >
-                  <X className="h-6 w-6" />
-                </button>
+            {/* Right Drawer Panel */}
+            <div className="fixed inset-y-0 right-0 z-[10000] flex w-full max-w-[320px] sm:max-w-[360px] flex-col justify-between bg-white bg-[#ffffff] p-6 shadow-2xl transition-transform border-l border-border-default">
+              <div>
+                {/* Drawer Top Bar */}
+                <div className="flex items-center justify-between pb-6 border-b border-border-default">
+                  <Link href="/signup" onClick={() => setMobileMenuOpen(false)}>
+                    <Image
+                      src={logoLandscape}
+                      alt="InclusaAI"
+                      width={logoLandscape.width}
+                      height={logoLandscape.height}
+                      className="h-9 w-auto object-contain object-left"
+                    />
+                  </Link>
+                  <button
+                    type="button"
+                    onClick={() => setMobileMenuOpen(false)}
+                    className="rounded-xl p-2 text-text-secondary hover:bg-surface-sunken hover:text-text-primary transition-colors"
+                    aria-label="Close menu"
+                  >
+                    <X className="h-6 w-6" />
+                  </button>
+                </div>
+
+                {/* Drawer Navigation Links */}
+                <nav className="py-6 flex flex-col space-y-1">
+                  {navItems.map((item) => (
+                    <Link
+                      key={item.label}
+                      href={item.href}
+                      onClick={() => setMobileMenuOpen(false)}
+                      className="flex items-center justify-between px-3.5 py-3 rounded-xl text-base font-medium text-text-primary hover:bg-surface-sunken hover:text-brand-intelligence transition-colors"
+                    >
+                      <span>{item.label}</span>
+                      {item.hasDropdown && <ChevronDown className="h-4 w-4 text-text-tertiary" />}
+                    </Link>
+                  ))}
+                </nav>
               </div>
 
-              {/* Drawer Navigation Links */}
-              <nav className="py-6 flex flex-col space-y-1">
-                {navItems.map((item) => (
-                  <Link
-                    key={item.label}
-                    href={item.href}
-                    onClick={() => setMobileMenuOpen(false)}
-                    className="flex items-center justify-between px-3.5 py-3 rounded-xl text-base font-medium text-text-primary hover:bg-surface-sunken hover:text-brand-intelligence transition-colors"
-                  >
-                    <span>{item.label}</span>
-                    {item.hasDropdown && <ChevronDown className="h-4 w-4 text-text-tertiary" />}
-                  </Link>
-                ))}
-              </nav>
+              {/* Drawer Action Buttons Footer */}
+              <div className="space-y-3 pt-6 border-t border-border-default">
+                <Link
+                  href="/signin"
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="flex w-full items-center justify-center rounded-xl border border-border-default py-3 text-sm font-semibold text-text-primary hover:bg-surface-sunken transition-colors"
+                >
+                  Sign In
+                </Link>
+                <Link
+                  href="/signup"
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="flex w-full items-center justify-center gap-2 rounded-xl bg-brand-intelligence py-3 text-sm font-semibold text-white shadow-md hover:bg-primary-hover transition-colors"
+                >
+                  <span>Get Started</span>
+                  <ArrowRight className="h-4 w-4" />
+                </Link>
+              </div>
             </div>
-
-            {/* Drawer Action Buttons Footer */}
-            <div className="space-y-3 pt-6 border-t border-border-default">
-              <Link
-                href="/signin"
-                onClick={() => setMobileMenuOpen(false)}
-                className="flex w-full items-center justify-center rounded-xl border border-border-default py-3 text-sm font-semibold text-text-primary hover:bg-surface-sunken transition-colors"
-              >
-                Sign In
-              </Link>
-              <Link
-                href="/signup"
-                onClick={() => setMobileMenuOpen(false)}
-                className="flex w-full items-center justify-center gap-2 rounded-xl bg-brand-intelligence py-3 text-sm font-semibold text-white shadow-md hover:bg-primary-hover transition-colors"
-              >
-                <span>Get Started</span>
-                <ArrowRight className="h-4 w-4" />
-              </Link>
-            </div>
-          </div>
-        </div>
-      )}
+          </div>,
+          document.body
+        )}
     </header>
   );
 }
