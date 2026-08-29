@@ -198,26 +198,32 @@ export function Footer() {
         </div>
 
         {/* Bottom Bar */}
-        <div className="mt-12 flex flex-col items-center justify-between gap-4 border-t border-white/10 pt-8 text-xs text-white/50 sm:flex-row">
-          <p>© 2026 InclusaAI. All rights reserved.</p>
+        <div className="mt-12 border-t border-white/10 pt-8 text-xs text-white/50">
+          <div className="flex flex-col items-center justify-between gap-4 md:flex-row md:flex-wrap lg:flex-nowrap">
+            <p className="text-center md:text-left">© 2026 InclusaAI. All rights reserved.</p>
 
-          <div className="flex items-center gap-2 text-white/70">
-            <span className="text-[11px] uppercase tracking-wider text-white/40">
-              A product by
-            </span>
-            <span className="inline-flex items-center gap-1.5 font-medium text-white/90">
-              <Image
-                src={synapgridLogo}
-                alt="SynapGrid Technologies"
-                width={synapgridLogo.width}
-                height={synapgridLogo.height}
-                className="h-4 w-auto object-contain"
-              />
-              <Link href="https://www.synapgrid.net/" target="_blank">SynapGrid Technologies</Link>
-            </span>
+            <div className="flex items-center gap-2 text-white/70">
+              <span className="text-[11px] uppercase tracking-wider text-white/40">
+                A product by
+              </span>
+              <span className="inline-flex items-center gap-1.5 font-medium text-white/90">
+                <Image
+                  src={synapgridLogo}
+                  alt="SynapGrid Technologies"
+                  width={synapgridLogo.width}
+                  height={synapgridLogo.height}
+                  className="h-4 w-auto object-contain"
+                />
+                <Link href="https://www.synapgrid.net/" target="_blank" className="hover:text-white transition-colors">
+                  SynapGrid Technologies
+                </Link>
+              </span>
+            </div>
+
+            <p className="w-full text-center md:w-full lg:w-auto md:pt-2 lg:pt-0">
+              Made with ❤️ for accessibility and inclusion.
+            </p>
           </div>
-
-          <p>Made with ❤️ for accessibility and inclusion.</p>
         </div>
       </div>
 

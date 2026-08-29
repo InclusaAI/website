@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { ChevronDown, Menu, X, ArrowRight } from "lucide-react";
 import { logoLandscape } from "@repo/assets";
 
@@ -12,11 +12,22 @@ const navItems = [
   { label: "Accessibility", href: "/#", hasDropdown: false },
   { label: "Pricing", href: "/#", hasDropdown: false },
   { label: "Docs", href: "/#", hasDropdown: false },
-  // { label: "Company", href: "/#", hasDropdown: false },
 ];
 
 export function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+  // Prevent scroll when drawer is open
+  useEffect(() => {
+    if (mobileMenuOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "unset";
+    }
+    return () => {
+      document.body.style.overflow = "unset";
+    };
+  }, [mobileMenuOpen]);
 
   return (
     <header className="sticky top-0 z-50 w-full border-b border-border-default/80 bg-white/95 backdrop-blur-md transition-all">
@@ -33,8 +44,8 @@ export function Header() {
           />
         </Link>
 
-        {/* Desktop Navigation */}
-        <nav className="hidden items-center gap-7 md:flex">
+        {/* Desktop Navigation (Visible on Large Desktop screens only) */}
+        <nav className="hidden items-center gap-7 lg:flex">
           {navItems.map((item) => (
             <Link
               key={item.label}
@@ -49,8 +60,8 @@ export function Header() {
           ))}
         </nav>
 
-        {/* Desktop Auth & CTA Buttons */}
-        <div className="hidden items-center gap-3 md:flex">
+        {/* Desktop Auth & CTA Buttons (Visible on Large Desktop screens only) */}
+        <div className="hidden items-center gap-3 lg:flex">
           <Link
             href="/signin"
             className="rounded-lg px-4 py-2 text-sm font-semibold text-text-primary hover:bg-surface-sunken transition-colors"
@@ -65,46 +76,86 @@ export function Header() {
           </Link>
         </div>
 
-        {/* Mobile Menu Button */}
-        <div className="flex md:hidden">
+        {/* Mobile & Tablet Navigation Menu Toggle Button */}
+        <div className="flex lg:hidden">
           <button
             type="button"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="rounded-lg p-2 text-text-secondary hover:bg-surface-sunken"
+            className="rounded-xl p-2.5 text-text-secondary hover:bg-surface-sunken hover:text-text-primary transition-colors"
             aria-label="Toggle Navigation Menu"
+            aria-expanded={mobileMenuOpen}
           >
-            {mobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+            <Menu className="h-6 w-6" />
           </button>
         </div>
       </div>
 
-      {/* Mobile Drawer */}
+      {/* Mobile & Tablet Right Side Slide-over Drawer */}
       {mobileMenuOpen && (
-        <div className="border-b border-border-default bg-white px-4 py-6 md:hidden">
-          <div className="flex flex-col space-y-4">
-            {navItems.map((item) => (
-              <Link
-                key={item.label}
-                href={item.href}
-                onClick={() => setMobileMenuOpen(false)}
-                className="flex items-center justify-between py-1 text-base font-medium text-text-primary"
-              >
-                <span>{item.label}</span>
-                {item.hasDropdown && <ChevronDown className="h-4 w-4 text-text-tertiary" />}
-              </Link>
-            ))}
-            <div className="border-t border-border-default pt-4 flex flex-col gap-3">
+        <div className="fixed inset-0 z-50 lg:hidden" role="dialog" aria-modal="true">
+          {/* Backdrop Overlay */}
+          <div
+            className="fixed inset-0 bg-black/60 backdrop-blur-xs transition-opacity animate-in fade-in duration-200"
+            onClick={() => setMobileMenuOpen(false)}
+            aria-hidden="true"
+          />
+
+          {/* Right Drawer Panel */}
+          <div className="fixed inset-y-0 right-0 z-50 flex w-full max-w-xs sm:max-w-sm flex-col justify-between bg-white p-6 shadow-2xl transition-transform animate-in slide-in-from-right duration-300">
+            <div>
+              {/* Drawer Top Bar */}
+              <div className="flex items-center justify-between pb-6 border-b border-border-default">
+                <Link href="/signup" onClick={() => setMobileMenuOpen(false)}>
+                  <Image
+                    src={logoLandscape}
+                    alt="InclusaAI"
+                    width={logoLandscape.width}
+                    height={logoLandscape.height}
+                    className="h-9 w-auto object-contain object-left"
+                  />
+                </Link>
+                <button
+                  type="button"
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="rounded-xl p-2 text-text-secondary hover:bg-surface-sunken hover:text-text-primary transition-colors"
+                  aria-label="Close menu"
+                >
+                  <X className="h-6 w-6" />
+                </button>
+              </div>
+
+              {/* Drawer Navigation Links */}
+              <nav className="py-6 flex flex-col space-y-1">
+                {navItems.map((item) => (
+                  <Link
+                    key={item.label}
+                    href={item.href}
+                    onClick={() => setMobileMenuOpen(false)}
+                    className="flex items-center justify-between px-3.5 py-3 rounded-xl text-base font-medium text-text-primary hover:bg-surface-sunken hover:text-brand-intelligence transition-colors"
+                  >
+                    <span>{item.label}</span>
+                    {item.hasDropdown && <ChevronDown className="h-4 w-4 text-text-tertiary" />}
+                  </Link>
+                ))}
+              </nav>
+            </div>
+
+            {/* Drawer Action Buttons Footer */}
+            <div className="space-y-3 pt-6 border-t border-border-default">
               <Link
                 href="/signin"
-                className="w-full rounded-lg border border-border-default py-2.5 text-center text-sm font-semibold text-text-primary"
+                onClick={() => setMobileMenuOpen(false)}
+                className="flex w-full items-center justify-center rounded-xl border border-border-default py-3 text-sm font-semibold text-text-primary hover:bg-surface-sunken transition-colors"
               >
                 Sign In
               </Link>
               <Link
                 href="/signup"
-                className="w-full rounded-lg bg-brand-intelligence py-2.5 text-center text-sm font-semibold text-white shadow-sm"
+                onClick={() => setMobileMenuOpen(false)}
+                className="flex w-full items-center justify-center gap-2 rounded-xl bg-brand-intelligence py-3 text-sm font-semibold text-white shadow-md hover:bg-primary-hover transition-colors"
               >
-                Get Started
+                <span>Get Started</span>
+                <ArrowRight className="h-4 w-4" />
               </Link>
             </div>
           </div>
