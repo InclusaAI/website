@@ -44,7 +44,7 @@ export function HeroSection() {
                 href="/signup"
                 className="inline-flex items-center justify-center gap-2 rounded-xl bg-brand-intelligence px-6 py-3.5 text-base font-semibold text-white shadow-md transition-all hover:bg-primary-hover hover:shadow-lg"
               >
-                <span>Get Started Free</span>
+                <span>Request Early Access</span>
                 <ArrowRight className="h-4 w-4" />
               </Link>
               <Link

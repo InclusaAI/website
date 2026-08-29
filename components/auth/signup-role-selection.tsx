@@ -22,13 +22,13 @@ export function SignupRoleSelection() {
       {/* Header Info */}
       <div className="space-y-1 text-left">
         <span className="text-[11px] font-bold text-brand-intelligence uppercase tracking-wider">
-          Get Started with InclusaAI
+          Early Access & Partner Registration
         </span>
         <h2 className="text-xl sm:text-2xl font-extrabold tracking-tight text-text-primary">
-          How would you like to use InclusaAI?
+          How would you like to experience InclusaAI?
         </h2>
         <p className="text-xs text-text-secondary">
-          Choose how you&apos;d like to get started. You can expand how you use InclusaAI later.
+          Select individual early access or enterprise/organization partnership.
         </p>
       </div>
 
@@ -60,10 +60,10 @@ export function SignupRoleSelection() {
 
             {/* Title & Subtitle */}
             <div className="mt-2 text-center">
-              <p className="text-[11px] text-text-tertiary font-medium">Join as an</p>
-              <h3 className="text-sm sm:text-base font-bold text-text-primary">Audience Member</h3>
+              <p className="text-[11px] text-text-tertiary font-medium">Request</p>
+              <h3 className="text-sm sm:text-base font-bold text-text-primary">Early Access</h3>
               <p className="mt-0.5 text-[10.5px] text-text-secondary leading-snug">
-                Experience presentations and conversations with accessibility tools designed around you.
+                Be among the first individuals to experience live sign language, captions & translation.
               </p>
             </div>
 
@@ -150,10 +150,10 @@ export function SignupRoleSelection() {
 
             {/* Title & Subtitle */}
             <div className="mt-2 text-center">
-              <p className="text-[11px] text-text-tertiary font-medium">Join as a</p>
-              <h3 className="text-sm sm:text-base font-bold text-text-primary">Presenter</h3>
+              <p className="text-[11px] text-text-tertiary font-medium">Organization / Event</p>
+              <h3 className="text-sm sm:text-base font-bold text-text-primary">Partner With Us</h3>
               <p className="mt-0.5 text-[10.5px] text-text-secondary leading-snug">
-                Share your knowledge and create presentations that everyone can understand and engage with.
+                For organizations, companies, schools, and events seeking accessible AI integrations.
               </p>
             </div>
 
@@ -222,7 +222,7 @@ export function SignupRoleSelection() {
           className="flex h-10 sm:h-11 w-full items-center justify-center gap-2 rounded-xl bg-brand-intelligence text-xs sm:text-sm font-semibold text-white shadow-sm transition-all hover:bg-primary-hover hover:shadow-md"
         >
           <span>
-            Continue as {selectedRole === "audience" ? "Audience" : "Presenter"}
+            Continue as {selectedRole === "audience" ? "Individual (Early Access)" : "Partner / Organization"}
           </span>
           <ArrowRight className="h-3.5 w-3.5" />
         </Link>

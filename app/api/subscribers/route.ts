@@ -4,6 +4,8 @@ import { z } from "zod";
 
 const schema = z.object({
   email: z.string().trim().email("Please enter a valid email address.").max(254),
+  source: z.string().trim().max(100).optional().default("website"),
+  referral: z.string().trim().max(100).optional().default("direct"),
 });
 
 export async function POST(request: Request) {
@@ -35,17 +37,27 @@ export async function POST(request: Request) {
         id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
         email TEXT NOT NULL UNIQUE,
         source TEXT DEFAULT 'website',
+        referral TEXT DEFAULT 'direct',
         subscribed_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
         is_active BOOLEAN NOT NULL DEFAULT TRUE
       );
     `;
 
+    // Ensure columns exist on existing table
+    await sql`ALTER TABLE subscribers ADD COLUMN IF NOT EXISTS referral TEXT DEFAULT 'direct';`;
+    await sql`ALTER TABLE subscribers ADD COLUMN IF NOT EXISTS source TEXT DEFAULT 'website';`;
+
+    const { email, source, referral } = result.data;
+
     const [subscriber] = await sql`
-      INSERT INTO subscribers (email, source)
-      VALUES (${result.data.email.toLowerCase()}, 'website')
+      INSERT INTO subscribers (email, source, referral)
+      VALUES (${email.toLowerCase()}, ${source}, ${referral})
       ON CONFLICT (email)
-      DO UPDATE SET is_active = TRUE
-      RETURNING id, email;
+      DO UPDATE SET
+        is_active = TRUE,
+        source = EXCLUDED.source,
+        referral = EXCLUDED.referral
+      RETURNING id, email, source, referral;
     `;
 
     return NextResponse.json({

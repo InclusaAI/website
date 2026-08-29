@@ -54,11 +54,23 @@ export function Footer() {
     setStatusMessage(null);
     setIsSuccess(false);
 
+    const searchParams = typeof window !== "undefined" ? new URLSearchParams(window.location.search) : null;
+    const refFromUrl = searchParams?.get("ref") || searchParams?.get("referral");
+    if (refFromUrl && typeof window !== "undefined") {
+      try { localStorage.setItem("inclusaai_referral", refFromUrl); } catch {}
+    }
+    const storedRef = typeof window !== "undefined" ? localStorage.getItem("inclusaai_referral") : null;
+    const referralCode = refFromUrl || storedRef || "direct";
+
     try {
       const res = await fetch("/api/subscribers", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email: targetEmail }),
+        body: JSON.stringify({
+          email: targetEmail,
+          source: "footer-subscribe",
+          referral: referralCode,
+        }),
       });
 
       const data = await res.json();

@@ -34,24 +34,24 @@ export function SocialProofCta() {
             <h2 className="text-3xl font-extrabold tracking-tight text-slate-900 sm:text-4xl lg:text-5xl">
               Ready to make every conversation inclusive?
             </h2>
-            <p className="mx-auto max-w-lg text-base text-text-secondary">
-              Join thousands of presenters and organizations using InclusaAI to create meaningful, accessible communication.
+            <p className="mx-auto max-w-lg text-base text-text-secondary leading-relaxed">
+              Be among the first individuals and organisations to experience InclusaAI and help shape more accessible communication.
             </p>
 
             {/* Action Buttons */}
             <div className="mt-8 flex flex-wrap items-center justify-center gap-4 pt-2">
               <Link
-                href="/#"
+                href="/signup/flow"
                 className="inline-flex items-center justify-center gap-2 rounded-xl bg-brand-intelligence px-7 py-3.5 text-base font-semibold text-white shadow-md transition-all hover:bg-primary-hover hover:shadow-lg"
               >
-                <span>Get Started Free</span>
+                <span>Request Early Access</span>
                 <ArrowRight className="h-4 w-4" />
               </Link>
               <Link
-                href="/#"
+                href="/signup/flow?role=presenter"
                 className="inline-flex items-center justify-center rounded-xl border border-border-default bg-white px-6 py-3.5 text-base font-semibold text-text-primary shadow-xs transition-all hover:bg-surface-sunken hover:border-border-strong"
               >
-                Contact Sales
+                Partner With Us
               </Link>
             </div>
           </div>

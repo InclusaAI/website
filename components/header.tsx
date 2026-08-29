@@ -78,7 +78,7 @@ export function Header() {
             href="/signup"
             className="inline-flex items-center justify-center rounded-lg bg-brand-intelligence px-5 py-2.5 text-sm font-semibold text-white shadow-xs transition-all hover:bg-primary-hover hover:shadow-sm"
           >
-            Get Started
+            Request Early Access
           </Link>
         </div>
 
@@ -162,7 +162,7 @@ export function Header() {
                   onClick={() => setMobileMenuOpen(false)}
                   className="flex w-full items-center justify-center gap-2 rounded-xl bg-brand-intelligence py-3 text-sm font-semibold text-white shadow-md hover:bg-primary-hover transition-colors"
                 >
-                  <span>Get Started</span>
+                  <span>Request Early Access</span>
                   <ArrowRight className="h-4 w-4" />
                 </Link>
               </div>
