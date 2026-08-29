@@ -10,7 +10,11 @@ import {
   Headphones,
 } from "lucide-react";
 
-export function SocialProofCta() {
+export interface SocialProofCtaProps {
+  onOpenEarlyAccess?: (type?: "individual" | "partner") => void;
+}
+
+export function SocialProofCta({ onOpenEarlyAccess }: SocialProofCtaProps = {}) {
   return (
     <section className="relative overflow-hidden bg-white py-20">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -40,19 +44,21 @@ export function SocialProofCta() {
 
             {/* Action Buttons */}
             <div className="mt-8 flex flex-wrap items-center justify-center gap-4 pt-2">
-              <Link
-                href="/early-access"
+              <button
+                type="button"
+                onClick={() => (onOpenEarlyAccess ? onOpenEarlyAccess("individual") : (window.location.href = "/early-access"))}
                 className="inline-flex items-center justify-center gap-2 rounded-xl bg-brand-intelligence px-7 py-3.5 text-base font-semibold text-white shadow-md transition-all hover:bg-primary-hover hover:shadow-lg"
               >
                 <span>Request Early Access</span>
                 <ArrowRight className="h-4 w-4" />
-              </Link>
-              <Link
-                href="/early-access?type=partner"
+              </button>
+              <button
+                type="button"
+                onClick={() => (onOpenEarlyAccess ? onOpenEarlyAccess("partner") : (window.location.href = "/early-access?type=partner"))}
                 className="inline-flex items-center justify-center rounded-xl border border-border-default bg-white px-6 py-3.5 text-base font-semibold text-text-primary shadow-xs transition-all hover:bg-surface-sunken hover:border-border-strong"
               >
                 Partner With Us
-              </Link>
+              </button>
             </div>
           </div>
 

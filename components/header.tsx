@@ -15,7 +15,11 @@ const navItems = [
   { label: "Docs", href: "/#", hasDropdown: false },
 ];
 
-export function Header() {
+export interface HeaderProps {
+  onOpenEarlyAccess?: (type?: "individual" | "partner") => void;
+}
+
+export function Header({ onOpenEarlyAccess }: HeaderProps = {}) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [mounted, setMounted] = useState(false);
 
@@ -74,12 +78,13 @@ export function Header() {
           >
             Sign In
           </Link>
-          <Link
-            href="/early-access"
+          <button
+            type="button"
+            onClick={() => (onOpenEarlyAccess ? onOpenEarlyAccess("individual") : (window.location.href = "/early-access"))}
             className="inline-flex items-center justify-center rounded-lg bg-brand-intelligence px-5 py-2.5 text-sm font-semibold text-white shadow-xs transition-all hover:bg-primary-hover hover:shadow-sm"
           >
             Request Early Access
-          </Link>
+          </button>
         </div>
 
         {/* Mobile & Tablet Navigation Menu Toggle Button */}
@@ -157,14 +162,21 @@ export function Header() {
                 >
                   Sign In
                 </Link>
-                <Link
-                  href="/early-access"
-                  onClick={() => setMobileMenuOpen(false)}
+                <button
+                  type="button"
+                  onClick={() => {
+                    setMobileMenuOpen(false);
+                    if (onOpenEarlyAccess) {
+                      onOpenEarlyAccess("individual");
+                    } else {
+                      window.location.href = "/early-access";
+                    }
+                  }}
                   className="flex w-full items-center justify-center gap-2 rounded-xl bg-brand-intelligence py-3 text-sm font-semibold text-white shadow-md hover:bg-primary-hover transition-colors"
                 >
                   <span>Request Early Access</span>
                   <ArrowRight className="h-4 w-4" />
-                </Link>
+                </button>
               </div>
             </div>
           </div>,

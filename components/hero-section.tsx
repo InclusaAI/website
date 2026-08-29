@@ -9,7 +9,11 @@ import {
   Sparkles,
 } from "lucide-react";
 
-export function HeroSection() {
+export interface HeroSectionProps {
+  onOpenEarlyAccess?: (type?: "individual" | "partner") => void;
+}
+
+export function HeroSection({ onOpenEarlyAccess }: HeroSectionProps = {}) {
   return (
     <section className="relative overflow-hidden bg-gradient-to-b from-[#F8FAFD] via-white to-[#F8FAFD] py-12 lg:py-20">
       {/* Background Decorative Blur Gradients */}
@@ -40,13 +44,14 @@ export function HeroSection() {
 
             {/* CTA Buttons */}
             <div className="flex flex-wrap items-center gap-4 pt-2">
-              <Link
-                href="/early-access"
+              <button
+                type="button"
+                onClick={() => (onOpenEarlyAccess ? onOpenEarlyAccess("individual") : (window.location.href = "/early-access"))}
                 className="inline-flex items-center justify-center gap-2 rounded-xl bg-brand-intelligence px-6 py-3.5 text-base font-semibold text-white shadow-md transition-all hover:bg-primary-hover hover:shadow-lg"
               >
                 <span>Request Early Access</span>
                 <ArrowRight className="h-4 w-4" />
-              </Link>
+              </button>
               <Link
                 href="#how-it-works"
                 className="inline-flex items-center justify-center gap-2.5 rounded-xl border border-border-default bg-white px-5 py-3.5 text-base font-semibold text-text-primary shadow-xs transition-all hover:bg-surface-sunken hover:border-border-strong"
