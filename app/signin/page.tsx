@@ -5,9 +5,9 @@ import {
   logoLandscapeDarkMode,
   signinIllustration,
 } from "../../public/assets";
-import { InclusaaiThemeBackground } from "../../components/ui/theme-background";
-import { authenticateDummyUser, getAppRedirectUrl } from "../../lib/dummy-auth";
-import { useTheme } from "../../lib/theme-context";
+import { InclusaaiThemeBackground } from "@inclusaai/ui/theme-background";
+import { authenticateDummyUser, getAppRedirectUrl } from "@inclusaai/ui/dummy-auth";
+import { useTheme } from "@inclusaai/ui/theme-context";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
