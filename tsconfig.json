@@ -39,15 +39,6 @@
       ],
       "@repo/assets/*": [
         "./public/assets/*"
-      ],
-      "@inclusaai/ui/theme-background": [
-        "./components/ui/theme-background.tsx"
-      ],
-      "@inclusaai/ui": [
-        "./components/ui/index.ts"
-      ],
-      "@inclusaai/ui/*": [
-        "./components/ui/*"
       ]
     }
   },

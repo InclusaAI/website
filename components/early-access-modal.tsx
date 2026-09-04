@@ -14,7 +14,7 @@ import {
   X,
 } from "lucide-react";
 import { logoLandscape, logoLandscapeDarkMode } from "../public/assets";
-import { useTheme } from "../lib/theme-context";
+import { useTheme } from "@inclusaai/ui/theme-context";
 
 export interface EarlyAccessModalProps {
   isOpen: boolean;

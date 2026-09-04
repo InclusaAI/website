@@ -1,8 +1,11 @@
 import type { NextConfig } from "next";
+import path from "path";
 
-// NOTE: Presentation deployment fallback. Post-presentation revert target:
-// transpilePackages: ["@inclusaai/ui", "@inclusaai/design-tokens", "@repo/assets"],
-// turbopack: { root: path.resolve(__dirname, "..") },
-const nextConfig: NextConfig = {};
+const nextConfig: NextConfig = {
+  transpilePackages: ["@inclusaai/ui", "@inclusaai/design-tokens"],
+  turbopack: {
+    root: path.resolve(__dirname, ".."),
+  },
+};
 
 export default nextConfig;

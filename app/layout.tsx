@@ -1,7 +1,7 @@
 import { createAppMetadata } from "../public/assets/metadata";
 import type { Metadata } from "next";
 import { Poppins, Roboto_Mono } from "next/font/google";
-import { ThemeProvider } from "../lib/theme-context";
+import { ThemeProvider } from "@inclusaai/ui/theme-context";
 import { ReferralTracker } from "../components/referral-tracker";
 import "./globals.css";
 
