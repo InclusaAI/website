@@ -10,8 +10,8 @@
     "changeset": "changeset"
   },
   "dependencies": {
-    "@inclusaai/design-tokens": "link:../design-system/packages/design-tokens",
-    "@inclusaai/ui": "link:../design-system/packages/ui",
+    "@inclusaai/design-tokens": "^0.1.0",
+    "@inclusaai/ui": "^0.1.0",
     "@neondatabase/serverless": "^1.1.0",
     "lucide-react": "^1.31.0",
     "next": "16.3.0",
