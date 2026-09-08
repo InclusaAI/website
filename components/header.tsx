@@ -101,20 +101,30 @@ export function Header({ onOpenEarlyAccess }: HeaderProps = {}) {
         </div>
       </div>
 
-      {/* Mobile & Tablet Right Side Slide-over Drawer (Portaled to document.body with solid bg & high z-index) */}
+      {/* Mobile & Tablet Right Side Slide-over Drawer — always portaled, animated via CSS transform */}
       {mounted &&
-        mobileMenuOpen &&
         createPortal(
-          <div className="fixed inset-0 z-[9999] lg:hidden" role="dialog" aria-modal="true">
+          <div
+            className={`fixed inset-0 z-[9999] lg:hidden ${mobileMenuOpen ? "pointer-events-auto" : "pointer-events-none"}`}
+            role="dialog"
+            aria-modal="true"
+            aria-hidden={!mobileMenuOpen}
+          >
             {/* Backdrop Overlay */}
             <div
-              className="fixed inset-0 bg-black/70 backdrop-blur-sm transition-opacity"
+              className={`fixed inset-0 bg-black/70 backdrop-blur-sm transition-opacity duration-300 ease-in-out ${
+                mobileMenuOpen ? "opacity-100" : "opacity-0"
+              }`}
               onClick={() => setMobileMenuOpen(false)}
               aria-hidden="true"
             />
 
-            {/* Right Drawer Panel */}
-            <div className="fixed inset-y-0 right-0 z-[10000] flex w-full max-w-[320px] sm:max-w-[360px] flex-col justify-between bg-white bg-[#ffffff] p-6 shadow-2xl transition-transform border-l border-border-default">
+            {/* Right Drawer Panel — slides in from the right */}
+            <div
+              className={`fixed inset-y-0 right-0 z-[10000] flex w-full max-w-[320px] sm:max-w-[360px] flex-col justify-between bg-white p-6 shadow-2xl border-l border-border-default transition-transform duration-300 ease-in-out ${
+                mobileMenuOpen ? "translate-x-0" : "translate-x-full"
+              }`}
+            >
               <div>
                 {/* Drawer Top Bar */}
                 <div className="flex items-center justify-between pb-6 border-b border-border-default">
