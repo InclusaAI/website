@@ -133,26 +133,37 @@ export function EarlyAccessModal({
     onClose();
   };
 
-  if (!mounted || !isOpen) return null;
+  if (!mounted) return null;
 
   const logo = theme === "dark" ? logoLandscapeDarkMode : logoLandscape;
 
   return createPortal(
     <div
-      className="fixed inset-0 z-[9999] flex items-center justify-center p-4 sm:p-6 overflow-y-auto"
+      className={`fixed inset-0 z-[9999] flex items-end sm:items-center justify-center p-0 sm:p-6 overflow-y-auto ${
+        isOpen ? "pointer-events-auto" : "pointer-events-none"
+      }`}
       role="dialog"
       aria-modal="true"
+      aria-hidden={!isOpen}
       aria-labelledby="early-access-modal-title"
     >
       {/* Backdrop */}
       <div
-        className="fixed inset-0 bg-black/75 backdrop-blur-sm transition-opacity animate-in fade-in duration-200"
+        className={`fixed inset-0 bg-black/75 backdrop-blur-sm transition-opacity duration-300 ease-in-out ${
+          isOpen ? "opacity-100" : "opacity-0"
+        }`}
         onClick={handleResetAndClose}
         aria-hidden="true"
       />
 
-      {/* Modal Container */}
-      <div className="relative z-[10000] w-full max-w-lg overflow-hidden rounded-3xl bg-white p-6 sm:p-8 shadow-2xl transition-all animate-in zoom-in-95 duration-200 border border-border-default my-auto">
+      {/* Modal Container — smooth bottom slide-in on mobile and slide-up scale on desktop */}
+      <div
+        className={`relative z-[10000] w-full max-w-lg overflow-hidden rounded-t-3xl sm:rounded-3xl bg-white p-6 sm:p-8 shadow-2xl border border-border-default my-0 sm:my-auto transition-all duration-300 ease-out transform ${
+          isOpen
+            ? "translate-y-0 opacity-100 scale-100"
+            : "translate-y-full sm:translate-y-10 opacity-0 sm:scale-95"
+        }`}
+      >
         {/* Close Button */}
         <button
           type="button"
@@ -225,14 +236,21 @@ export function EarlyAccessModal({
               </p>
             </div>
 
-            {/* Type Selector Tabs */}
-            <div className="grid grid-cols-2 gap-1.5 p-1.5 bg-surface-sunken rounded-2xl border border-border-default">
+            {/* Type Selector Tabs with Smooth Sliding Pill */}
+            <div className="relative grid grid-cols-2 p-1.5 bg-surface-sunken rounded-2xl border border-border-default overflow-hidden">
+              {/* Sliding Pill Indicator */}
+              <div
+                className={`absolute top-1.5 bottom-1.5 left-1.5 w-[calc(50%-6px)] rounded-xl bg-white shadow-xs border border-border-default transition-transform duration-300 ease-out pointer-events-none ${
+                  requestType === "partner" ? "translate-x-full" : "translate-x-0"
+                }`}
+              />
+
               <button
                 type="button"
                 onClick={() => setRequestType("individual")}
-                className={`flex items-center justify-center gap-1.5 sm:gap-2 rounded-xl px-2 py-2 text-center transition-all ${
+                className={`relative z-10 flex items-center justify-center gap-1.5 sm:gap-2 rounded-xl px-2 py-2 text-center transition-colors duration-200 ${
                   requestType === "individual"
-                    ? "bg-white text-slate-900 shadow-xs border border-border-default font-semibold"
+                    ? "text-slate-900 font-semibold"
                     : "text-text-secondary hover:text-slate-900 font-medium"
                 }`}
               >
@@ -243,9 +261,9 @@ export function EarlyAccessModal({
               <button
                 type="button"
                 onClick={() => setRequestType("partner")}
-                className={`flex items-center justify-center gap-1.5 sm:gap-2 rounded-xl px-2 py-2 text-center transition-all ${
+                className={`relative z-10 flex items-center justify-center gap-1.5 sm:gap-2 rounded-xl px-2 py-2 text-center transition-colors duration-200 ${
                   requestType === "partner"
-                    ? "bg-white text-slate-900 shadow-xs border border-border-default font-semibold"
+                    ? "text-slate-900 font-semibold"
                     : "text-text-secondary hover:text-slate-900 font-medium"
                 }`}
               >
@@ -287,23 +305,28 @@ export function EarlyAccessModal({
                 />
               </div>
 
-              {requestType === "partner" && (
-                <div>
-                  <label htmlFor="modalOrganization" className="block text-[11px] font-semibold text-slate-900 mb-1">
-                    Organization / Company Name <span className="text-rose-500">*</span>
-                  </label>
-                  <input
-                    id="modalOrganization"
-                    type="text"
-                    required
-                    value={organization}
-                    onChange={(e) => setOrganization(e.target.value)}
-                    placeholder="e.g. Company, University, Event Name"
-                    disabled={isSubmitting}
-                    className="w-full h-10 rounded-xl border border-border-default bg-white px-3.5 text-xs text-slate-900 placeholder:text-text-tertiary focus:border-brand-intelligence focus:outline-none focus:ring-2 focus:ring-brand-intelligence/20 transition-colors"
-                  />
-                </div>
-              )}
+              {/* Organization Field with smooth expand/collapse transition */}
+              <div
+                className={`overflow-hidden transition-all duration-300 ease-out ${
+                  requestType === "partner"
+                    ? "max-h-28 opacity-100 translate-y-0"
+                    : "max-h-0 opacity-0 -translate-y-2 pointer-events-none"
+                }`}
+              >
+                <label htmlFor="modalOrganization" className="block text-[11px] font-semibold text-slate-900 mb-1">
+                  Organization / Company Name <span className="text-rose-500">*</span>
+                </label>
+                <input
+                  id="modalOrganization"
+                  type="text"
+                  required={requestType === "partner"}
+                  value={organization}
+                  onChange={(e) => setOrganization(e.target.value)}
+                  placeholder="e.g. Company, University, Event Name"
+                  disabled={isSubmitting}
+                  className="w-full h-10 rounded-xl border border-border-default bg-white px-3.5 text-xs text-slate-900 placeholder:text-text-tertiary focus:border-brand-intelligence focus:outline-none focus:ring-2 focus:ring-brand-intelligence/20 transition-colors"
+                />
+              </div>
 
               {errorMessage && (
                 <p className="text-xs text-rose-500 font-medium">
@@ -314,7 +337,7 @@ export function EarlyAccessModal({
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="w-full h-11 rounded-xl bg-brand-intelligence text-xs sm:text-sm font-semibold text-white shadow-md hover:bg-primary-hover transition-all disabled:opacity-50 flex items-center justify-center gap-2 mt-2"
+                className="w-full h-11 rounded-xl bg-brand-intelligence text-xs sm:text-sm font-semibold text-white shadow-md hover:bg-primary-hover transition-all disabled:opacity-50 flex items-center justify-center gap-2 mt-2 cursor-pointer"
               >
                 {isSubmitting ? (
                   <>
