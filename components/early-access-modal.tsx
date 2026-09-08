@@ -149,19 +149,19 @@ export function EarlyAccessModal({
     >
       {/* Backdrop */}
       <div
-        className={`fixed inset-0 bg-black/75 backdrop-blur-sm transition-opacity duration-300 ease-in-out ${
+        className={`fixed inset-0 bg-black/75 backdrop-blur-sm transition-opacity duration-200 ease-out ${
           isOpen ? "opacity-100" : "opacity-0"
         }`}
         onClick={handleResetAndClose}
         aria-hidden="true"
       />
 
-      {/* Modal Container — smooth bottom slide-in on mobile and slide-up scale on desktop */}
+      {/* Modal Container — snappy, smooth bottom slide-in */}
       <div
-        className={`relative z-[10000] w-full max-w-lg overflow-hidden rounded-t-3xl sm:rounded-3xl bg-white p-6 sm:p-8 shadow-2xl border border-border-default my-0 sm:my-auto transition-all duration-300 ease-out transform ${
+        className={`relative z-[10000] w-full max-w-lg overflow-hidden rounded-t-3xl sm:rounded-3xl bg-white p-6 sm:p-8 shadow-2xl border border-border-default my-0 sm:my-auto transition-[transform,opacity] duration-200 ease-out will-change-transform ${
           isOpen
             ? "translate-y-0 opacity-100 scale-100"
-            : "translate-y-full sm:translate-y-10 opacity-0 sm:scale-95"
+            : "translate-y-8 opacity-0 scale-95"
         }`}
       >
         {/* Close Button */}
@@ -240,7 +240,7 @@ export function EarlyAccessModal({
             <div className="relative grid grid-cols-2 p-1.5 bg-surface-sunken rounded-2xl border border-border-default overflow-hidden">
               {/* Sliding Pill Indicator */}
               <div
-                className={`absolute top-1.5 bottom-1.5 left-1.5 w-[calc(50%-6px)] rounded-xl bg-white shadow-xs border border-border-default transition-transform duration-300 ease-out pointer-events-none ${
+                className={`absolute top-1.5 bottom-1.5 left-1.5 w-[calc(50%-6px)] rounded-xl bg-white shadow-xs border border-border-default transition-transform duration-200 ease-out will-change-transform pointer-events-none ${
                   requestType === "partner" ? "translate-x-full" : "translate-x-0"
                 }`}
               />
@@ -248,7 +248,7 @@ export function EarlyAccessModal({
               <button
                 type="button"
                 onClick={() => setRequestType("individual")}
-                className={`relative z-10 flex items-center justify-center gap-1.5 sm:gap-2 rounded-xl px-2 py-2 text-center transition-colors duration-200 ${
+                className={`relative z-10 flex items-center justify-center gap-1.5 sm:gap-2 rounded-xl px-2 py-2 text-center transition-colors duration-150 ${
                   requestType === "individual"
                     ? "text-slate-900 font-semibold"
                     : "text-text-secondary hover:text-slate-900 font-medium"
@@ -261,7 +261,7 @@ export function EarlyAccessModal({
               <button
                 type="button"
                 onClick={() => setRequestType("partner")}
-                className={`relative z-10 flex items-center justify-center gap-1.5 sm:gap-2 rounded-xl px-2 py-2 text-center transition-colors duration-200 ${
+                className={`relative z-10 flex items-center justify-center gap-1.5 sm:gap-2 rounded-xl px-2 py-2 text-center transition-colors duration-150 ${
                   requestType === "partner"
                     ? "text-slate-900 font-semibold"
                     : "text-text-secondary hover:text-slate-900 font-medium"
@@ -305,12 +305,12 @@ export function EarlyAccessModal({
                 />
               </div>
 
-              {/* Organization Field with smooth expand/collapse transition */}
+              {/* Organization Field with snappy expand/collapse transition */}
               <div
-                className={`overflow-hidden transition-all duration-300 ease-out ${
+                className={`overflow-hidden transition-[max-height,opacity,transform] duration-200 ease-out ${
                   requestType === "partner"
                     ? "max-h-28 opacity-100 translate-y-0"
-                    : "max-h-0 opacity-0 -translate-y-2 pointer-events-none"
+                    : "max-h-0 opacity-0 -translate-y-1 pointer-events-none"
                 }`}
               >
                 <label htmlFor="modalOrganization" className="block text-[11px] font-semibold text-slate-900 mb-1">
