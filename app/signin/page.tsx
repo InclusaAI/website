@@ -6,24 +6,8 @@ import {
   signinIllustration,
 } from "../../public/assets";
 import { InclusaaiThemeBackground } from "@inclusaai/ui/theme-background";
-import { authenticateDummyUser } from "@inclusaai/ui/dummy-auth";
+import { authenticateDummyUser, getAppRedirectUrl } from "../../lib/dummy-auth";
 import { useTheme } from "@inclusaai/ui/theme-context";
-
-/** Local override: append ?auth token so the presenter app can detect the login redirect. */
-function getAppRedirectUrl(role: string): string {
-  const presenterUrl =
-    process.env.NEXT_PUBLIC_PRESENTER_APP_URL ?? "http://localhost:3002";
-  if (role === "presenter") {
-    return `${presenterUrl}/dashboard?auth=inclusa-dev-session`;
-  }
-  const audienceUrl =
-    process.env.NEXT_PUBLIC_AUDIENCE_APP_URL ?? "http://localhost:3001";
-  const adminUrl =
-    process.env.NEXT_PUBLIC_ADMIN_APP_URL ?? "http://localhost:3003";
-  if (role === "audience") return audienceUrl;
-  if (role === "admin") return adminUrl;
-  return "/";
-}
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
