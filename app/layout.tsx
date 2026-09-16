@@ -16,9 +16,14 @@ const robotoMono = Roboto_Mono({
   subsets: ["latin"],
 });
 
+// export const metadata: Metadata = createAppMetadata(
+//   "InclusaAI — Inclusive by Default Assistive AI Platform",
+//   "Real-time AI sign language interpretation, live captions, and multi-modal accessibility for presentations, events, and education.",
+// );
+
 export const metadata: Metadata = createAppMetadata(
-  "InclusaAI — Inclusive by Default Assistive AI Platform",
-  "Real-time AI sign language interpretation, live captions, and multi-modal accessibility for presentations, events, and education.",
+  "InclusaAI — AI-Powered Accessible Communication",
+  "Make every conversation more accessible with AI-powered captions, translation, sign-language experiences, accessible presentations, and inclusive participation.",
 );
 
 export default function RootLayout({
