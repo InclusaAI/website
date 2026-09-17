@@ -30,11 +30,12 @@ const footerLinks = {
     { label: "Contact", href: "/#" },
   ],
   Legal: [
-    { label: "Privacy Policy", href: "/#" },
-    { label: "Terms of Service", href: "/#" },
-    { label: "Cookie Policy", href: "/#" },
-    { label: "Data Processing", href: "/#" },
-    { label: "Accessibility", href: "/#" },
+    // { label: "Privacy Policy", href: "/legal/privacy-policy" }, - standard to be used
+    { label: "Privacy Policy", href: "/legal#privacy-policy" },
+    { label: "Terms of Service", href: "/legal#terms-of-service" },
+    { label: "Cookie Policy", href: "/legal#cookie-policy" },
+    { label: "Data Processing", href: "/legal#data-processing" },
+    { label: "Accessibility", href: "/legal#accessibility" },
   ],
 };
 
