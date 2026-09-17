@@ -199,10 +199,10 @@ export default function LegalPage() {
                   For legal inquiries, DPA requests, or compliance audits, contact our compliance team at:
                 </p>
                 <a
-                  href="mailto:legal@inclusa.ai"
+                  href="mailto:[EMAIL_ADDRESS]"
                   className="inline-block font-semibold text-brand-intelligence hover:underline"
                 >
-                  legal@inclusa.ai
+                  [EMAIL_ADDRESS]
                 </a>
               </div>
             </div>

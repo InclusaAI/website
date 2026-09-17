@@ -43,7 +43,7 @@ export function Header({ onOpenEarlyAccess }: HeaderProps = {}) {
     <header className="sticky top-0 z-40 w-full border-b border-border-default/80 bg-white/95 backdrop-blur-md transition-all">
       <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
         {/* Brand Logo */}
-        <Link href="/signup" className="flex items-center gap-2">
+        <Link href="/" className="flex items-center gap-2">
           <Image
             src={logoLandscape}
             alt="InclusaAI"
@@ -128,7 +128,7 @@ export function Header({ onOpenEarlyAccess }: HeaderProps = {}) {
               <div>
                 {/* Drawer Top Bar */}
                 <div className="flex items-center justify-between pb-6 border-b border-border-default">
-                  <Link href="/signup" onClick={() => setMobileMenuOpen(false)}>
+                  <Link href="/" onClick={() => setMobileMenuOpen(false)}>
                     <Image
                       src={logoLandscape}
                       alt="InclusaAI"
