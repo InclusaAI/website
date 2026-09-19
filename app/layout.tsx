@@ -34,6 +34,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
+      data-theme="light"
       suppressHydrationWarning={true}
       className={`${poppins.variable} ${robotoMono.variable} h-full antialiased`}
     >
@@ -41,7 +42,7 @@ export default function RootLayout({
         className="min-h-screen bg-surface-page font-sans text-text-primary antialiased"
         suppressHydrationWarning={true}
       >
-        <ThemeProvider>
+        <ThemeProvider defaultTheme="light" enableSystem={false} enablePersistence={false}>
           <ReferralTracker />
           {children}
         </ThemeProvider>
