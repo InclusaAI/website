@@ -1,11 +1,10 @@
 "use client";
 
-import Link from "next/link";
 import Image from "next/image";
+import { Button } from "@inclusaai/ui/button";
+import { Badge } from "@inclusaai/ui/badge";
 import {
-  ArrowRight,
   CheckCircle2,
-  Play,
   Sparkles,
 } from "lucide-react";
 
@@ -25,9 +24,11 @@ export function HeroSection({ onOpenEarlyAccess }: HeroSectionProps = {}) {
           {/* Left Column: Value Proposition & CTAs */}
           <div className="lg:col-span-6 space-y-6">
             {/* Tag Badge */}
-            <div className="inline-flex items-center gap-2 rounded-full border border-blue-200 bg-blue-50 px-3.5 py-1 text-xs font-bold uppercase tracking-wider text-brand-intelligence">
-              <Sparkles className="h-3.5 w-3.5" />
-              <span>AI-Powered Communication Platform</span>
+            <div>
+              <Badge variant="outline" className="gap-2 bg-blue-50 border-blue-200 px-3.5 py-1 text-xs font-bold uppercase tracking-wider text-brand-intelligence">
+                <Sparkles className="h-3.5 w-3.5" />
+                <span>AI-Powered Communication Platform</span>
+              </Badge>
             </div>
 
             {/* Main Headline */}
@@ -44,25 +45,21 @@ export function HeroSection({ onOpenEarlyAccess }: HeroSectionProps = {}) {
 
             {/* CTA Buttons */}
             <div className="flex flex-wrap items-center gap-4 pt-2">
-              <button
+              <Button
                 type="button"
+                variant="primary"
+                size="lg"
                 onClick={() => (onOpenEarlyAccess ? onOpenEarlyAccess("individual") : (window.location.href = "/early-access"))}
-                className="inline-flex items-center justify-center gap-2 rounded-xl bg-brand-intelligence px-6 py-3.5 text-base font-semibold text-white shadow-md transition-all hover:bg-primary-hover hover:shadow-lg"
               >
-                <span>Request Early Access</span>
-                {/* TODO - uncomment if early access is set as a page */}
-                {/* <ArrowRight className="h-4 w-4" /> */}
-              </button>
-              <Link
+                Request Early Access
+              </Button>
+              <Button
                 href="#how-it-works"
-                className="inline-flex items-center justify-center gap-2.5 rounded-xl border border-border-default bg-white px-5 py-3.5 text-base font-semibold text-text-primary shadow-xs transition-all hover:bg-surface-sunken hover:border-border-strong"
+                variant="outline"
+                size="lg"
               >
-                <span>See How It Works</span>
-                {/* TODO - uncomment the play icon if video is available */}
-                {/* <span className="flex h-5 w-5 items-center justify-center rounded-full bg-slate-100 text-slate-700">
-                  <Play className="h-3 w-3 fill-current ml-0.5" />
-                </span> */}
-              </Link>
+                See How It Works
+              </Button>
             </div>
 
             {/* Trust Checks */}
