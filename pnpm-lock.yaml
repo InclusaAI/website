@@ -12,8 +12,8 @@ importers:
         specifier: ^0.2.0
         version: 0.2.0
       '@inclusaai/ui':
-        specifier: ^0.2.0
-        version: 0.2.0(next@16.3.0(@babel/core@7.29.7)(@types/node@20.19.43)(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(react-dom@19.2.8(react@19.2.8))(react@19.2.8)
+        specifier: ^0.2.2
+        version: 0.2.2(next@16.3.0(@babel/core@7.29.7)(@types/node@20.19.43)(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(react-dom@19.2.8(react@19.2.8))(react@19.2.8)
       '@neondatabase/serverless':
         specifier: ^1.1.0
         version: 1.1.0
@@ -421,8 +421,8 @@ packages:
   '@inclusaai/design-tokens@0.2.0':
     resolution: {integrity: sha512-uzcxAVJxJnReilwk21i3+mat06vwo3bXpRu/kP/2DhnzWrd41wBWSexgF23nD6h0hqf4c6iCovToVSQJQ9pZYA==, tarball: https://npm.pkg.github.com/download/@inclusaai/design-tokens/0.2.0/35f02347c48212f28642aa5dea0ff555e3e7e822}
 
-  '@inclusaai/ui@0.2.0':
-    resolution: {integrity: sha512-x7NpH7EP6VkLPm57TKezElWPf/Xvdntz7R91GXuDiBcNKX2CsMZ+z2nikukhB4YwgCtKGWYSxzqexD+B3cWcSw==, tarball: https://npm.pkg.github.com/download/@inclusaai/ui/0.2.0/315f7562b324f86b8c1cdd8ecff32aed7424b3b5}
+  '@inclusaai/ui@0.2.2':
+    resolution: {integrity: sha512-RoYncaZtkfnhrXIdz1DwQsdMMORB47z+s9lSWxkAlWGGkrWN4j3JnkesFiF4DtIB6oVe59l5g2CS5aRgJnkDIQ==, tarball: https://npm.pkg.github.com/download/@inclusaai/ui/0.2.2/95628a4788d5b73c3143eac6eaaecc08f7dd1db0}
     peerDependencies:
       next: '>=14.0.0'
       react: ^18.0.0 || ^19.0.0
@@ -2723,7 +2723,7 @@ snapshots:
 
   '@inclusaai/design-tokens@0.2.0': {}
 
-  '@inclusaai/ui@0.2.0(next@16.3.0(@babel/core@7.29.7)(@types/node@20.19.43)(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(react-dom@19.2.8(react@19.2.8))(react@19.2.8)':
+  '@inclusaai/ui@0.2.2(next@16.3.0(@babel/core@7.29.7)(@types/node@20.19.43)(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(react-dom@19.2.8(react@19.2.8))(react@19.2.8)':
     dependencies:
       '@inclusaai/design-tokens': 0.2.0
       class-variance-authority: 0.7.1
