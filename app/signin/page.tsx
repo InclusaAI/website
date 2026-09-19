@@ -6,8 +6,10 @@ import {
   signinIllustration,
 } from "../../public/assets";
 import { InclusaaiThemeBackground } from "@inclusaai/ui/theme-background";
-import { authenticateDummyUser, getAppRedirectUrl } from "../../lib/dummy-auth";
 import { useTheme } from "@inclusaai/ui/theme-context";
+import { Button } from "@inclusaai/ui/button";
+import { Card } from "@inclusaai/ui/card";
+import { authenticateDummyUser, getAppRedirectUrl } from "../../lib/dummy-auth";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
@@ -182,16 +184,17 @@ function SignInFormCard({
     "block h-11 w-full rounded-md border border-border-default bg-surface-default py-2 pl-10 pr-10 text-sm text-text-primary placeholder:text-text-tertiary transition-colors focus:border-border-focus focus:outline-none focus:ring-2 focus:ring-border-focus/20 disabled:cursor-not-allowed disabled:opacity-50";
 
   return (
-    <div className="flex w-full flex-col overflow-hidden rounded-2xl bg-surface-default shadow-xl ring-1 ring-black/5">
+    <Card className="flex w-full flex-col overflow-hidden ring-1 ring-black/5">
       <div className="flex shrink-0 items-center justify-between px-5 pt-5 sm:px-6">
         <div className="lg:hidden">
           <InclusaLogo />
         </div>
         <div className="ml-auto flex items-center gap-2">
-          <button
+          <Button
             type="button"
+            variant="outline"
+            size="icon"
             onClick={() => setTheme(theme === "light" ? "dark" : "light")}
-            className="flex h-10 w-10 items-center justify-center rounded-md border border-border-default text-text-secondary transition-colors hover:bg-surface-sunken focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-border-focus focus-visible:ring-offset-2"
             aria-label={
               theme === "light" ? "Switch to dark theme" : "Switch to light theme"
             }
@@ -201,22 +204,25 @@ function SignInFormCard({
             ) : (
               <Sun className="h-5 w-5" />
             )}
-          </button>
-          <button
+          </Button>
+          <Button
             type="button"
-            className="flex h-10 items-center gap-1 rounded-md border border-border-default px-3 text-sm font-medium text-text-secondary transition-colors hover:bg-surface-sunken focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-border-focus focus-visible:ring-offset-2"
+            variant="outline"
+            size="sm"
+            rightIcon={<ChevronDown className="h-4 w-4" />}
             aria-label="Select language"
           >
             EN
-            <ChevronDown className="h-4 w-4" />
-          </button>
-          <button
+          </Button>
+          <Button
             type="button"
-            className="flex h-10 w-10 items-center justify-center rounded-md border border-border-default text-text-secondary lg:hidden"
+            variant="outline"
+            size="icon"
+            className="lg:hidden"
             aria-label="Open menu"
           >
             <Menu className="h-5 w-5" />
-          </button>
+          </Button>
         </div>
       </div>
 
@@ -278,10 +284,12 @@ function SignInFormCard({
                 className={inputClassName}
                 placeholder="Enter your password"
               />
-              <button
+              <Button
                 type="button"
+                variant="ghost"
+                size="icon"
                 onClick={() => setShowPassword(!showPassword)}
-                className="absolute inset-y-0 right-0 flex h-11 w-11 items-center justify-center rounded-r-md text-text-tertiary transition-colors hover:text-text-secondary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-border-focus focus-visible:ring-offset-2"
+                className="absolute inset-y-0 right-0 h-11 w-11 text-text-tertiary hover:text-text-secondary"
                 aria-label={showPassword ? "Hide password" : "Show password"}
               >
                 {showPassword ? (
@@ -289,7 +297,7 @@ function SignInFormCard({
                 ) : (
                   <Eye className="h-5 w-5" />
                 )}
-              </button>
+              </Button>
             </div>
           </div>
 
@@ -314,23 +322,17 @@ function SignInFormCard({
             </Link>
           </div>
 
-          <button
+          <Button
             type="submit"
+            variant="primary"
+            size="lg"
+            fullWidth
             disabled={isLoading}
-            className="flex h-11 w-full items-center justify-center gap-2 rounded-md bg-brand-intelligence text-sm font-semibold text-text-inverse transition-colors hover:bg-primary-hover active:bg-primary-active focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-border-focus focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+            leftIcon={isLoading ? <Loader2 className="h-5 w-5 animate-spin" aria-hidden="true" /> : undefined}
+            rightIcon={!isLoading ? <ArrowRight className="h-5 w-5" aria-hidden="true" /> : undefined}
           >
-            {isLoading ? (
-              <>
-                <Loader2 className="h-5 w-5 animate-spin" aria-hidden="true" />
-                Signing in...
-              </>
-            ) : (
-              <>
-                Sign In
-                <ArrowRight className="h-5 w-5" aria-hidden="true" />
-              </>
-            )}
-          </button>
+            {isLoading ? "Signing in..." : "Sign In"}
+          </Button>
         </form>
 
         <div className="relative my-5">
@@ -342,14 +344,16 @@ function SignInFormCard({
           </div>
         </div>
 
-        <button
+        <Button
           type="button"
+          variant="outline"
+          size="lg"
+          fullWidth
           disabled={isLoading}
-          className="flex h-11 w-full items-center justify-center gap-3 rounded-md border border-border-default bg-surface-default text-sm font-medium text-text-primary shadow-sm transition-colors hover:bg-surface-sunken focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-border-focus focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+          leftIcon={<GoogleIcon />}
         >
-          <GoogleIcon />
           Sign in with Google
-        </button>
+        </Button>
 
         <p className="mt-6 text-center text-sm text-text-secondary">
           Don&apos;t have an account?{" "}
@@ -390,7 +394,7 @@ function SignInFormCard({
           </Link>
         </nav>
       </footer>
-    </div>
+    </Card>
   );
 }
 
@@ -459,14 +463,16 @@ export default function SignInPage() {
             !
           </span>
           <span className="flex-1">{errorToast}</span>
-          <button
+          <Button
             type="button"
+            variant="ghost"
+            size="icon"
             onClick={() => setErrorToast(null)}
-            className="flex h-8 w-8 shrink-0 items-center justify-center rounded-md hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/50"
+            className="h-8 w-8 text-text-inverse hover:bg-white/10"
             aria-label="Dismiss error"
           >
             <X className="h-4 w-4" />
-          </button>
+          </Button>
         </div>
       )}
     </InclusaaiThemeBackground>

@@ -72,12 +72,12 @@ export function Header({ onOpenEarlyAccess }: HeaderProps = {}) {
 
         {/* Desktop Auth & CTA Buttons (Visible on Large Desktop screens only) */}
         <div className="hidden items-center gap-3 lg:flex">
-          <Link
+          {/* <Link
             href="/signin"
             className="rounded-lg px-4 py-2 text-sm font-semibold text-text-primary hover:bg-surface-sunken transition-colors"
           >
             Sign In
-          </Link>
+          </Link> */}
           <button
             type="button"
             onClick={() => (onOpenEarlyAccess ? onOpenEarlyAccess("individual") : (window.location.href = "/early-access"))}

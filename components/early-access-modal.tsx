@@ -2,7 +2,6 @@
 
 import Image from "next/image";
 import { useState, useEffect } from "react";
-import { createPortal } from "react-dom";
 import {
   Sparkles,
   ArrowRight,
@@ -15,6 +14,9 @@ import {
 } from "lucide-react";
 import { logoLandscape, logoLandscapeDarkMode } from "../public/assets";
 import { useTheme } from "@inclusaai/ui/theme-context";
+import { Button } from "@inclusaai/ui/button";
+import { Badge } from "@inclusaai/ui/badge";
+import { Modal } from "@inclusaai/ui/modal";
 
 export interface EarlyAccessModalProps {
   isOpen: boolean;
@@ -137,234 +139,184 @@ export function EarlyAccessModal({
 
   const logo = theme === "dark" ? logoLandscapeDarkMode : logoLandscape;
 
-  return createPortal(
-    <div
-      className={`fixed inset-0 z-[9999] flex items-end sm:items-center justify-center p-0 sm:p-6 overflow-y-auto ${
-        isOpen ? "pointer-events-auto" : "pointer-events-none"
-      }`}
-      role="dialog"
-      aria-modal="true"
-      aria-hidden={!isOpen}
-      aria-labelledby="early-access-modal-title"
-    >
-      {/* Backdrop */}
-      <div
-        className={`fixed inset-0 bg-black/75 backdrop-blur-sm transition-opacity duration-200 ease-out ${
-          isOpen ? "opacity-100" : "opacity-0"
-        }`}
-        onClick={handleResetAndClose}
-        aria-hidden="true"
-      />
+  return (
+    <Modal isOpen={isOpen} onClose={handleResetAndClose} size="md">
+      {isSuccess ? (
+        /* Success Screen */
+        <div className="text-center space-y-6 py-2 animate-in fade-in duration-300">
+          <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-emerald-100 text-emerald-600 shadow-sm">
+            <CheckCircle2 className="h-9 w-9" />
+          </div>
 
-      {/* Modal Container — snappy, smooth bottom slide-in */}
-      <div
-        className={`relative z-[10000] w-full max-w-lg overflow-hidden rounded-t-3xl sm:rounded-3xl bg-white p-6 sm:p-8 shadow-2xl border border-border-default my-0 sm:my-auto transition-[transform,opacity] duration-200 ease-out will-change-transform ${
-          isOpen
-            ? "translate-y-0 opacity-100 scale-100"
-            : "translate-y-8 opacity-0 scale-95"
-        }`}
-      >
-        {/* Close Button */}
-        <button
-          type="button"
-          onClick={handleResetAndClose}
-          className="absolute top-5 right-5 flex h-9 w-9 items-center justify-center rounded-full bg-surface-sunken text-text-secondary hover:bg-slate-200 hover:text-slate-900 transition-colors focus:outline-none focus:ring-2 focus:ring-brand-intelligence"
-          aria-label="Close modal"
-        >
-          <X className="h-5 w-5" />
-        </button>
-
-        {isSuccess ? (
-          /* Success Screen */
-          <div className="text-center space-y-6 py-4 animate-in fade-in duration-300">
-            <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-emerald-100 text-emerald-600 shadow-sm">
-              <CheckCircle2 className="h-9 w-9" />
-            </div>
-
-            <div className="space-y-2">
-              <span className="inline-flex items-center gap-1.5 rounded-full bg-blue-50 px-3.5 py-1 text-xs font-bold uppercase tracking-wider text-brand-intelligence border border-blue-200">
+          <div className="space-y-2">
+            <div className="flex justify-center">
+              <Badge variant="outline" className="gap-1.5 bg-blue-50 px-3.5 py-1 text-xs font-bold uppercase tracking-wider text-brand-intelligence border-blue-200">
                 <Sparkles className="h-3.5 w-3.5" /> Early Access Reserved
-              </span>
-              <h2 id="early-access-modal-title" className="text-2xl font-extrabold tracking-tight text-slate-900 sm:text-3xl">
-                You&apos;re on the priority list! 🎉
-              </h2>
-              <p className="mx-auto max-w-sm text-xs sm:text-sm text-text-secondary leading-relaxed">
-                Thank you for requesting early access to InclusaAI. We&apos;ve added <span className="font-semibold text-slate-900">{email}</span> to our priority queue.
-              </p>
+              </Badge>
+            </div>
+            <h2 id="early-access-modal-title" className="text-2xl font-extrabold tracking-tight text-slate-900 sm:text-3xl">
+              You&apos;re on the priority list! 🎉
+            </h2>
+            <p className="mx-auto max-w-sm text-xs sm:text-sm text-text-secondary leading-relaxed">
+              Thank you for requesting early access to InclusaAI. We&apos;ve added <span className="font-semibold text-slate-900">{email}</span> to our priority queue.
+            </p>
+          </div>
+
+          {isKadunaEvent && (
+            <div className="mx-auto max-w-sm rounded-2xl bg-blue-50/80 border border-blue-100 p-3.5 text-xs text-blue-900 text-center">
+              <p className="font-bold">👋 Thank you for scanning our QR code at Kaduna 10X!</p>
+              <p className="mt-0.5 text-blue-800 text-[11px]">Referral tag: <span className="font-mono font-semibold">{referralCode}</span></p>
+            </div>
+          )}
+
+          <Button
+            variant="primary"
+            size="lg"
+            fullWidth
+            onClick={handleResetAndClose}
+          >
+            Awesome, thanks!
+          </Button>
+        </div>
+      ) : (
+        /* Request Form */
+        <div className="space-y-6">
+          {/* Header Info */}
+          <div className="space-y-2 text-left pr-8">
+            <div className="flex items-center gap-2">
+              <Image
+                src={logo}
+                alt="InclusaAI"
+                width={logo.width}
+                height={logo.height}
+                className="h-8 w-auto object-contain object-left"
+              />
+              {isKadunaEvent && (
+                <Badge variant="outline" className="gap-1 bg-blue-100 px-2.5 py-0.5 text-[10px] font-bold text-brand-intelligence border-transparent">
+                  Kaduna 10X
+                </Badge>
+              )}
             </div>
 
-            {isKadunaEvent && (
-              <div className="mx-auto max-w-sm rounded-2xl bg-blue-50/80 border border-blue-100 p-3.5 text-xs text-blue-900 text-center">
-                <p className="font-bold">👋 Thank you for scanning our QR code at Kaduna 10X!</p>
-                <p className="mt-0.5 text-blue-800 text-[11px]">Referral tag: <span className="font-mono font-semibold">{referralCode}</span></p>
-              </div>
+            <h2 id="early-access-modal-title" className="text-xl sm:text-2xl font-extrabold tracking-tight text-slate-900">
+              Request Early Access
+            </h2>
+            <p className="text-xs text-text-secondary leading-relaxed">
+              Be among the first to experience real-time AI sign language interpretation, live captions, and multi-modal accessibility.
+            </p>
+          </div>
+
+          {/* Type Selector Tabs */}
+          <div className="relative grid grid-cols-2 p-1.5 bg-surface-sunken rounded-2xl border border-border-default overflow-hidden">
+            <Button
+              type="button"
+              variant={requestType === "individual" ? "outline" : "ghost"}
+              size="sm"
+              onClick={() => setRequestType("individual")}
+              leftIcon={<UserCheck className="h-4 w-4 shrink-0 text-brand-intelligence" />}
+              className="z-10 text-xs"
+            >
+              Individual
+            </Button>
+
+            <Button
+              type="button"
+              variant={requestType === "partner" ? "outline" : "ghost"}
+              size="sm"
+              onClick={() => setRequestType("partner")}
+              leftIcon={<Building2 className="h-4 w-4 shrink-0 text-brand-intelligence" />}
+              className="z-10 text-xs"
+            >
+              Partner / Org
+            </Button>
+          </div>
+
+          {/* Form */}
+          <form onSubmit={handleSubmit} className="space-y-3.5">
+            <div>
+              <label htmlFor="modalFullName" className="block text-[11px] font-semibold text-slate-900 mb-1">
+                Full Name (Optional)
+              </label>
+              <input
+                id="modalFullName"
+                type="text"
+                value={fullName}
+                onChange={(e) => setFullName(e.target.value)}
+                placeholder="Enter your name"
+                disabled={isSubmitting}
+                className="w-full h-10 rounded-xl border border-border-default bg-white px-3.5 text-xs text-slate-900 placeholder:text-text-tertiary focus:border-brand-intelligence focus:outline-none focus:ring-2 focus:ring-brand-intelligence/20 transition-colors"
+              />
+            </div>
+
+            <div>
+              <label htmlFor="modalEmail" className="block text-[11px] font-semibold text-slate-900 mb-1">
+                Email Address <span className="text-rose-500">*</span>
+              </label>
+              <input
+                id="modalEmail"
+                type="email"
+                required
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                placeholder="you@domain.com"
+                disabled={isSubmitting}
+                className="w-full h-10 rounded-xl border border-border-default bg-white px-3.5 text-xs text-slate-900 placeholder:text-text-tertiary focus:border-brand-intelligence focus:outline-none focus:ring-2 focus:ring-brand-intelligence/20 transition-colors"
+              />
+            </div>
+
+            {/* Organization Field */}
+            <div
+              className={`overflow-hidden transition-[max-height,opacity,transform] duration-200 ease-out ${
+                requestType === "partner"
+                  ? "max-h-28 opacity-100 translate-y-0"
+                  : "max-h-0 opacity-0 -translate-y-1 pointer-events-none"
+              }`}
+            >
+              <label htmlFor="modalOrganization" className="block text-[11px] font-semibold text-slate-900 mb-1">
+                Organization / Company Name <span className="text-rose-500">*</span>
+              </label>
+              <input
+                id="modalOrganization"
+                type="text"
+                required={requestType === "partner"}
+                value={organization}
+                onChange={(e) => setOrganization(e.target.value)}
+                placeholder="e.g. Company, University, Event Name"
+                disabled={isSubmitting}
+                className="w-full h-10 rounded-xl border border-border-default bg-white px-3.5 text-xs text-slate-900 placeholder:text-text-tertiary focus:border-brand-intelligence focus:outline-none focus:ring-2 focus:ring-brand-intelligence/20 transition-colors"
+              />
+            </div>
+
+            {errorMessage && (
+              <p className="text-xs text-rose-500 font-medium">
+                {errorMessage}
+              </p>
             )}
 
-            <button
-              type="button"
-              onClick={handleResetAndClose}
-              className="w-full rounded-xl bg-brand-intelligence py-3 text-xs sm:text-sm font-semibold text-white shadow-md hover:bg-primary-hover transition-colors"
+            <Button
+              type="submit"
+              variant="primary"
+              size="lg"
+              fullWidth
+              disabled={isSubmitting}
+              leftIcon={isSubmitting ? <Loader2 className="h-4 w-4 animate-spin text-white" /> : undefined}
+              rightIcon={!isSubmitting ? <ArrowRight className="h-4 w-4" /> : undefined}
+              className="mt-2"
             >
-              Awesome, thanks!
-            </button>
+              {isSubmitting ? "Submitting..." : (requestType === "partner" ? "Submit Partnership Request" : "Request Early Access")}
+            </Button>
+          </form>
+
+          <div className="pt-2 flex items-center justify-between text-[11px] text-text-tertiary">
+            <span className="flex items-center gap-1">
+              <ShieldCheck className="h-3.5 w-3.5 text-brand-intelligence" /> Enterprise Security
+            </span>
+            <span className="flex items-center gap-1">
+              <CheckCircle2 className="h-3.5 w-3.5 text-success" /> Priority Access
+            </span>
           </div>
-        ) : (
-          /* Request Form */
-          <div className="space-y-6">
-            {/* Header Info */}
-            <div className="space-y-2 text-left pr-8">
-              <div className="flex items-center gap-2">
-                <Image
-                  src={logo}
-                  alt="InclusaAI"
-                  width={logo.width}
-                  height={logo.height}
-                  className="h-8 w-auto object-contain object-left"
-                />
-                {isKadunaEvent && (
-                  <span className="inline-flex items-center gap-1 rounded-full bg-blue-100 px-2.5 py-0.5 text-[10px] font-bold text-brand-intelligence">
-                    Kaduna 10X
-                  </span>
-                )}
-              </div>
-
-              <h2 id="early-access-modal-title" className="text-xl sm:text-2xl font-extrabold tracking-tight text-slate-900">
-                Request Early Access
-              </h2>
-              <p className="text-xs text-text-secondary leading-relaxed">
-                Be among the first to experience real-time AI sign language interpretation, live captions, and multi-modal accessibility.
-              </p>
-            </div>
-
-            {/* Type Selector Tabs with Smooth Sliding Pill */}
-            <div className="relative grid grid-cols-2 p-1.5 bg-surface-sunken rounded-2xl border border-border-default overflow-hidden">
-              {/* Sliding Pill Indicator */}
-              <div
-                className={`absolute top-1.5 bottom-1.5 left-1.5 w-[calc(50%-6px)] rounded-xl bg-white shadow-xs border border-border-default transition-transform duration-200 ease-out will-change-transform pointer-events-none ${
-                  requestType === "partner" ? "translate-x-full" : "translate-x-0"
-                }`}
-              />
-
-              <button
-                type="button"
-                onClick={() => setRequestType("individual")}
-                className={`relative z-10 flex items-center justify-center gap-1.5 sm:gap-2 rounded-xl px-2 py-2 text-center transition-colors duration-150 ${
-                  requestType === "individual"
-                    ? "text-slate-900 font-semibold"
-                    : "text-text-secondary hover:text-slate-900 font-medium"
-                }`}
-              >
-                <UserCheck className="h-4 w-4 shrink-0 text-brand-intelligence" />
-                <span className="text-[11px] sm:text-xs leading-tight">Individual</span>
-              </button>
-
-              <button
-                type="button"
-                onClick={() => setRequestType("partner")}
-                className={`relative z-10 flex items-center justify-center gap-1.5 sm:gap-2 rounded-xl px-2 py-2 text-center transition-colors duration-150 ${
-                  requestType === "partner"
-                    ? "text-slate-900 font-semibold"
-                    : "text-text-secondary hover:text-slate-900 font-medium"
-                }`}
-              >
-                <Building2 className="h-4 w-4 shrink-0 text-brand-intelligence" />
-                <span className="text-[11px] sm:text-xs leading-tight">Partner / Org</span>
-              </button>
-            </div>
-
-            {/* Form */}
-            <form onSubmit={handleSubmit} className="space-y-3.5">
-              <div>
-                <label htmlFor="modalFullName" className="block text-[11px] font-semibold text-slate-900 mb-1">
-                  Full Name (Optional)
-                </label>
-                <input
-                  id="modalFullName"
-                  type="text"
-                  value={fullName}
-                  onChange={(e) => setFullName(e.target.value)}
-                  placeholder="Enter your name"
-                  disabled={isSubmitting}
-                  className="w-full h-10 rounded-xl border border-border-default bg-white px-3.5 text-xs text-slate-900 placeholder:text-text-tertiary focus:border-brand-intelligence focus:outline-none focus:ring-2 focus:ring-brand-intelligence/20 transition-colors"
-                />
-              </div>
-
-              <div>
-                <label htmlFor="modalEmail" className="block text-[11px] font-semibold text-slate-900 mb-1">
-                  Email Address <span className="text-rose-500">*</span>
-                </label>
-                <input
-                  id="modalEmail"
-                  type="email"
-                  required
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  placeholder="you@domain.com"
-                  disabled={isSubmitting}
-                  className="w-full h-10 rounded-xl border border-border-default bg-white px-3.5 text-xs text-slate-900 placeholder:text-text-tertiary focus:border-brand-intelligence focus:outline-none focus:ring-2 focus:ring-brand-intelligence/20 transition-colors"
-                />
-              </div>
-
-              {/* Organization Field with snappy expand/collapse transition */}
-              <div
-                className={`overflow-hidden transition-[max-height,opacity,transform] duration-200 ease-out ${
-                  requestType === "partner"
-                    ? "max-h-28 opacity-100 translate-y-0"
-                    : "max-h-0 opacity-0 -translate-y-1 pointer-events-none"
-                }`}
-              >
-                <label htmlFor="modalOrganization" className="block text-[11px] font-semibold text-slate-900 mb-1">
-                  Organization / Company Name <span className="text-rose-500">*</span>
-                </label>
-                <input
-                  id="modalOrganization"
-                  type="text"
-                  required={requestType === "partner"}
-                  value={organization}
-                  onChange={(e) => setOrganization(e.target.value)}
-                  placeholder="e.g. Company, University, Event Name"
-                  disabled={isSubmitting}
-                  className="w-full h-10 rounded-xl border border-border-default bg-white px-3.5 text-xs text-slate-900 placeholder:text-text-tertiary focus:border-brand-intelligence focus:outline-none focus:ring-2 focus:ring-brand-intelligence/20 transition-colors"
-                />
-              </div>
-
-              {errorMessage && (
-                <p className="text-xs text-rose-500 font-medium">
-                  {errorMessage}
-                </p>
-              )}
-
-              <button
-                type="submit"
-                disabled={isSubmitting}
-                className="w-full h-11 rounded-xl bg-brand-intelligence text-xs sm:text-sm font-semibold text-white shadow-md hover:bg-primary-hover transition-all disabled:opacity-50 flex items-center justify-center gap-2 mt-2 cursor-pointer"
-              >
-                {isSubmitting ? (
-                  <>
-                    <Loader2 className="h-4 w-4 animate-spin text-white" />
-                    <span>Submitting...</span>
-                  </>
-                ) : (
-                  <>
-                    <span>{requestType === "partner" ? "Submit Partnership Request" : "Request Early Access"}</span>
-                    <ArrowRight className="h-4 w-4" />
-                  </>
-                )}
-              </button>
-            </form>
-
-            <div className="pt-2 flex items-center justify-between text-[11px] text-text-tertiary">
-              <span className="flex items-center gap-1">
-                <ShieldCheck className="h-3.5 w-3.5 text-brand-intelligence" /> Enterprise Security
-              </span>
-              <span className="flex items-center gap-1">
-                <CheckCircle2 className="h-3.5 w-3.5 text-success" /> Priority Access
-              </span>
-            </div>
-          </div>
-        )}
-      </div>
-    </div>,
-    document.body
+        </div>
+      )}
+    </Modal>
   );
 }
