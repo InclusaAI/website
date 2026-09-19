@@ -26,10 +26,9 @@
       "@/*": [
         "./*"
       ],
-      // NOTE: Presentation deployment fallback. Revert post-presentation to:
-      // "@inclusaai/ui": ["../design-system/packages/ui/src/index.ts"],
-      // "@inclusaai/ui/*": ["../design-system/packages/ui/src/*"],
-      // "@inclusaai/design-tokens": ["../design-system/packages/design-tokens/src/index.ts"],
+      "@inclusaai/ui": ["../design-system/packages/ui/src/index.ts"],
+      "@inclusaai/ui/*": ["../design-system/packages/ui/src/*"],
+      "@inclusaai/design-tokens": ["../design-system/packages/design-tokens/src/index.ts"],
       // "@repo/assets": ["../web-apps/packages/assets/src/index.ts"],
       "@repo/assets": [
         "./public/assets/index.ts"
