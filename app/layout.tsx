@@ -1,4 +1,5 @@
 import { createAppMetadata } from "../public/assets/metadata";
+import { logoLandscape } from "../public/assets";
 import type { Metadata } from "next";
 import { Poppins, Roboto_Mono } from "next/font/google";
 import { ThemeProvider } from "@inclusaai/ui/theme-context";
@@ -16,14 +17,10 @@ const robotoMono = Roboto_Mono({
   subsets: ["latin"],
 });
 
-// export const metadata: Metadata = createAppMetadata(
-//   "InclusaAI — Inclusive by Default Assistive AI Platform",
-//   "Real-time AI sign language interpretation, live captions, and multi-modal accessibility for presentations, events, and education.",
-// );
-
 export const metadata: Metadata = createAppMetadata(
   "InclusaAI — AI-Powered Accessible Communication",
   "Make every conversation more accessible with AI-powered captions, translation, sign-language experiences, accessible presentations, and inclusive participation.",
+  logoLandscape,
 );
 
 export default function RootLayout({
