@@ -39,6 +39,8 @@ export function Header({ onOpenEarlyAccess }: HeaderProps = {}) {
     };
   }, [mobileMenuOpen]);
 
+  const authUrl = process.env.NEXT_PUBLIC_AUTH_URL || "http://localhost:3004";
+
   return (
     <header className="sticky top-0 z-40 w-full border-b border-border-default/80 bg-white/95 backdrop-blur-md transition-all">
       <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
@@ -72,12 +74,12 @@ export function Header({ onOpenEarlyAccess }: HeaderProps = {}) {
 
         {/* Desktop Auth & CTA Buttons (Visible on Large Desktop screens only) */}
         <div className="hidden items-center gap-3 lg:flex">
-          {/* <Link
-            href="/signin"
-            className="rounded-lg px-4 py-2 text-sm font-semibold text-text-primary hover:bg-surface-sunken transition-colors"
+          <a
+            href={`${authUrl}/signin`}
+            className="rounded-lg px-5 py-2.5 text-sm font-semibold text-text-primary hover:bg-surface-sunken transition-colors"
           >
             Sign In
-          </Link> */}
+          </a>
           <button
             type="button"
             onClick={() => (onOpenEarlyAccess ? onOpenEarlyAccess("individual") : (window.location.href = "/early-access"))}
@@ -165,13 +167,13 @@ export function Header({ onOpenEarlyAccess }: HeaderProps = {}) {
 
               {/* Drawer Action Buttons Footer */}
               <div className="space-y-3 pt-6 border-t border-border-default">
-                <Link
-                  href="/signin"
+                <a
+                  href={`${authUrl}/signin`}
                   onClick={() => setMobileMenuOpen(false)}
                   className="flex w-full items-center justify-center rounded-xl border border-border-default py-3 text-sm font-semibold text-text-primary hover:bg-surface-sunken transition-colors"
                 >
                   Sign In
-                </Link>
+                </a>
                 <button
                   type="button"
                   onClick={() => {
